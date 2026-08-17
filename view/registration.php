@@ -1,25 +1,36 @@
-
 <?php
-include "../Controller/RegistrationValidation.php";
+include "../Controller/Registrationvalidation.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
+    <link rel="stylesheet" href="style.css">
     <script>
-        function collect_data() {
+        function validateRegistration() {
             let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirm_password").value.trim();
             let valid = true;
             let messages = [];
  
             if (name.length < 5) {
-                messages.push("User Name Should be at least 5 Char");
+                messages.push("User Name must be at least 5 characters.");
+                valid = false;
+            }
+            if (email === "") {
+                messages.push("Please enter a valid email address.");
                 valid = false;
             }
             if (password.length < 5) {
-                messages.push("Password Must be at least 5 Char");
+                messages.push("Password must be at least 5 characters.");
+                valid = false;
+            }
+            if (password !== confirmPassword) {
+                messages.push("Passwords do not match.");
                 valid = false;
             }
  
@@ -32,36 +43,53 @@ include "../Controller/RegistrationValidation.php";
 </head>
 <body>
  
-    <h2>Registration Form</h2>
+    <div class="wrap">
+        <div class="panel">
+            <h1>Registration Form</h1>
  
-    <?php if (!empty($message)): ?>
-        <p style="color: red;"><?php echo $message; ?></p>
-    <?php endif; ?>
+            <?php if (!empty($message)): ?>
+                <p style="color: red; text-align: center; font-weight: bold; margin-bottom: 15px;">
+                    <?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?>
+                </p>
+            <?php endif; ?>
  
-    <form enctype="multipart/form-data" method="post" action="" onsubmit="return collect_data()"> 
-        <table>
-            <tr>
-                <td><label for="name">User Name:</label></td>
-                <td><input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?>"></td>
-            </tr>
-            <tr>
-                <td><label for="password">Password:</label></td>
-                <td><input type="password" id="password" name="password"></td>
-            </tr>
-            <tr>
-                <td><label for="file">Profile Picture:</label></td>
-                <td><input type="file" name="file" id="file"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Register">
-                    <input type="reset" value="Reset">
-                </td>
-            </tr>
-        </table>
-    </form>
+            <form method="post" action="" onsubmit="return validateRegistration()">
+                
+                <div class="field">
+                    <label for="name">User Name:</label>
+                    <input type="text" id="name" name="name" value="<?php echo !empty($name) ? htmlspecialchars($name, ENT_QUOTES, 'UTF-8') : ''; ?>" placeholder="Enter User Name">
+                </div>
  
-    <p>Already have an account? <a href="login.php">Login here</a></p>
+                <div class="field">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" value="<?php echo !empty($email) ? htmlspecialchars($email, ENT_QUOTES, 'UTF-8') : ''; ?>" placeholder="Enter Email">
+                </div>
+ 
+                <div class="field">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password">
+                </div>
+ 
+                <div class="field">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                </div>
+ 
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button type="submit" class="btn">Register</button>
+                    <button type="reset" class="btn btn-secondary" style="background-color: #6c757d;">Reset</button>
+                </div>
+ 
+            </form>
+ 
+            <br>
+ 
+            <div class="form-foot">
+                <p>Already have an account? <a href="login.php" class="back-link">Login here</a></p>
+            </div>
+            
+        </div>
+    </div>
  
 </body>
 </html>
