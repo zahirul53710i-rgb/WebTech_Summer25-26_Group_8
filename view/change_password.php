@@ -5,6 +5,7 @@ include "../Controller/ChangePasswordController.php";
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Change Password</title>
     <script>
         function validateForm() {
