@@ -60,17 +60,11 @@
             border-collapse: collapse;
         }
 
-        th{
-            background-color: blue;
-            color: white;
-            padding: 12px;
-            text-align: center;
-        }
-
-        td{
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ccc;
+      td
+      {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
         }
 
         input[type="button"]{
@@ -120,55 +114,22 @@
 
             <table>
 
-                <tr>
+    <tr>
+        <td>Order ID</td>
+        <td>Product</td>
+        <td>Date</td>
+        <td>Amount</td>
+        <td>Status</td>
+    </tr>
 
-                    <th>Order ID</th>
-
-                    <th>Product</th>
-
-                    <th>Date</th>
-
-                    <th>Amount</th>
-
-                    <th>Status</th>
-
-                </tr>
-
-                <!-- Order information will be added here later -->
-
-                <tr>
-
-                    <td>
-                        
-                    </td>
-
-                    <td>
-                        
-                    </td>
-
-                    <td>
-                        
-                    </td>
-
-                    <td>
-                        
-                    </td>
-
-                    <td>
-                        
-                    </td>
-
-                </tr>
-
-            </table>
-
+         </table>
             <div class="link">
 
                 <a href="buyer_cart.php">
                     Go to Cart
                 </a>
 
-                <a href="buyer_profile.php">
+                <a href="userlogin.php">
                     Back to Profile
                 </a>
 

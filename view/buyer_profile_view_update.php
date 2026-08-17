@@ -249,13 +249,14 @@
             </table>
 
 
-            <div class="link">
+           <div class="link">
 
-                <a href="buyer_login.php">
-                    Logout
-                </a>
+    <a href="userlogin.php">
+        Logout
+    </a>
 
-            </div>
+</div>
+            
 
         </fieldset>
 

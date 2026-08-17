@@ -294,8 +294,7 @@ include "../Controller/RegistrationValidation.php";
                             <div class="link">
 
                                 Already have an account?
-                                <a href="userlogin.php">Login</a>
-
+                              <a href="userlogin.php">Sign In</a>
                             </div>
 
                         </td>

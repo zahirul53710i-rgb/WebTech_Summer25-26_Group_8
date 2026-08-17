@@ -186,7 +186,7 @@
 
             <div class="link">
 
-                <a href="buyer_order_history.php">
+                <a href="order_history.php">
                     View Order History
                 </a>
 

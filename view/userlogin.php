@@ -85,25 +85,26 @@
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
 
-        input[type="submit"],
-        input[type="reset"]{
-            background-color: red;
-            color: white;
-            padding: 12px 15px;
-            width: 100%;
-            border-radius: 10px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-weight: bold;
-            cursor: pointer;
-        }
+      input[type="button"],
+input[type="reset"]{
+    background-color: red;
+    color: white;
+    padding: 12px 15px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        input[type="submit"]:hover{
-            background-color: black;
-        }
+input[type="button"]:hover{
+    background-color: black;
+}
 
-        input[type="reset"]:hover{
-            background-color: green;
-        }
+input[type="reset"]:hover{
+    background-color: green;
+}
 
         .link{
             text-align: center;
@@ -164,21 +165,21 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+    <td colspan="2">
 
-                            <input type="submit"
-                                   id="submit"
-                                   name="submit"
-                                   value="Login">
+        <input type="button"
+               id="submit"
+               name="submit"
+               value="Login"
+               onclick="location.href='cart.php'">
 
-                        </td>
-                    </tr>
+    </td>
+</tr>
 
                     <tr>
                         <td colspan="2">
 
-                            <input type="reset"
-                                   id="reset"
+                            <input type="reset" id="reset"
                                    name="reset"
                                    value="Reset">
 
@@ -190,8 +191,7 @@
 
                             <div class="link">
 
-                                Don't have an account?
-                                <a href="Registration.php">Registration</a>
+                                Don't have an account?<a href="buyer_registration.php">Sign Up</a>
 
                             </div>
 
@@ -211,6 +211,19 @@
 
                         </td>
                     </tr>
+                   <tr>
+    <td colspan="2">
+
+        <div class="link">
+
+            <a href="buyer_profile_view_update.php">
+                Update Profile
+            </a>
+
+        </div>
+
+    </td>
+</tr>
 
                 </table>
 
