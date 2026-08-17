@@ -1,0 +1,17 @@
+
+ 
+[
+    {
+        "order_id": "ORD-101",
+        "customer_name": "Rahim Ahmed",
+        "address": "House 12, Road 5, Uttara, Dhaka",
+        "status": "Pending"
+    },
+    {
+        "order_id": "ORD-102",
+        "customer_name": "Karim Hassan",
+        "address": "Plot 45, Block C, Bashundhara, Dhaka",
+        "status": "In Transit"
+    }
+]
+ 
