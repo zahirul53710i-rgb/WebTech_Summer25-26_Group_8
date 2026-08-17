@@ -1,0 +1,22 @@
+
+[
+  {
+    "order_id": "ORD1001",
+    "delivery_date": "2026-08-15",
+    "amount": 120.00,
+    "status": "Paid"
+  },
+  {
+    "order_id": "ORD1002",
+    "delivery_date": "2026-08-16",
+    "amount": 85.50,
+    "status": "Paid"
+  },
+  {
+    "order_id": "ORD1003",
+    "delivery_date": "2026-08-17",
+    "amount": 150.00,
+    "status": "Pending"
+  }
+]
+ 
