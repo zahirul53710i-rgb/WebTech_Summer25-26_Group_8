@@ -238,6 +238,15 @@
                             </div>
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <td colspan="2">
+                            <div class="link">
+                                <a href="dashboard.php">Back to Dashboard</a>
+                                
+                            </div>
+                        </td>
+                    </tr>
 
                 </table>
 
