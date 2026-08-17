@@ -10,6 +10,7 @@ $username = $_SESSION["username"] ?? "Delivery Person";
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Delivery Dashboard</title>
 </head>
 <body>
