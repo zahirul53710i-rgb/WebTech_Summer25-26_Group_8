@@ -5,6 +5,7 @@ include "../Controller/EarningsController.php";
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Earnings</title>
 </head>
 <body>
