@@ -1,43 +1,76 @@
-
 <?php
-include "../Controller/EarningsController.php";
+session_start();
+if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
+    header("Location: login.php");
+    exit();
+}
+$username = $_SESSION["username"] ?? "Delivery Person";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earnings</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
  
-    <h2>Earnings Overview</h2>
-    <a href="delivery_dashboard.php">Back to Dashboard</a>
-    <br><br>
+    <div class="wrap">
+        
+        <div class="admin-header">
+            <h1>Earnings Overview</h1>
+            <p>Track your total earnings and payment history</p>
+        </div>
  
-    <h3>Total Earnings: $<?php echo htmlspecialchars($earningsData['total_earnings']); ?></h3>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <h2>tk 5,200</h2>
+                <p>Total Earnings</p>
+            </div>
+            <div class="stat-box">
+                <h2>26</h2>
+                <p>Completed Deliveries</p>
+            </div>
+        </div>
  
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Amount</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($earningsData['history'])): ?>
-                <?php foreach ($earningsData['history'] as $item): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($item['order_id']); ?></td>
-                        <td>$<?php echo htmlspecialchars($item['amount']); ?></td>
-                        <td><?php echo htmlspecialchars($item['date']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="3">No earnings recorded yet.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+       
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Order ID</th>
+                    <th>Delivery Fee</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr>
+                    <td>18 Aug 2026</td>
+                    <td>#ORD-101</td>
+                    <td>tk 200</td>
+                    <td>Paid</td>
+                </tr>
+                <tr>
+                    <td>17 Aug 2026</td>
+                    <td>#ORD-098</td>
+                    <td>tk 150</td>
+                    <td>Paid</td>
+                </tr>
+            </tbody>
+        </table>
+ 
+        <br>
+ 
+        
+        <div>
+            <a href="delivery_dashboard.php" class="back-link">
+                &larr; Back to Dashboard
+            </a>
+        </div>
+    </div>
  
 </body>
 </html>
