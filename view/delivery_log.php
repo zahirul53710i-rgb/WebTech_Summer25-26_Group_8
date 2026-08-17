@@ -5,39 +5,38 @@ include "../Controller/DeliveryLogController.php";
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
+ 
     <title>Delivery Log</title>
 </head>
 <body>
+    <div class="wrap">
+        <div class="admin-header">
+            <h1>Delivery Log</h1>
+            <p>Your complete delivery history</p>
+        </div>
  
-    <h2>Delivery Log</h2>
-    <a href="delivery_dashboard.php">Back to Dashboard</a>
-    <br><br>
+       
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#1024</td>
+                    <td>Delivered</td>
+                    <td>500 BDT</td>
+                </tr>
+            </tbody>
+        </table>
  
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Delivery Date</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($logs)): ?>
-                <?php foreach ($logs as $log): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($log['order_id']); ?></td>
-                        <td><?php echo htmlspecialchars($log['customer_name']); ?></td>
-                        <td><?php echo htmlspecialchars($log['delivery_date']); ?></td>
-                        <td><?php echo htmlspecialchars($log['status']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="4">No delivery logs found.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
- 
+        <br>
+        <a href="delivery_dashboard.php" class="back-link">&larr; Back to Dashboard</a>
+    </div>
 </body>
-</html>
+ 
  
