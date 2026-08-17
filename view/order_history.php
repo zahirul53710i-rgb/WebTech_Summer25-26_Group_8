@@ -89,10 +89,11 @@
         }
 
         .link a{
-            color: blue;
-            text-decoration: none;
-            font-size: 17px;
-        }
+              color: blue;
+              text-decoration: none;
+              font-size: 17px;
+              margin: 0 20px;
+             }
 
         .link a:hover{
             text-decoration: underline;
@@ -131,6 +132,11 @@
 
                 <a href="userlogin.php">
                     Back to Profile
+                </a>
+                
+               
+              <a href="review.php">
+                Give Review
                 </a>
 
             </div>
