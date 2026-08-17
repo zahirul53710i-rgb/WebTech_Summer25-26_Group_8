@@ -1,13 +1,15 @@
 <?php
-//include "../Controller/Loginvalidation.php";
+include "../Controller/RegistrationValidation.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <title>Login</title>
+    <title>Buyer Registration</title>
 
     <style>
 
@@ -25,8 +27,8 @@
         }
 
         .container{
-            max-width: 500px;
-            margin: 80px auto;
+            max-width: 700px;
+            margin: 40px auto;
             background-color: white;
             padding: 30px;
             border-radius: 30px;
@@ -74,7 +76,11 @@
         }
 
         input[type="text"],
-        input[type="password"]{
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="file"],
+        textarea{
             width: 100%;
             padding: 10px;
             margin: 5px 0;
@@ -83,6 +89,10 @@
             background-color: white;
             font-size: 14px;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        textarea{
+            resize: none;
         }
 
         input[type="submit"],
@@ -127,54 +137,142 @@
 
     <div class="container">
 
-        <h1>Welcome as User</h1>
+        <h1>Buyer Registration</h1>
 
-        <form method="post" action="">
+        <form enctype="multipart/form-data" method="post" action="">
 
             <fieldset>
 
-                <legend>User Login</legend>
+                <legend>Buyer Information</legend>
 
                 <table>
 
+                    <!-- Name -->
+
                     <tr>
+
                         <td>
-                            <label for="username">User Name:</label>
+                            <label for="name">Name:</label>
                         </td>
 
                         <td>
                             <input type="text"
-                                   id="username"
-                                   name="username"
-                                   placeholder="Enter your User Name">
+                                   id="name"
+                                   name="name"
+                                   placeholder="Enter your Name">
                         </td>
+
                     </tr>
 
+
+                    <!-- Email -->
+
                     <tr>
+
                         <td>
-                            <label for="password">Password:</label>
+                            <label for="email">Email:</label>
                         </td>
 
                         <td>
-                            <input type="password"
-                                   id="password"
-                                   name="password"
-                                   placeholder="Enter your Password">
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   placeholder="Enter your Email">
                         </td>
+
                     </tr>
 
+
+                    <!-- Phone Number -->
+
                     <tr>
+
+                        <td>
+                            <label for="phone">Phone No:</label>
+                        </td>
+
+                        <td>
+                            <input type="tel"
+                                   id="phone"
+                                   name="phone"
+                                   placeholder="Enter your Phone Number">
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Address -->
+
+                    <tr>
+
+                        <td>
+                            <label for="address">Address:</label>
+                        </td>
+
+                        <td>
+                            <textarea id="address"
+                                      name="address"
+                                      rows="5"
+                                      placeholder="Enter your Address"></textarea>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Date of Birth -->
+
+                    <tr>
+
+                        <td>
+                            <label for="dob">Date of Birth:</label>
+                        </td>
+
+                        <td>
+                            <input type="date"
+                                   id="dob"
+                                   name="dob">
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Profile Photo -->
+
+                    <tr>
+
+                        <td>
+                            <label for="file">Profile Photo:</label>
+                        </td>
+
+                        <td>
+                            <input type="file"
+                                   name="file"
+                                   id="file">
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Create Button -->
+
+                    <tr>
+
                         <td colspan="2">
 
                             <input type="submit"
                                    id="submit"
                                    name="submit"
-                                   value="Login">
+                                   value="Create">
 
                         </td>
+
                     </tr>
 
+
+                    <!-- Reset Button -->
+
                     <tr>
+
                         <td colspan="2">
 
                             <input type="reset"
@@ -183,33 +281,25 @@
                                    value="Reset">
 
                         </td>
+
                     </tr>
 
+
+                    <!-- Login -->
+
                     <tr>
+
                         <td colspan="2">
 
                             <div class="link">
 
-                                Don't have an account?
-                                <a href="Registration.php">Registration</a>
+                                Already have an account?
+                                <a href="userlogin.php">Login</a>
 
                             </div>
 
                         </td>
-                    </tr>
 
-                    <tr>
-                        <td colspan="2">
-
-                            <div class="link">
-
-                                <a href="ForgotPassword.php">
-                                    Forgot Password?
-                                </a>
-
-                            </div>
-
-                        </td>
                     </tr>
 
                 </table>
