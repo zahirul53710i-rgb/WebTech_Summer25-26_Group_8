@@ -7,81 +7,112 @@
 
 <head>
 
-<meta charset="UTF-8">
-<title>Review Page</title>
+    <meta charset="UTF-8">
+    <title>Review Page</title>
 
-<style>
+    <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color: bisque;
-    padding:20px;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f0ea; 
+            color: #2c4238;
+            padding: 20px;
+            line-height: 1.5;
+        }
 
-.container{
-    max-width:600px;
-    margin:50px auto;
-    background:white;
-    padding:30px;
-    border-radius:30px;
-    box-shadow:0 20px 20px;
-}
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2ddd3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
 
-h1{
-    text-align:center;
-    color:blue;
-    margin-bottom:20px;
-}
+        h1 {
+            text-align: center;
+            color: #2c4238; 
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-family: Georgia, serif;
+        }
 
-fieldset{
-    background:cornsilk;
-    border-radius:20px;
-    padding:20px;
-}
+        fieldset {
+            background: #ffffff;
+            border: 1px solid #e2ddd3;
+            border-radius: 12px;
+            padding: 20px;
+        }
 
-legend{
-    font-weight:bold;
-    font-size:18px;
-}
+        legend {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c4238;
+            padding: 0 8px;
+        }
 
-label{
-    font-size:16px;
-}
+        p {
+            color: #2c4238;
+            margin-bottom: 6px;
+        }
 
-input[type="text"],
-textarea{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:10px;
-}
+        label {
+            font-size: 15px;
+            color: #2c4238;
+            cursor: pointer;
+        }
 
-input[type="checkbox"]{
-    margin-right:8px;
-}
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
 
-input[type="submit"]{
-    width:100%;
-    padding:12px;
-    background:red;
-    color:white;
-    border:none;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
-}
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #4d6b5e;
+        }
 
-input[type="submit"]:hover{
-    background:black;
-}
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #4d6b5e; 
+        }
 
-</style>
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #4d6b5e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #3c5449; 
+        }
+
+    </style>
 
 </head>
 
@@ -89,53 +120,53 @@ input[type="submit"]:hover{
 
 <div class="container">
 
-<h1>Product Review</h1>
+    <h1>Product Review</h1>
 
-<fieldset>
+    <fieldset>
 
-<legend>Give Your Review</legend>
+        <legend>Give Your Review</legend>
 
-<form method="post">
+        <form method="post">
 
-<!-- Product Type -->
-<p><b>Which product did you buy?</b></p>
+            <!-- Product Type -->
+            <p><b>Which product did you buy?</b></p>
 
-<label><input type="checkbox" name="product[]" value="Bike"> Bike</label><br>
-<label><input type="checkbox" name="product[]" value="Car"> Car</label><br>
-<label><input type="checkbox" name="product[]" value="Truck"> Truck</label><br>
-<label><input type="checkbox" name="product[]" value="Bus"> Bus</label><br>
+            <label><input type="checkbox" name="product[]" value="Bike"> Bike</label><br>
+            <label><input type="checkbox" name="product[]" value="Car"> Car</label><br>
+            <label><input type="checkbox" name="product[]" value="Truck"> Truck</label><br>
+            <label><input type="checkbox" name="product[]" value="Bus"> Bus</label><br>
 
-<br>
+            <br>
 
-<!-- Seller Experience -->
-<p><b>How was seller?</b></p>
+            <!-- Seller Experience -->
+            <p><b>How was the seller?</b></p>
 
-<label><input type="radio" name="seller" value="Good"> Good</label>
-<label><input type="radio" name="seller" value="Average"> Average</label>
-<label><input type="radio" name="seller" value="Bad"> Bad</label>
+            <label><input type="radio" name="seller" value="Good"> Good</label>&nbsp;&nbsp;
+            <label><input type="radio" name="seller" value="Average"> Average</label>&nbsp;&nbsp;
+            <label><input type="radio" name="seller" value="Bad"> Bad</label>
 
-<br><br>
+            <br><br>
 
-<!-- Happy -->
-<p><b>Are you happy?</b></p>
+            <!-- Happy -->
+            <p><b>Are you happy?</b></p>
 
-<label><input type="radio" name="happy" value="Yes"> Yes</label>
-<label><input type="radio" name="happy" value="No"> No</label>
+            <label><input type="radio" name="happy" value="Yes"> Yes</label>&nbsp;&nbsp;
+            <label><input type="radio" name="happy" value="No"> No</label>
 
-<br><br>
+            <br><br>
 
-<!-- Comment -->
-<p><b>Your Review</b></p>
+            <!-- Comment -->
+            <p><b>Your Review</b></p>
 
-<textarea name="review" rows="4" placeholder="Write your opinion..."></textarea>
+            <textarea name="review" rows="4" placeholder="Write your opinion..."></textarea>
 
-<br><br>
+            <br><br>
 
-<input type="submit" value="Submit Review">
+            <input type="submit" value="Submit Review">
 
-</form>
+        </form>
 
-</fieldset>
+    </fieldset>
 
 </div>
 

@@ -13,65 +13,70 @@ include "../Controller/RegistrationValidation.php";
 
     <style>
 
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body{
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            background-color: bisque;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f0ea; /* সফট অফ-হোয়াইট ব্যাকগ্রাউন্ড */
+            color: #2c4238;
             padding: 20px;
             line-height: 1.5;
         }
 
-        .container{
+        .container {
             max-width: 700px;
             margin: 40px auto;
-            background-color: white;
+            background-color: #ffffff;
             padding: 30px;
-            border-radius: 30px;
-            box-shadow: 0 20px 20px;
+            border-radius: 16px;
+            border: 1px solid #e2ddd3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        h1{
-            color: blue;
+        h1 {
+            color: #2c4238; /* ডিপ গ্রিন হেডার */
             text-align: center;
             margin-bottom: 30px;
             font-size: 26px;
+            font-family: Georgia, serif;
         }
 
-        form{
+        form {
             display: flex;
         }
 
-        fieldset{
+        fieldset {
             width: 100%;
-            border-radius: 30px;
+            border: 1px solid #e2ddd3;
+            border-radius: 12px;
             padding: 20px;
-            background-color: cornsilk;
+            background-color: #ffffff;
         }
 
-        legend{
+        legend {
             padding: 0 10px;
-            color: black;
+            color: #2c4238;
             font-weight: bold;
             font-size: 20px;
         }
 
-        table{
+        table {
             width: 100%;
         }
 
-        td{
+        td {
             padding: 8px;
         }
 
-        label{
+        label {
             display: inline-block;
-            color: black;
-            font-size: 18px;
+            color: #2c4238;
+            font-size: 16px;
+            font-weight: bold;
             margin-bottom: 5px;
         }
 
@@ -80,52 +85,85 @@ include "../Controller/RegistrationValidation.php";
         input[type="tel"],
         input[type="date"],
         input[type="file"],
-        textarea{
+        textarea {
             width: 100%;
-            padding: 10px;
+            padding: 10px 12px;
             margin: 5px 0;
-            border: 1px solid;
-            border-radius: 10px;
-            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ffffff;
             font-size: 14px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2c4238;
+            outline: none;
+            transition: border-color 0.2s ease;
         }
 
-        textarea{
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        textarea:focus {
+            border-color: #4d6b5e;
+        }
+
+        textarea {
             resize: none;
         }
 
-        input[type="submit"],
-        input[type="reset"]{
-            background-color: red;
+        input[type="submit"] {
+            background-color: #4d6b5e; /* সবুজ বাটন */
             color: white;
             padding: 12px 15px;
             width: 100%;
-            border-radius: 10px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            border-radius: 8px;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
+            font-size: 15px;
             cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.2s ease;
         }
 
-        input[type="submit"]:hover{
-            background-color: black;
+        input[type="submit"]:hover {
+            background-color: #3c5449; 
         }
 
-        input[type="reset"]:hover{
-            background-color: green;
+        input[type="reset"] {
+            background-color: #e2ddd3; 
+            color: #2c4238;
+            padding: 12px 15px;
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.2s ease;
         }
 
-        .link{
+        input[type="reset"]:hover {
+            background-color: #d1cbbd;
+        }
+
+        .link {
             text-align: center;
             margin-top: 15px;
+            font-size: 15px;
+            color: #2c4238;
         }
 
-        .link a{
-            color: blue;
+        .link a {
+            color: #4d6b5e;
             text-decoration: none;
+            font-weight: bold;
         }
 
-        .link a:hover{
+        .link a:hover {
+            color: #2c4238;
             text-decoration: underline;
         }
 
