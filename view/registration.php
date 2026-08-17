@@ -5,6 +5,7 @@ include "../Controller/RegistrationValidation.php";
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Registration</title>
     <script>
         function collect_data() {
