@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f1e8;
+    color: #26332d;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wrap {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.site-header {
+    background-color: #263f35;
+    color: white;
+    padding: 18px 0;
+}
+
+.site-header .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wordmark {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.wordmark .dot {
+    color: #d4a84f;
+}
+
+.tagline {
+    display: block;
+    color: #d8dfd8;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.ledger-stamp {
+    background-color: #f5f1e8;
+    color: #263f35;
+    padding: 7px 12px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.stamp-label {
+    display: block;
+    color: #7d776b;
+    font-size: 10px;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    margin-top: 35px;
+    background-color: #fffdf8;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #ddd5c5;
+    box-shadow: 0 4px 12px rgba(50, 45, 35, 0.08);
+}
+
+.hero .eyebrow {
+    color: #9a742e;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: normal;
+    color: #263f35;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #62665e;
+    font-size: 16px;
+    max-width: 700px;
+}
+
+
+/* =========================
+   ROLE CARDS
+   ========================= */
+
+.counter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px 0 40px;
+}
+
+.ticket {
+    background-color: #fffdf8;
+    width: calc(50% - 10px);
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #ddd5c5;
+    box-shadow: 0 4px 10px rgba(50, 45, 35, 0.07);
+}
+
+.ticket:hover {
+    border-color: #c5a45d;
+    box-shadow: 0 6px 15px rgba(50, 45, 35, 0.12);
+}
+
+.lot-no {
+    display: block;
+    color: #9a742e;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.role-icon {
+    width: 38px;
+    height: 38px;
+    color: #527464;
+    margin-bottom: 8px;
+}
+
+.ticket h2 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: normal;
+    color: #263f35;
+    margin-bottom: 8px;
+}
+
+.ticket p {
+    color: #62665e;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.enter-link {
+    display: inline-block;
+    color: #527464;
+    font-weight: bold;
+    border-top: 1px solid #ddd5c5;
+    padding-top: 10px;
+}
+
+.enter-link:hover {
+    color: #9a742e;
+}
+
+.arrow {
+    margin-left: 5px;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.site-footer {
+    background-color: #263f35;
+    color: #d8dfd8;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.site-footer .wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.site-footer .motto {
+    color: #d4a84f;
+    font-family: Georgia, serif;
+}
+
+
+/* =========================
+   ADMIN LOGIN / FORM
+   ========================= */
+
+.panel {
+    width: 90%;
+    max-width: 440px;
+    margin: 50px auto;
+    background-color: #fffdf8;
+    padding: 30px;
+    border: 1px solid #ddd5c5;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(50, 45, 35, 0.08);
+}
+
+.panel h1 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: normal;
+    color: #263f35;
+    margin-bottom: 8px;
+}
+
+.panel .sub {
+    color: #62665e;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    color: #263f35;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd5c5;
+    border-radius: 6px;
+    background-color: #f5f1e8;
+    color: #26332d;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: #527464;
+}
+
+.form-foot {
+    text-align: center;
+    color: #777267;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.back-link {
+    display: inline-block;
+    color: #527464;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.back-link:hover {
+    color: #9a742e;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    background-color: #527464;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #3d5b4d;
+}
+
+.btn-danger {
+    background-color: #a85c4a;
+}
+
+.btn-danger:hover {
+    background-color: #8d493a;
+}
+
+.admin-button {
+    display: inline-block;
+    background-color: #527464;
+    color: white;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.admin-button:hover {
+    background-color: #3d5b4d;
+}
+
+.admin-button.gold {
+    background-color: #b38a3d;
+}
+
+.admin-button.gold:hover {
+    background-color: #96732f;
+}
+
+
+/* =========================
+   ADMIN DASHBOARD
+   ========================= */
+
+.admin-header {
+    margin-top: 30px;
+    background-color: #263f35;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.admin-header h1 {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.admin-header p {
+    color: #d8dfd8;
+}
+
+.admin-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.admin-card {
+    background-color: #fffdf8;
+    width: calc(50% - 10px);
+    padding: 25px;
+    border: 1px solid #ddd5c5;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(50, 45, 35, 0.07);
+}
+
+.admin-card h2 {
+    color: #263f35;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+.admin-card p {
+    color: #62665e;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   STATISTICS
+   ========================= */
+
+.stats {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: #fffdf8;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd5c5;
+    border-radius: 10px;
+}
+
+.stat-box h2 {
+    font-size: 28px;
+    color: #527464;
+}
+
+.stat-box p {
+    color: #777267;
+    font-size: 13px;
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fffdf8;
+    margin-top: 20px;
+}
+
+.admin-table th {
+    background-color: #263f35;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd5c5;
+}
+
+.admin-table tr:hover {
+    background-color: #f5f1e8;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media screen and (max-width: 700px) {
+
+    .ticket,
+    .admin-card {
+        width: 100%;
+    }
+
+    .site-header .wrap,
+    .site-footer .wrap {
+        display: block;
+    }
+
+    .ledger-stamp {
+        margin-top: 10px;
+        width: fit-content;
+    }
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .stats {
+        display: block;
+    }
+
+    .stat-box {
+        margin-bottom: 10px;
+    }
+}

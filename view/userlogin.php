@@ -11,115 +11,209 @@
 
     <style>
 
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body{
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            background-color: bisque;
-            padding: 20px;
-            line-height: 1.5;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f1e8;
+    color: #26332d;
+    line-height: 1.6;
+    padding: 20px;
+}
 
-        .container{
-            max-width: 500px;
-            margin: 80px auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 30px;
-            box-shadow: 0 20px 20px;
-        }
 
-        h1{
-            color: blue;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 26px;
-        }
+/* =========================
+   LOGIN CONTAINER
+   ========================= */
 
-        form{
-            display: flex;
-        }
+.container {
+    width: 90%;
+    max-width: 440px;
+    margin: 60px auto;
+    background-color: #fffdf8;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #ddd5c5;
+    box-shadow: 0 4px 12px rgba(50, 45, 35, 0.08);
+}
 
-        fieldset{
-            width: 100%;
-            border-radius: 30px;
-            padding: 20px;
-            background-color: cornsilk;
-        }
 
-        legend{
-            padding: 0 10px;
-            color: black;
-            font-weight: bold;
-            font-size: 20px;
-        }
+/* =========================
+   HEADING
+   ========================= */
 
-        table{
-            width: 100%;
-        }
+h1 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: normal;
+    color: #263f35;
+    text-align: center;
+    margin-bottom: 25px;
+}
 
-        td{
-            padding: 8px;
-        }
 
-        label{
-            display: inline-block;
-            color: black;
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
+/* =========================
+   FORM
+   ========================= */
 
-        input[type="text"],
-        input[type="password"]{
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid;
-            border-radius: 10px;
-            background-color: white;
-            font-size: 14px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        }
+form {
+    display: block;
+}
 
-      input[type="button"],
-input[type="reset"]{
-    background-color: red;
-    color: white;
-    padding: 12px 15px;
+
+/* =========================
+   FIELDSET
+   ========================= */
+
+fieldset {
     width: 100%;
-    border-radius: 10px;
-    border: none;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 1px solid #ddd5c5;
+    border-radius: 8px;
+    padding: 22px;
+    background-color: #f5f1e8;
+}
+
+legend {
+    padding: 0 10px;
+    color: #263f35;
     font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 8px;
+}
+
+
+/* =========================
+   LABEL
+   ========================= */
+
+label {
+    display: inline-block;
+    color: #263f35;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   INPUT
+   ========================= */
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 5px 0;
+    border: 1px solid #ddd5c5;
+    border-radius: 6px;
+    background-color: #fffdf8;
+    color: #26332d;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #527464;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+input[type="button"],
+input[type="reset"] {
+    background-color: #527464;
+    color: white;
+    padding: 10px 18px;
+    width: 100%;
+    border-radius: 6px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
     cursor: pointer;
 }
 
-input[type="button"]:hover{
-    background-color: black;
+input[type="button"]:hover {
+    background-color: #3d5b4d;
 }
 
-input[type="reset"]:hover{
-    background-color: green;
+input[type="reset"] {
+    background-color: #b38a3d;
 }
 
-        .link{
-            text-align: center;
-            margin-top: 15px;
-        }
+input[type="reset"]:hover {
+    background-color: #96732f;
+}
 
-        .link a{
-            color: blue;
-            text-decoration: none;
-        }
 
-        .link a:hover{
-            text-decoration: underline;
-        }
+/* =========================
+   LINK
+   ========================= */
 
+.link {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.link a {
+    color: #527464;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.link a:hover {
+    color: #9a742e;
+    text-decoration: underline;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media screen and (max-width: 500px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    fieldset {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+}
+
+</style>
     </style>
 
 </head>

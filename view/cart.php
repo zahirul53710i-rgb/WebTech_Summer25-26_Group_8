@@ -169,7 +169,7 @@
 
                         <input type="button"
                                value="Continue Shopping"
-                               onclick="location.href='buyer_profile.php'">
+                               onclick="location.href='buyer_profile_view_update.php'">
 
                     </td>
 
