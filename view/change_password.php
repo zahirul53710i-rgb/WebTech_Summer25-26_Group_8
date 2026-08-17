@@ -6,6 +6,7 @@ include "../Controller/ChangePasswordController.php";
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
+ 
     <title>Change Password</title>
     <script>
         function validateForm() {
@@ -31,34 +32,29 @@ include "../Controller/ChangePasswordController.php";
     </script>
 </head>
 <body>
+    <div class="wrap">
+        <div class="panel">
+            <h1>Change Password</h1>
+            <p class="sub">Update your account password</p>
  
-    <h2>Change Password</h2>
-    <a href="delivery_dashboard.php">Back to Dashboard</a>
-    <br><br>
+            <form action="" method="POST">
+                <div class="field">
+                    <label>Current Password</label>
+                    <input type="password" name="current_password" required>
+                </div>
  
-    <?php if (!empty($message)): ?>
-        <p style="color: red;"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></p>
-    <?php endif; ?>
+                <div class="field">
+                    <label>New Password</label>
+                    <input type="password" name="new_password" required>
+                </div>
  
-    <form method="post" action="" onsubmit="return validateForm()">
-        <table>
-            <tr>
-                <td><label for="current_password">Current Password:</label></td>
-                <td><input type="password" id="current_password" name="current_password"></td>
-            </tr>
-            <tr>
-                <td><label for="new_password">New Password:</label></td>
-                <td><input type="password" id="new_password" name="new_password"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Change Password">
-                    <input type="reset" value="Reset">
-                </td>
-            </tr>
-        </table>
-    </form>
+                <button type="submit" class="btn">Update Password</button>
+            </form>
  
+            <br>
+            <a href="delivery_dashboard.php" class="back-link">&larr; Back to Dashboard</a>
+        </div>
+    </div>
 </body>
-</html>
+ 
  
