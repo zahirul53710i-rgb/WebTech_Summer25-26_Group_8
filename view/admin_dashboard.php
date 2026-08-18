@@ -108,17 +108,13 @@ $pageTitle = "Admin Dashboard";
 
         <br>
 
-        <a href="index.php" class="admin-button">
-            &larr; Back to HaatBodol
+        <a href="dashboard.php" class="admin-button">
+            &larr; Logout
+        </a>
+        <a href="admin_change_password.php" class="admin-button gold">
+            Change Password
         </a>
 
     </div>
-
-    <a href="admin_change_password.php" class="admin-button gold">
-        Change Password
-    </a>
-
-
 </body>
-
 </html>

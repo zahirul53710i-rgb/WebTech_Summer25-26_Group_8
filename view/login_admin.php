@@ -26,7 +26,7 @@ $pageTitle = "Admin Login";
 
     <div class="panel">
 
-        <a href="index.php" class="back-link">
+        <a href="dashboard.php" class="back-link">
             &larr; Back to HaatBodol
         </a>
 
