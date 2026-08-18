@@ -219,7 +219,7 @@ $pageTitle = "Dashboard";
           safely to the buyer.
         </p>
 
-        <a href="login_delivery.php" class="enter-link">
+        <a href="registration.php" class="enter-link">
           Enter as Delivery
           <span class="arrow">&rarr;</span>
         </a>

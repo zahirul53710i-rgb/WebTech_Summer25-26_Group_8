@@ -85,8 +85,9 @@ include "../Controller/Registrationvalidation.php";
             <br>
  
             <div class="form-foot">
-                <p>Already have an account? <a href="login.php" class="back-link">Login here</a></p>
-            </div>
+    <p>Already have an account? <a href="login.php" class="back-link">Login here</a></p>
+    <p style="margin-top: 10px;"><a href="dashboard.php" class="back-link">&larr; Back to Dashboard</a></p>
+</div>
             
         </div>
     </div>
