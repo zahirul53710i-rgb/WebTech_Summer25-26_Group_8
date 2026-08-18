@@ -6,9 +6,13 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Orders</title>
 
@@ -21,77 +25,76 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f3ef;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f1e8;
+            color: #26332d;
+            line-height: 1.6;
         }
 
-        .orders-page {
-            min-height: 100vh;
-
-            padding: 25px 40px;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .title {
-            width: 272px;
-            height: 58px;
+        .page {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 0;
+        }
 
-            margin: 0 auto 58px auto;
-
-            background: linear-gradient(135deg, #8c6b43, #c49a6c);
-
+        .page-header {
+            background-color: #263f35;
             color: white;
-
-            border-radius: 10px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
         }
 
-        .title h1 {
-            font-size: 28px;
-
+        .page-header h1 {
+            font-family: Georgia, serif;
+            font-size: 32px;
             font-weight: normal;
+        }
+
+        .page-header p {
+            color: #d8dfd8;
+            font-size: 14px;
         }
 
         .orders {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
-            column-gap: 54px;
-
-            row-gap: 10px;
+            gap: 20px;
         }
 
         .order {
-            min-height: 108px;
+            background-color: #fffdf8;
 
-            background-color: white;
+            padding: 20px;
 
-            border-radius: 9px;
+            border: 1px solid #ddd5c5;
+            border-left: 5px solid #527464;
 
-            border-left: 5px solid #8c6b43;
+            border-radius: 10px;
 
-            padding: 10px;
+            box-shadow: 0 4px 10px rgba(50, 45, 35, 0.07);
+        }
 
-            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        .order:hover {
+            border-left-color: #c5a45d;
         }
 
         .order p {
-            font-size: 16px;
-
-            line-height: 21px;
-
-            color: #34495e;
+            color: #62665e;
+            font-size: 14px;
+            margin-bottom: 6px;
         }
 
         .order-id {
-            color: #8c6b43 !important;
-
+            color: #527464 !important;
             font-weight: bold;
-
-            margin-bottom: 4px;
+            margin-bottom: 10px !important;
         }
 
         .empty {
@@ -99,130 +102,148 @@
 
             text-align: center;
 
-            padding: 60px;
+            background-color: #fffdf8;
 
-            color: #888;
+            padding: 70px 20px;
 
-            font-size: 18px;
+            border: 1px solid #ddd5c5;
+            border-radius: 12px;
+
+            color: #777267;
+        }
+
+        .empty h2 {
+            font-family: Georgia, serif;
+            font-weight: normal;
+            color: #263f35;
+            margin-bottom: 5px;
         }
 
         .back {
-            display: flex;
-
-            justify-content: flex-end;
-
             margin-top: 25px;
+            text-align: right;
         }
 
-        .back-button {
-            width: 220px;
-            height: 42px;
-
-            border: none;
-
-            border-radius: 7px;
-
-            background-color: #5f6f52;
-
+        .admin-button {
+            display: inline-block;
+            background-color: #527464;
             color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
 
-            cursor: pointer;
+        .admin-button:hover {
+            background-color: #3d5b4d;
+        }
+
+        @media screen and (max-width: 700px) {
+
+            .orders {
+                grid-template-columns: 1fr;
+            }
+
+            .empty {
+                grid-column: 1;
+            }
+
         }
 
     </style>
 
 </head>
 
-
 <body>
 
-<form method="post" action="">
+<div class="page">
 
-    <div class="orders-page">
+    <div class="page-header">
 
+        <h1>Orders</h1>
 
-        <div class="title">
+        <p>
+            View orders placed for your products.
+        </p>
 
-            <h1>Orders</h1>
-
-        </div>
-
-
-        <div class="orders">
+    </div>
 
 
-            <?php
+    <div class="orders">
 
-            /*
-             * Backend will provide orders later.
-             */
+        <?php
 
-            $orders = [];
+        /*
+         * Backend will provide orders later.
+         */
 
-            ?>
+        $orders = [];
+
+        ?>
 
 
-            <?php if (empty($orders)) { ?>
+        <?php if (empty($orders)) { ?>
 
-                <div class="empty">
+            <div class="empty">
 
-                    No orders yet.
+                <h2>No Orders Yet</h2>
+
+                <p>
+                    Your orders will appear here when buyers place them.
+                </p>
+
+            </div>
+
+        <?php } else { ?>
+
+
+            <?php foreach ($orders as $order) { ?>
+
+                <div class="order">
+
+                    <p class="order-id">
+
+                        #Order ID:
+                        <?php echo htmlspecialchars($order["id"]); ?>
+
+                    </p>
+
+                    <p>
+                        Order details:
+                        <?php echo htmlspecialchars($order["details"]); ?>
+                    </p>
+
+                    <p>
+                        Receiver address:
+                        <?php echo htmlspecialchars($order["address"]); ?>
+                    </p>
+
+                    <p>
+                        Receiver phone number:
+                        <?php echo htmlspecialchars($order["phone"]); ?>
+                    </p>
 
                 </div>
-
-            <?php } else { ?>
-
-
-                <?php foreach ($orders as $order) { ?>
-
-                    <div class="order">
-
-                        <p class="order-id">
-                            #Order ID:
-                            <?php echo htmlspecialchars($order["id"]); ?>
-                        </p>
-
-                        <p>
-                            Order details:
-                            <?php echo htmlspecialchars($order["details"]); ?>
-                        </p>
-
-                        <p>
-                            Receiver address:
-                            <?php echo htmlspecialchars($order["address"]); ?>
-                        </p>
-
-                        <p>
-                            Receiver phone number:
-                            <?php echo htmlspecialchars($order["phone"]); ?>
-                        </p>
-
-                    </div>
-
-                <?php } ?>
-
 
             <?php } ?>
 
 
-        </div>
-
-
-        <div class="back">
-
-            <input
-                type="submit"
-                name="page"
-                value="Back to seller page"
-                class="back-button"
-            >
-
-        </div>
-
+        <?php } ?>
 
     </div>
 
-</form>
+
+    <!-- BACK TO SELLER DASHBOARD -->
+
+    <div class="back">
+
+        <a href="sellerpage.php"
+           class="admin-button">
+            &larr; Back to Seller Dashboard
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 

@@ -3,9 +3,13 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Change Password</title>
 
@@ -18,218 +22,231 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f3ef;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f1e8;
+            color: #26332d;
+            line-height: 1.6;
         }
 
-        .password-page {
-            min-height: 100vh;
-
-            padding: 27px 63px;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .title {
-            width: 440px;
-            height: 62px;
+        .page {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 0;
+        }
 
-            margin: 0 auto 129px auto;
-
-            background: linear-gradient(135deg, #6b705c, #a5a58d);
-
+        .page-header {
+            background-color: #263f35;
             color: white;
-
-            border-radius: 10px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-        }
-
-        .title h1 {
-            font-size: 28px;
-
-            font-weight: normal;
-        }
-
-        .password-form {
-            width: 600px;
-
-            margin-left: 38px;
-        }
-
-        .form-row {
-            display: flex;
-
-            align-items: center;
-
+            padding: 30px;
+            border-radius: 12px;
             margin-bottom: 25px;
         }
 
-        .form-row label {
-            width: 275px;
-
-            text-align: right;
-
-            padding-right: 20px;
-
-            font-size: 27px;
-
-            color: #34495e;
+        .page-header h1 {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            font-weight: normal;
         }
 
-        .form-row input {
-            width: 295px;
-            height: 46px;
+        .page-header p {
+            color: #d8dfd8;
+            font-size: 14px;
+        }
 
-            border: 1px solid #ddd;
+        .panel {
+            width: 90%;
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            background-color: #fffdf8;
+
+            padding: 30px;
+
+            border: 1px solid #ddd5c5;
+            border-radius: 12px;
+
+            box-shadow: 0 4px 12px rgba(50, 45, 35, 0.08);
+        }
+
+        .panel h2 {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: normal;
+
+            color: #263f35;
+
+            margin-bottom: 8px;
+        }
+
+        .panel .sub {
+            color: #62665e;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+
+            color: #263f35;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            margin-bottom: 6px;
+        }
+
+        .field input {
+            width: 100%;
+
+            padding: 10px;
+
+            border: 1px solid #ddd5c5;
+            border-radius: 6px;
+
+            background-color: #f5f1e8;
+
+            color: #26332d;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: #527464;
+        }
+
+        .btn {
+            display: inline-block;
+
+            width: 100%;
+
+            background-color: #527464;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 18px;
 
             border-radius: 6px;
 
-            background-color: white;
-
-            padding: 5px;
-
-            font-size: 18px;
-        }
-
-        .save {
-            margin-top: 98px;
-
-            margin-left: 286px;
-        }
-
-        .save-button {
-            width: 214px;
-            height: 44px;
-
-            border: none;
-
-            border-radius: 7px;
-
-            background: linear-gradient(135deg, #6b705c, #a5a58d);
-
-            color: white;
-
-            font-size: 24px;
-
             cursor: pointer;
+
+            font-size: 14px;
         }
 
-        .save-button:hover {
-            opacity: 0.9;
+        .btn:hover {
+            background-color: #3d5b4d;
         }
 
         .back {
-            display: flex;
-
-            justify-content: flex-end;
-
-            margin-top: 296px;
+            margin-top: 25px;
+            text-align: center;
         }
 
-        .back-button {
-            width: 214px;
-            height: 45px;
+        .back-link {
+            display: inline-block;
 
-            border: none;
+            color: #527464;
 
-            border-radius: 7px;
-
-            background-color: #5f6f52;
-
-            color: white;
-
-            font-size: 14px;
-
-            cursor: pointer;
+            font-size: 13px;
         }
 
-        .back-button:hover {
-            background-color: #4d5b43;
+        .back-link:hover {
+            color: #9a742e;
         }
 
     </style>
 
 </head>
 
-
 <body>
 
 <form method="post" action="">
 
-    <div class="password-page">
+<div class="page">
+
+    <div class="page-header">
+
+        <h1>Change Password</h1>
+
+        <p>
+            Update your seller account password.
+        </p>
+
+    </div>
 
 
-        <div class="title">
+    <div class="panel">
 
-            <h1>Change password</h1>
+        <h2>Change Password</h2>
 
-        </div>
-
-
-        <div class="password-form">
-
-
-            <div class="form-row">
-
-                <label for="username">
-                    Username :
-                </label>
-
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                >
-
-            </div>
+        <p class="sub">
+            Enter your username and your new password.
+        </p>
 
 
-            <div class="form-row">
+        <div class="field">
 
-                <label for="password">
-                    New password:
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                >
-
-            </div>
-
-
-            <div class="save">
-
-                <input
-                    type="submit"
-                    name="action"
-                    value="Save"
-                    class="save-button"
-                >
-
-            </div>
-
-
-        </div>
-
-
-        <div class="back">
+            <label for="username">
+                Username
+            </label>
 
             <input
-                type="submit"
-                name="action"
-                value="Back to seller page"
-                class="back-button"
+                type="text"
+                id="username"
+                name="username"
             >
 
         </div>
 
 
+        <div class="field">
+
+            <label for="password">
+                New Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+            >
+
+        </div>
+
+
+        <input
+            type="submit"
+            name="action"
+            value="Save Password"
+            class="btn"
+        >
+
     </div>
+
+
+    <!-- Back to Seller Dashboard -->
+
+    <div class="back">
+
+        <a href="sellerpage.php"
+           class="back-link">
+            &larr; Back to Seller Dashboard
+        </a>
+
+    </div>
+
+</div>
 
 </form>
 

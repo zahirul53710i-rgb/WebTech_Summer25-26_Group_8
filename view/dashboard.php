@@ -178,10 +178,10 @@ $pageTitle = "Dashboard";
           them for admin approval.
         </p>
 
-        <a href="login_seller.php" class="enter-link">
-          Enter as Seller
-          <span class="arrow">&rarr;</span>
-        </a>
+        <a href="sellerpage.php" class="enter-link">
+    Enter as Seller
+    <span class="arrow">&rarr;</span>
+</a>
 
       </div>
 

@@ -6,9 +6,13 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Products</title>
 
@@ -21,204 +25,218 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f3ef;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f1e8;
+            color: #26332d;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .page {
-            min-height: 100vh;
-            padding: 25px;
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 0;
         }
 
-        /* Title */
-
-        .title {
-            width: 365px;
-            height: 70px;
-
-            margin: 0 auto 35px auto;
-
-            background: linear-gradient(135deg, #6b705c, #a5a58d);
-
+        .page-header {
+            background-color: #263f35;
             color: white;
-
-            border-radius: 10px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
         }
 
-        .title h1 {
-            font-size: 22px;
+        .page-header h1 {
+            font-family: Georgia, serif;
+            font-size: 32px;
             font-weight: normal;
         }
 
-        /* Products */
+        .page-header p {
+            color: #d8dfd8;
+            font-size: 14px;
+        }
 
         .products {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
-            gap: 12px 30px;
+            gap: 20px;
         }
-
-        /* Backend will create product cards here */
 
         .product {
-            height: 158px;
+            min-height: 180px;
 
-            background-color: white;
+            background-color: #fffdf8;
 
-            border-radius: 10px;
+            border: 1px solid #ddd5c5;
+            border-radius: 12px;
 
-            border-left: 5px solid #a5a58d;
+            padding: 20px;
 
-            position: relative;
+            box-shadow: 0 4px 10px rgba(50, 45, 35, 0.07);
 
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .product-name {
-            position: absolute;
-
-            left: 30px;
-            top: 65px;
-
-            color: #3d3d3d;
-
-            font-size: 16px;
+        .product:hover {
+            border-color: #c5a45d;
+            box-shadow: 0 6px 15px rgba(50, 45, 35, 0.12);
         }
 
         .product-picture {
-            width: 203px;
-            height: 109px;
+            width: 150px;
+            height: 120px;
 
-            background: #e9e6df;
+            background-color: #f5f1e8;
 
-            position: absolute;
-
-            right: 20px;
-            top: 9px;
-
-            border-radius: 7px;
+            border: 1px solid #ddd5c5;
+            border-radius: 8px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            color: #777;
+            color: #777267;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            color: #263f35;
+            margin-bottom: 10px;
         }
 
         .quantity {
-            position: absolute;
-
-            left: 178px;
-            bottom: 7px;
-
-            color: #555;
+            color: #62665e;
+            font-size: 14px;
+            margin-bottom: 5px;
         }
 
         .price {
-            position: absolute;
-
-            left: 384px;
-            bottom: 7px;
-
-            color: #a05a00;
-
+            color: #9a742e;
+            font-size: 18px;
             font-weight: bold;
         }
 
-        /* Back */
-
         .back {
-            margin-top: 18px;
-
-            display: flex;
-
-            justify-content: flex-end;
+            margin-top: 25px;
+            text-align: right;
         }
 
-        .back-button {
-            width: 265px;
-            height: 42px;
-
-            border: none;
-
-            border-radius: 7px;
-
-            background-color: #5f6f52;
-
+        .admin-button {
+            display: inline-block;
+            background-color: #527464;
             color: white;
-
-            font-size: 16px;
-
-            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 14px;
         }
 
-        .back-button:hover {
-            background-color: #4d5b43;
+        .admin-button:hover {
+            background-color: #3d5b4d;
+        }
+
+        .empty {
+            grid-column: 1 / 3;
+
+            text-align: center;
+            padding: 60px;
+
+            background-color: #fffdf8;
+            border: 1px solid #ddd5c5;
+            border-radius: 12px;
+
+            color: #777267;
+        }
+
+        @media screen and (max-width: 700px) {
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .empty {
+                grid-column: 1;
+            }
+
+            .product {
+                flex-direction: column;
+                text-align: center;
+            }
+
         }
 
     </style>
 
 </head>
 
-
 <body>
 
-<form method="post" action="">
+<div class="page">
 
-    <div class="page">
+    <div class="page-header">
 
+        <h1>My Products</h1>
 
-        <div class="title">
-
-            <h1>Your Products</h1>
-
-        </div>
-
-
-        <div class="products">
-
-            <?php
-
-            /*
-             * Products will be generated here
-             * from the backend later.
-             *
-             * Example:
-             *
-             * foreach ($products as $product) {
-             *
-             *     // product HTML
-             *
-             * }
-             */
-
-            ?>
-
-
-        </div>
-
-
-        <div class="back">
-
-            <input
-                type="submit"
-                name="page"
-                value="Back to seller page"
-                class="back-button"
-            >
-
-        </div>
-
+        <p>
+            View and manage the products currently listed in your store.
+        </p>
 
     </div>
 
-</form>
+
+    <div class="products">
+
+        <?php
+
+        /*
+         * Products will be generated here
+         * from the backend later.
+         *
+         * Example:
+         *
+         * foreach ($products as $product) {
+         *
+         *     // product HTML
+         *
+         * }
+         */
+
+        ?>
+
+        <!-- Empty for now -->
+
+        <div class="empty">
+            No products available yet.
+        </div>
+
+    </div>
+
+
+    <!-- BACK TO SELLER DASHBOARD -->
+
+    <div class="back">
+
+        <a href="sellerpage.php"
+           class="admin-button">
+            &larr; Back to Seller Dashboard
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 
