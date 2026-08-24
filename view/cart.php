@@ -118,7 +118,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #2c4238; /* ডার্ক হোভার এফেক্ট */
+            background-color: #2c4238;
         }
 
         .link {
@@ -164,7 +164,6 @@
                 </thead>
 
                 <tbody>
-                    <!-- Products will be added here dynamically using PHP later -->
                     <tr>
                         <td colspan="4">
                             <!-- Empty row placeholder -->
@@ -183,14 +182,11 @@
 
                     <tr>
                         <td colspan="2">
-                            <input type="button"
-                                   value="Continue Shopping"
-                                   onclick="location.href='buyer_profile_view_update.php'">
+                            <input type="button" value="Continue Shopping">
                         </td>
 
                         <td colspan="2">
-                            <input type="submit"
-                                   value="Place Order">
+                            <input type="submit" value="Place Order">
                         </td>
                     </tr>
                 </tbody>

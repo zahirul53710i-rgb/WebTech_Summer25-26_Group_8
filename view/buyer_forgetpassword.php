@@ -1,12 +1,12 @@
- <?php
-//include "../Controller/Loginvalidation.php";
+<?php
+//include "../Controller/ForgotPasswordvalidation.php";
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Reset Password</title>
 
     <style>
         * {
@@ -23,7 +23,7 @@
             padding: 20px;
         }
 
-        /* LOGIN CONTAINER */
+        /* CONTAINER */
         .container {
             width: 90%;
             max-width: 440px;
@@ -102,6 +102,7 @@
 
         /* BUTTONS */
         input[type="button"],
+        input[type="submit"],
         input[type="reset"] {
             background-color: #4d6b5e; 
             color: white;
@@ -116,7 +117,8 @@
             margin-top: 5px;
         }
 
-        input[type="button"]:hover {
+        input[type="button"]:hover,
+        input[type="submit"]:hover {
             background-color: #3c5449;
         }
 
@@ -173,13 +175,13 @@
 
     <div class="container">
 
-        <h1>Welcome as Buyer</h1>
+        <h1>Reset Password</h1>
 
         <form method="post" action="">
 
             <fieldset>
 
-                <legend>Buyer Login</legend>
+                <legend>Forgot Password</legend>
 
                 <table>
 
@@ -187,7 +189,6 @@
                         <td>
                             <label for="username">User Name:</label>
                         </td>
-
                         <td>
                             <input type="text" id="username" name="username" placeholder="Enter your User Name">
                         </td>
@@ -195,17 +196,16 @@
 
                     <tr>
                         <td>
-                            <label for="password">Password:</label>
+                            <label for="new_password">New Password:</label>
                         </td>
-
                         <td>
-                            <input type="password" id="password" name="password" placeholder="Enter your Password">
+                            <input type="password" id="new_password" name="new_password" placeholder="Enter New Password">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="button" id="submit" name="submit" value="Login" onclick="location.href='cart.php'">
+                            <input type="button" id="submit" name="submit" value="Update Password" onclick="location.href='userlogin.php'">
                         </td>
                     </tr>
 
@@ -218,32 +218,15 @@
                     <tr>
                         <td colspan="2">
                             <div class="link">
-                                Don't have an account? <a href="buyer_registration.php">Sign Up</a>
+                                Remembered your password? <a href="userlogin.php">Back to Login</a>
                             </div>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <div class="link">
-                                <a href="buyer_forgetpassword.php">Forgot Password?</a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2">
-                            <div class="link">
-                                <a href="buyer_profile_view_update.php">Update Profile</a>
-                            </div>
-                        </td>
-                    </tr>
-                    
                     <tr>
                         <td colspan="2">
                             <div class="link">
                                 <a href="dashboard.php">Back to Dashboard</a>
-                                
                             </div>
                         </td>
                     </tr>
