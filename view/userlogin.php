@@ -212,23 +212,22 @@ input[type="submit"]:hover {
 
                 <table>
 
-                    <tr>
-                        <td>
-                            <label for="username">User Name:</label>
-                        </td>
-
-                        <td>
-                            <input type="text" id="username" name="username" placeholder="Enter your User Name">
-                        </td>
+                   <!-- Username Row -->
+                   <!-- Username Row -->
+                   <tr>
+                       <td> <label for="username"> User Name: </label></td>
+                       <td> 
+                           <input type="text" id="username" name="username" placeholder="Enter your User Name">
+                           <?php echo isset($nameErr) ? $nameErr : ''; ?>
+                       </td>
                     </tr>
 
+                    <!-- Password Row -->
                     <tr>
-                        <td>
-                            <label for="password">Password:</label>
-                        </td>
-
-                        <td>
+                        <td> <label for="password"> Password: </label></td>
+                        <td> 
                             <input type="password" id="password" name="password" placeholder="Enter your Password">
+                            <?php echo isset($passwordErr) ? $passwordErr : ''; ?>
                         </td>
                     </tr>
 
@@ -253,7 +252,7 @@ input[type="submit"]:hover {
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div class="link">
                                 <a href="buyer_forgetpassword.php">Forgot Password?</a>
                             </div>
@@ -261,7 +260,7 @@ input[type="submit"]:hover {
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div class="link">
                                 <a href="buyer_profile_view_update.php">Update Profile</a>
                             </div>
@@ -269,7 +268,7 @@ input[type="submit"]:hover {
                     </tr>
                     
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div class="link">
                                 <a href="dashboard.php">Back to Dashboard</a>
                                 
