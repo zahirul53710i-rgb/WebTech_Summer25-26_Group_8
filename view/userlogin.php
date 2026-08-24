@@ -1,5 +1,5 @@
  <?php
-//include "../Controller/Loginvalidation.php";
+include "../Controller/buyervalidation/Loginvalidation.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -204,7 +204,7 @@ input[type="submit"]:hover {
 
         <h1>Welcome as Buyer</h1>
 
-       <form method="post" action="cart.php" onsubmit="return collect_data()">
+      <form method="post" onsubmit="return collect_data()">
 
             <fieldset>
 
