@@ -8,39 +8,27 @@ include "../Controller/buyervalidation/Loginvalidation.php";
     <meta charset="UTF-8">
     <title>Login</title>
 
-    <div style>
-        <?php 
-            if(!empty($nameErr)) echo $nameErr . "<br>"; 
-            if(!empty($passwordErr)) echo $passwordErr; 
-        ?>
-    </div>
-
     <script>
-       function collect_data()
-            {
-                let username = document.getElementById("username").value.trim();
-                let password = document.getElementById("password").value.trim();
-                
-                let valid = true;
-                let message="";
+       function collect_data() {
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+            
+            let valid = true;
+            let message = "";
 
-                if(username.length <5)
-                {
-                    message+="User Name Should be 5 Char";
-                    valid = false;
-                }
-                if(password.length <5)
-                {
-                    message+="Password Must be 5 Char";
-                    valid = false;
-                }
-                if(!valid)
-                {
-                    alert(message);
-                }
-                return valid;
-
-            } 
+            if (username.length === 0) {
+                message += "User Name is required\n";
+                valid = false;
+            }
+            if (password.length === 0) {
+                message += "Password is required\n";
+                valid = false;
+            }
+            if (!valid) {
+                alert(message);
+            }
+            return valid;
+       } 
     </script>
 
     <style>
@@ -58,7 +46,6 @@ include "../Controller/buyervalidation/Loginvalidation.php";
             padding: 20px;
         }
 
-        /* LOGIN CONTAINER */
         .container {
             width: 90%;
             max-width: 440px;
@@ -70,7 +57,6 @@ include "../Controller/buyervalidation/Loginvalidation.php";
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* HEADING */
         h1 {
             font-family: Georgia, serif;
             font-size: 30px;
@@ -115,7 +101,6 @@ include "../Controller/buyervalidation/Loginvalidation.php";
             margin-bottom: 5px;
         }
 
-        /* INPUT FIELDS */
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -135,10 +120,8 @@ include "../Controller/buyervalidation/Loginvalidation.php";
             border-color: #4d6b5e;
         }
 
-        /* BUTTONS */
         input[type="submit"],
-        input[type="reset"] 
-        {
+        input[type="reset"] {
              background-color: #4d6b5e; 
              color: white;
              padding: 12px 18px;
@@ -152,9 +135,9 @@ include "../Controller/buyervalidation/Loginvalidation.php";
              margin-top: 5px;
         }
 
-input[type="submit"]:hover {
-    background-color: #3c5449;
-}
+        input[type="submit"]:hover {
+            background-color: #3c5449;
+        }
 
         input[type="reset"] {
             background-color: #8c8275; 
@@ -164,7 +147,6 @@ input[type="submit"]:hover {
             background-color: #736a5e;
         }
 
-        /* LINK */
         .link {
             text-align: center;
             margin-top: 15px;
@@ -182,25 +164,10 @@ input[type="submit"]:hover {
             text-decoration: underline;
         }
 
-        /* RESPONSIVE */
-        @media screen and (max-width: 500px) {
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                width: 100%;
-                margin: 30px auto;
-                padding: 20px;
-            }
-
-            fieldset {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 26px;
-            }
+        .error {
+            color: red;
+            font-size: 12px;
+            display: block;
         }
     </style>
 </head>
@@ -211,7 +178,7 @@ input[type="submit"]:hover {
 
         <h1>Welcome as Buyer</h1>
 
-      <form method="post" action="" onsubmit="return collect_data()">
+        <form method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -219,36 +186,38 @@ input[type="submit"]:hover {
 
                 <table>
 
-                 
-                   <!-- Username Row -->
+                  <!-- Username Row -->
                   <tr>
                       <td><label for="username"> User Name: </label></td>
-                      <td><input type="text" id="username" name="username">
-                          <?php echo $name ?>
+                      <td>
+                          <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($name); ?>">
+                          <span class="error"><?php echo $nameErr; ?></span>
                       </td>
                   </tr>
 
+                  <!-- Password Row -->
                   <tr>
                       <td><label for="password"> Password: </label></td>
-                      <td><input type="password" id="password" name="password">
-                          <?php echo $password ?>
+                      <td>
+                          <input type="password" id="password" name="password">
+                          <span class="error"><?php echo $passwordErr; ?></span>
                       </td>
                  </tr>
 
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <input type="submit" id="submit" name="submit" value="Login">
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <input type="reset" id="reset" name="reset" value="Reset">
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <div class="link">
                                 Don't have an account? <a href="buyer_registration.php">Sign Up</a>
                             </div>
@@ -256,42 +225,11 @@ input[type="submit"]:hover {
                     </tr>
 
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <div class="link">
-                                <a href="buyer_forgetpassword.php">Forgot Password?</a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="3">
-                            <div class="link">
-                                <a href="buyer_profile_view_update.php">Update Profile</a>
-                            </div>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td colspan="3">
-                            <div class="link">
-                                <a href="dashboard.php">Back to Dashboard</a>
-                                
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-
-                        <td colspan="3">
-
-                            <div class="link">
-
                                 <a href="buyerdashboard.php">Back to Dashboard</a>
-
                             </div>
-
                         </td>
-
                     </tr>
 
                 </table>

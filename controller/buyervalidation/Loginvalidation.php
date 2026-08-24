@@ -2,38 +2,37 @@
 
 $nameErr = "";
 $passwordErr = "";
-
 $name = "";
 $password = "";
-
 $valid = true;
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
+$default_username = "buyer";
+$default_password = "buyer123";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST["username"] ?? "");
     $password = trim($_POST["password"] ?? "");
 
-
-    if(empty($name) || strlen($name) < 5)
-    {
-        $nameErr = "User Name Must be at least 5 Character";
+   
+    if (empty($name)) {
+        $nameErr = "User Name is required";
         $valid = false;
     }
 
-
-    if(empty($password) || strlen($password) < 5)
-    {
-        $passwordErr = "Password Must be at least 5 Character";
+    if (empty($password)) {
+        $passwordErr = "Password is required";
         $valid = false;
     }
 
-
-    if($valid)
-    {
-        header("Location: buyerdashboard.php");
-        exit();
+   
+    if ($valid) {
+        if ($name === $default_username && $password === $default_password) {
+            header("Location: buyerdashboard.php");
+            exit();
+        } else {
+            $nameErr = "Invalid Username or Password!";
+        }
     }
 }
-
 ?>
