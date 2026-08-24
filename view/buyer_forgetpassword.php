@@ -7,6 +7,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
+     
+
+<script>
+            function collect_data()
+            {
+                let username = document.getElementById("username").value.trim();
+                let new_password = document.getElementById("new_password").value.trim();
+
+                let valid = true;
+                let message="";
+
+                if(username.length <5)
+                {
+                    message+="User Name Must be 5 Char";
+                    valid = false;
+                }
+                if(new_password.length <5)
+                {
+                    message+="New Password Must be 5 Char";
+                    valid = false;
+                }
+                if(!valid)
+                {
+                    alert(message);
+                }
+                return valid;
+
+            }
+        </script>
+
 
     <style>
         * {
@@ -177,7 +207,7 @@
 
         <h1>Reset Password</h1>
 
-        <form method="post" action="">
+        <form method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -205,7 +235,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <input type="button" id="submit" name="submit" value="Update Password" onclick="location.href='userlogin.php'">
+                            <input type="submit" id="submit" name="submit" value="Update Password">
                         </td>
                     </tr>
 

@@ -8,6 +8,34 @@
     <meta charset="UTF-8">
     <title>Login</title>
 
+    <script>
+       function collect_data()
+            {
+                let username = document.getElementById("username").value.trim();
+                let password = document.getElementById("password").value.trim();
+                
+                let valid = true;
+                let message="";
+
+                if(username.length <5)
+                {
+                    message+="User Name Should be 5 Char";
+                    valid = false;
+                }
+                if(password.length <5)
+                {
+                    message+="Password Must be 5 Char";
+                    valid = false;
+                }
+                if(!valid)
+                {
+                    alert(message);
+                }
+                return valid;
+
+            } 
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -101,24 +129,25 @@
         }
 
         /* BUTTONS */
-        input[type="button"],
-        input[type="reset"] {
-            background-color: #4d6b5e; 
-            color: white;
-            padding: 12px 18px;
-            width: 100%;
-            border-radius: 8px;
-            border: none;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 5px;
+        input[type="submit"],
+        input[type="reset"] 
+        {
+             background-color: #4d6b5e; 
+             color: white;
+             padding: 12px 18px;
+             width: 100%;
+             border-radius: 8px;
+             border: none;
+             font-family: Arial, Helvetica, sans-serif;
+             font-weight: bold;
+             font-size: 14px;
+             cursor: pointer;
+             margin-top: 5px;
         }
 
-        input[type="button"]:hover {
-            background-color: #3c5449;
-        }
+input[type="submit"]:hover {
+    background-color: #3c5449;
+}
 
         input[type="reset"] {
             background-color: #8c8275; 
@@ -175,7 +204,7 @@
 
         <h1>Welcome as Buyer</h1>
 
-        <form method="post" action="">
+       <form method="post" action="cart.php" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -205,7 +234,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <input type="button" id="submit" name="submit" value="Login" onclick="location.href='cart.php'">
+                            <input type="submit" id="submit" name="submit" value="Login">
                         </td>
                     </tr>
 

@@ -6,13 +6,55 @@ include "../Controller/RegistrationValidation.php";
 <html lang="en-US">
 
 <head>
-
     <meta charset="UTF-8">
-
     <title>Buyer Registration</title>
 
-    <style>
+    <script>
+        function collect_data() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let dob = document.getElementById("dob").value.trim();
+            let file = document.getElementById("file").value.trim();
 
+            let valid = true;
+            let message = "";
+
+            if (name.length < 5) {
+                message += "Name Must be 5 Char\n";
+                valid = false;
+            }
+            if (email.length < 5) {
+                message += "Email Must be 5 Char\n";
+                valid = false;
+            }
+            if (phone.length < 5) {
+                message += "Phone Number Must be 5 Char\n";
+                valid = false;
+            }
+            if (address.length < 5) {
+                message += "Address Must be 5 Char\n";
+                valid = false;
+            }
+            if (dob.length === 0) {
+                message += "Date of Birth is Required\n";
+                valid = false;
+            }
+            if (file.length === 0) {
+                message += "Profile Photo is Required\n";
+                valid = false;
+            }
+
+            if (!valid) {
+                alert(message);
+            }
+
+            return valid;
+        }
+    </script>
+
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +63,7 @@ include "../Controller/RegistrationValidation.php";
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f0ea; /* সফট অফ-হোয়াইট ব্যাকগ্রাউন্ড */
+            background-color: #f4f0ea;
             color: #2c4238;
             padding: 20px;
             line-height: 1.5;
@@ -38,7 +80,7 @@ include "../Controller/RegistrationValidation.php";
         }
 
         h1 {
-            color: #2c4238; /* ডিপ গ্রিন হেডার */
+            color: #2c4238;
             text-align: center;
             margin-bottom: 30px;
             font-size: 26px;
@@ -112,7 +154,7 @@ include "../Controller/RegistrationValidation.php";
         }
 
         input[type="submit"] {
-            background-color: #4d6b5e; /* সবুজ বাটন */
+            background-color: #4d6b5e;
             color: white;
             padding: 12px 15px;
             width: 100%;
@@ -127,11 +169,11 @@ include "../Controller/RegistrationValidation.php";
         }
 
         input[type="submit"]:hover {
-            background-color: #3c5449; 
+            background-color: #3c5449;
         }
 
         input[type="reset"] {
-            background-color: #e2ddd3; 
+            background-color: #e2ddd3;
             color: #2c4238;
             padding: 12px 15px;
             width: 100%;
@@ -166,9 +208,7 @@ include "../Controller/RegistrationValidation.php";
             color: #2c4238;
             text-decoration: underline;
         }
-
     </style>
-
 </head>
 
 <body>
@@ -177,7 +217,7 @@ include "../Controller/RegistrationValidation.php";
 
         <h1>Buyer Registration</h1>
 
-        <form enctype="multipart/form-data" method="post" action="">
+        <form method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -186,157 +226,58 @@ include "../Controller/RegistrationValidation.php";
                 <table>
 
                     <!-- Name -->
-
                     <tr>
-
-                        <td>
-                            <label for="name">Name:</label>
-                        </td>
-
-                        <td>
-                            <input type="text"
-                                   id="name"
-                                   name="name"
-                                   placeholder="Enter your Name">
-                        </td>
-
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" id="name" name="name" placeholder="Enter your Name"></td>
                     </tr>
-
 
                     <!-- Email -->
-
                     <tr>
-
-                        <td>
-                            <label for="email">Email:</label>
-                        </td>
-
-                        <td>
-                            <input type="email"
-                                   id="email"
-                                   name="email"
-                                   placeholder="Enter your Email">
-                        </td>
-
+                        <td><label for="email">Email:</label></td>
+                        <td><input type="email" id="email" name="email" placeholder="Enter your Email"></td>
                     </tr>
-
 
                     <!-- Phone Number -->
-
                     <tr>
-
-                        <td>
-                            <label for="phone">Phone No:</label>
-                        </td>
-
-                        <td>
-                            <input type="tel"
-                                   id="phone"
-                                   name="phone"
-                                   placeholder="Enter your Phone Number">
-                        </td>
-
+                        <td><label for="phone">Phone No:</label></td>
+                        <td><input type="tel" id="phone" name="phone" placeholder="Enter your Phone Number"></td>
                     </tr>
-
 
                     <!-- Address -->
-
                     <tr>
-
-                        <td>
-                            <label for="address">Address:</label>
-                        </td>
-
-                        <td>
-                            <textarea id="address"
-                                      name="address"
-                                      rows="5"
-                                      placeholder="Enter your Address"></textarea>
-                        </td>
-
+                        <td><label for="address">Address:</label></td>
+                        <td><textarea id="address" name="address" rows="5" placeholder="Enter your Address"></textarea></td>
                     </tr>
-
 
                     <!-- Date of Birth -->
-
                     <tr>
-
-                        <td>
-                            <label for="dob">Date of Birth:</label>
-                        </td>
-
-                        <td>
-                            <input type="date"
-                                   id="dob"
-                                   name="dob">
-                        </td>
-
+                        <td><label for="dob">Date of Birth:</label></td>
+                        <td><input type="date" id="dob" name="dob"></td>
                     </tr>
-
 
                     <!-- Profile Photo -->
-
                     <tr>
-
-                        <td>
-                            <label for="file">Profile Photo:</label>
-                        </td>
-
-                        <td>
-                            <input type="file"
-                                   name="file"
-                                   id="file">
-                        </td>
-
+                        <td><label for="file">Profile Photo:</label></td>
+                        <td><input type="file" name="file" id="file"></td>
                     </tr>
-
 
                     <!-- Create Button -->
-
                     <tr>
-
-                        <td colspan="2">
-
-                            <input type="submit"
-                                   id="submit"
-                                   name="submit"
-                                   value="Create">
-
-                        </td>
-
+                        <td colspan="2"><input type="submit" id="submit" name="submit" value="Create"></td>
                     </tr>
-
 
                     <!-- Reset Button -->
-
                     <tr>
-
-                        <td colspan="2">
-
-                            <input type="reset"
-                                   id="reset"
-                                   name="reset"
-                                   value="Reset">
-
-                        </td>
-
+                        <td colspan="2"><input type="reset" id="reset" name="reset" value="Reset"></td>
                     </tr>
 
-
                     <!-- Login -->
-
                     <tr>
-
                         <td colspan="2">
-
                             <div class="link">
-
-                                Already have an account?
-                              <a href="userlogin.php">Sign In</a>
+                                Already have an account? <a href="userlogin.php">Sign In</a>
                             </div>
-
                         </td>
-
                     </tr>
 
                 </table>
