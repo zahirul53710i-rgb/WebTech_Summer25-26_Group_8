@@ -70,29 +70,6 @@
             font-family: Georgia, serif;
         }
 
-        .demo-box {
-
-            background-color: #f4f0ea;
-
-            border: 1px solid #e2ddd3;
-
-            border-radius: 8px;
-
-            padding: 12px 15px;
-
-            margin-bottom: 25px;
-
-            text-align: center;
-
-            font-size: 14px;
-
-            color: #2c4238;
-        }
-
-        .demo-box strong {
-            color: #4d6b5e;
-        }
-
         .field {
 
             margin-bottom: 20px;
@@ -270,9 +247,8 @@
 
     <script>
 
-        function sellerLogin() {
-
-            // Get user input
+        function sellerLogin()
+        {
 
             let username =
                 document.getElementById("name").value.trim();
@@ -280,48 +256,53 @@
             let password =
                 document.getElementById("password").value.trim();
 
+            let valid = true;
 
-            // Demo credentials
-
-            const demoUsername = "seller";
-
-            const demoPassword = "seller123";
+            let message = "";
 
 
-            // Empty field check
+            if(username == "")
+            {
+                message += "Username is Required\n";
 
-            if (username === "" || password === "") {
-
-                alert("Please enter Username and Password.");
-
-                return false;
+                valid = false;
             }
 
 
-            // Username and password check
+            if(username.length < 5 && username != "")
+            {
+                message +=
+                    "Username Should be at least 5 Characters\n";
 
-            if (
-                username !== demoUsername ||
-                password !== demoPassword
-            ) {
-
-                alert(
-                    "Invalid Username or Password.\n\n" +
-                    "Demo Username: seller\n" +
-                    "Demo Password: seller123"
-                );
-
-                return false;
+                valid = false;
             }
 
 
-            // Login successful
+            if(password == "")
+            {
+                message += "Password is Required\n";
 
-            alert("Login successful!");
+                valid = false;
+            }
 
-            window.location.href = "sellerpage.php";
 
-            return false;
+            if(password.length < 5 && password != "")
+            {
+                message +=
+                    "Password Must be at least 5 Characters\n";
+
+                valid = false;
+            }
+
+
+            if(!valid)
+            {
+                alert(message);
+            }
+
+
+            return valid;
+
         }
 
     </script>
@@ -343,29 +324,9 @@
         </h1>
 
 
-        <!-- Demo Credentials -->
-
-        <div class="demo-box">
-
-            <strong>Demo Login</strong>
-            <br>
-
-            Username:
-            <strong>seller</strong>
-
-            &nbsp; | &nbsp;
-
-            Password:
-            <strong>seller123</strong>
-
-        </div>
-
-
-        <!-- Login Form -->
-
         <form
             method="post"
-            action=""
+            action="../controller/seller/seller_login_validation.php"
             onsubmit="return sellerLogin()"
         >
 
@@ -428,14 +389,11 @@
 
             <div class="buttons">
 
-
                 <button
                     type="submit"
                     class="btn"
                 >
-
                     LogIn
-
                 </button>
 
 
@@ -443,11 +401,8 @@
                     type="reset"
                     class="btn btn-secondary"
                 >
-
                     Reset
-
                 </button>
-
 
             </div>
 
@@ -464,9 +419,7 @@
                 Don't have an account?
 
                 <a href="seller_registration.php">
-
                     Register here
-
                 </a>
 
             </p>
@@ -479,9 +432,7 @@
         <div class="back-home">
 
             <a href="dashboard.php">
-
                 ← Back to HaatBodol
-
             </a>
 
         </div>

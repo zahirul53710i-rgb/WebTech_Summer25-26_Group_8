@@ -7,6 +7,93 @@
 
     <title>Seller Registration</title>
 
+    <script>
+
+        function collect_data()
+        {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let dob = document.getElementById("dob").value.trim();
+            let file = document.getElementById("file").value.trim();
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirm_password = document.getElementById("confirm_password").value.trim();
+
+            let valid = true;
+            let message = "";
+
+            if(name.length < 5)
+            {
+                message += "Name Should be at least 5 Characters\n";
+                valid = false;
+            }
+
+            if(email.length < 5)
+            {
+                message += "Email Should be at least 5 Characters\n";
+                valid = false;
+            }
+
+            if(phone.length < 11)
+            {
+                message += "Phone Number Should be at least 11 Characters\n";
+                valid = false;
+            }
+
+            if(address.length < 5)
+            {
+                message += "Address Should be at least 5 Characters\n";
+                valid = false;
+            }
+
+            if(dob == "")
+            {
+                message += "Date of Birth is Required\n";
+                valid = false;
+            }
+
+            if(file == "")
+            {
+                message += "Profile Photo is Required\n";
+                valid = false;
+            }
+
+            if(username.length < 5)
+            {
+                message += "User Name Should be at least 5 Characters\n";
+                valid = false;
+            }
+
+            if(password.length < 5)
+            {
+                message += "Password Must be at least 5 Characters\n";
+                valid = false;
+            }
+
+            if(confirm_password.length < 5)
+            {
+                message += "Confirm Password Must be at least 5 Characters\n";
+                valid = false;
+            }
+
+            if(password != confirm_password)
+            {
+                message += "Password and Confirm Password Must Match\n";
+                valid = false;
+            }
+
+            if(!valid)
+            {
+                alert(message);
+            }
+
+            return valid;
+        }
+
+    </script>
+
     <style>
 
         * {
@@ -175,7 +262,12 @@
 
         <h1>Seller Registration</h1>
 
-        <form enctype="multipart/form-data" method="post" action="">
+        <form
+    enctype="multipart/form-data"
+    method="post"
+    action="../controller/seller/seller_registration_validation.php"
+    onsubmit="return collect_data()"
+>
 
             <fieldset>
 
@@ -363,7 +455,7 @@
                     </tr>
 
 
-                    <!-- Create -->
+                    
 
                     <tr>
 
@@ -374,7 +466,6 @@
                                 id="submit"
                                 name="submit"
                                 value="Create"
-                                onclick="window.location.href='seller_login.php'; return false;"
                             >
 
                         </td>
@@ -382,7 +473,7 @@
                     </tr>
 
 
-                    <!-- Reset -->
+                    
 
                     <tr>
 
