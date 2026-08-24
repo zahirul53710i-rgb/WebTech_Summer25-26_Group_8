@@ -1,5 +1,7 @@
 <?php
-// PHP code can be added here later
+
+include "../Controller/buyervalidation/cartvalidation.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -14,40 +16,43 @@
 
     <script>
 
-        function collect_data()
-        {
-            let quantity = document.getElementById("quantity").value.trim();
+    function collect_data()
+    {
+    let quantity = document.getElementById("quantity").value.trim();
 
-            let valid = true;
-            let message="";
-
-
-            if(quantity.length == 0)
-            {
-                message+="Quantity is Required\n";
-                valid = false;
-            }
+    let valid = true;
+    let message="";
 
 
-            if(quantity <= 0 && quantity.length > 0)
-            {
-                message+="Quantity Must be Greater Than 0\n";
-                valid = false;
-            }
+    if(quantity.length == 0)
+    {
+        message+="Quantity is Required\n";
+        valid = false;
+    }
+
+    else if(isNaN(quantity))
+    {
+        message+="Quantity Must be a Number\n";
+        valid = false;
+    }
+
+    else if(Number(quantity) <= 0)
+    {
+        message+="Quantity Must be Greater Than 0\n";
+        valid = false;
+    }
 
 
-            if(!valid)
-            {
-                alert(message);
-            }
+    if(!valid)
+    {
+        alert(message);
+    }
 
 
-            return valid;
-
-        }
+    return valid;
+    }
 
     </script>
-
 
     <style>
 
@@ -110,21 +115,19 @@
         }
 
 
-        th {
-            background-color: #3f5e4d;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-size: 15px;
-        }
-
-
         td {
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #e2ddd3;
             color: #2c4238;
             font-size: 15px;
+        }
+
+
+        tr:first-child td {
+            background-color: #3f5e4d;
+            color: white;
+            font-weight: bold;
         }
 
 
@@ -234,32 +237,60 @@
                 <table>
 
 
-                    <thead>
-
-                        <tr><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
-
-                    </thead>
-
-
-                    <tbody>
+                    <tr>
+                        <td>Product</td>
+                        <td>Quantity</td>
+                        <td>Price</td>
+                        <td>Total</td>
+                    </tr>
 
 
-                        <tr><td>Selected Product</td><td><input type="text" id="quantity" name="quantity" placeholder="Enter Quantity"></td><td></td><td></td></tr>
+                    <tr>
+
+                        <td>Selected Product</td>
+
+                        <td>
+                            <input type="text"id="quantity"name="quantity"placeholder="Enter Quantity"><?php echo $message; ?>
+                            
+                        </td>
+
+                        <td></td>
+
+                        <td></td>
+
+                    </tr>
 
 
-                        <tr><td colspan="3" class="total">Grand Total:</td><td></td></tr>
+                    <tr>
+
+                        <td colspan="3" class="total">
+                            Grand Total:
+                        </td>
+
+                        <td></td>
+
+                    </tr>
 
 
-                        <tr><td colspan="2"><input type="button" value="Continue Shopping" onclick="location.href='dashboard.php'"></td><td colspan="2"><input type="submit" id="submit" name="submit" value="Place Order"></td></tr>
+                    <tr>
 
+                        <td colspan="2">
+                            <input type="button" value="Continue Shopping" onclick="location.href='dashboard.php'">
+                        </td>
 
-                    </tbody>
+                        <td colspan="2">
+                            <input type="submit" id="submit" name="submit" value="Place Order">
+                        </td>
+
+                    </tr>
 
 
                 </table>
 
 
-                <div class="link"><a href="order_history.php">View Order History</a></div>
+                <div class="link">
+                    <a href="order_history.php">View Order History</a>
+                </div>
 
 
             </fieldset>

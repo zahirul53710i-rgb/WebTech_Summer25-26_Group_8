@@ -8,6 +8,13 @@ include "../Controller/buyervalidation/Loginvalidation.php";
     <meta charset="UTF-8">
     <title>Login</title>
 
+    <div style>
+        <?php 
+            if(!empty($nameErr)) echo $nameErr . "<br>"; 
+            if(!empty($passwordErr)) echo $passwordErr; 
+        ?>
+    </div>
+
     <script>
        function collect_data()
             {
@@ -271,6 +278,20 @@ input[type="submit"]:hover {
                                 
                             </div>
                         </td>
+                    </tr>
+
+                    <tr>
+
+                        <td colspan="3">
+
+                            <div class="link">
+
+                                <a href="buyerdashboard.php">Back to Dashboard</a>
+
+                            </div>
+
+                        </td>
+
                     </tr>
 
                 </table>

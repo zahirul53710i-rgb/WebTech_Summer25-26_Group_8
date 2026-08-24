@@ -1,5 +1,5 @@
 <?php 
-// PHP code can be added here later 
+//include "../Controller/buyervalidation/orderhistoryvalidation.php";
 ?> 
  
 <!DOCTYPE html> 
@@ -187,8 +187,7 @@
 
                     <input type="button" value="Go to Cart" onclick="location.href='cart.php'">
 
-                    <input type="button" value="Back to Dashboard">
-
+                    <input type="button" value="Back to Dashboard" onclick="location.href='dashboard.php'">
                 </div>
  
             </fieldset> 

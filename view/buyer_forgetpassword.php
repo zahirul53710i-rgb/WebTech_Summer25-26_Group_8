@@ -1,5 +1,5 @@
 <?php
-//include "../Controller/ForgotPasswordvalidation.php";
+include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -8,35 +8,32 @@
     <meta charset="UTF-8">
     <title>Reset Password</title>
      
+    <script>
+        function collect_data()
+        {
+            let username = document.getElementById("username").value.trim();
+            let new_password = document.getElementById("new_password").value.trim();
 
-<script>
-            function collect_data()
+            let valid = true;
+            let message="";
+
+            if(username.length < 5)
             {
-                let username = document.getElementById("username").value.trim();
-                let new_password = document.getElementById("new_password").value.trim();
-
-                let valid = true;
-                let message="";
-
-                if(username.length <5)
-                {
-                    message+="User Name Must be 5 Char";
-                    valid = false;
-                }
-                if(new_password.length <5)
-                {
-                    message+="New Password Must be 5 Char";
-                    valid = false;
-                }
-                if(!valid)
-                {
-                    alert(message);
-                }
-                return valid;
-
+                message += "User Name Must be 5 Char\n";
+                valid = false;
             }
-        </script>
-
+            if(new_password.length < 5)
+            {
+                message += "New Password Must be 5 Char\n";
+                valid = false;
+            }
+            if(!valid)
+            {
+                alert(message);
+            }
+            return valid;
+        }
+    </script>
 
     <style>
         * {
@@ -220,7 +217,8 @@
                             <label for="username">User Name:</label>
                         </td>
                         <td>
-                            <input type="text" id="username" name="username" placeholder="Enter your User Name">
+                            <input type="text" id="username" name="username" placeholder="Enter your User Name" value="<?php echo $username; ?>">
+                            <?php echo $username; ?>
                         </td>
                     </tr>
 
@@ -230,6 +228,14 @@
                         </td>
                         <td>
                             <input type="password" id="new_password" name="new_password" placeholder="Enter New Password">
+                            <?php echo $new_password; ?>
+                        </td>
+                    </tr>
+
+                 
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $message; ?>
                         </td>
                     </tr>
 
