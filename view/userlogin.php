@@ -204,7 +204,7 @@ input[type="submit"]:hover {
 
         <h1>Welcome as Buyer</h1>
 
-      <form method="post" onsubmit="return collect_data()">
+      <form method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -212,39 +212,36 @@ input[type="submit"]:hover {
 
                 <table>
 
+                 
                    <!-- Username Row -->
-                   <!-- Username Row -->
-                   <tr>
-                       <td> <label for="username"> User Name: </label></td>
-                       <td> 
-                           <input type="text" id="username" name="username" placeholder="Enter your User Name">
-                           <?php echo isset($nameErr) ? $nameErr : ''; ?>
-                       </td>
-                    </tr>
+                  <tr>
+                      <td><label for="username"> User Name: </label></td>
+                      <td><input type="text" id="username" name="username">
+                          <?php echo $name ?>
+                      </td>
+                  </tr>
 
-                    <!-- Password Row -->
-                    <tr>
-                        <td> <label for="password"> Password: </label></td>
-                        <td> 
-                            <input type="password" id="password" name="password" placeholder="Enter your Password">
-                            <?php echo isset($passwordErr) ? $passwordErr : ''; ?>
-                        </td>
-                    </tr>
+                  <tr>
+                      <td><label for="password"> Password: </label></td>
+                      <td><input type="password" id="password" name="password">
+                          <?php echo $password ?>
+                      </td>
+                 </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <input type="submit" id="submit" name="submit" value="Login">
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <input type="reset" id="reset" name="reset" value="Reset">
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div class="link">
                                 Don't have an account? <a href="buyer_registration.php">Sign Up</a>
                             </div>
