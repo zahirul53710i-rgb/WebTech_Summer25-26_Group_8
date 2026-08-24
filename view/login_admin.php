@@ -37,7 +37,7 @@ $pageTitle = "Admin Login";
         </p>
 
 
-        <form method="post" action="admin_dashboard.php">
+        <form method="post" action="../controller/Admin/AdminLoginValidation.php">
 
             <div class="field">
 

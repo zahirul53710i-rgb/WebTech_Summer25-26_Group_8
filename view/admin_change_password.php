@@ -22,78 +22,74 @@ $pageTitle = "Change Admin Password";
 <body>
 
 
-<div class="wrap">
+    <div class="wrap">
 
-    <div class="panel">
+        <div class="panel">
 
-        <a href="admin_dashboard.php" class="back-link">
-            &larr; Back to Dashboard
-        </a>
+            <a href="admin_dashboard.php" class="back-link">
+                &larr; Back to Dashboard
+            </a>
 
-        <h1>Change Password</h1>
+            <h1>Change Password</h1>
 
-        <p class="sub">
-            Change the password used for admin login.
-        </p>
-
-
-        <form>
-
-            <div class="field">
-
-                <label>
-                    Current Password
-                </label>
-
-                <input
-                    type="password"
-                    placeholder="Enter current password"
-                >
-
-            </div>
+            <p class="sub">
+                Change the password used for admin login.
+            </p>
 
 
-            <div class="field">
+            <form method="post" action="../controller/Admin/AdminChangePasswordValidation.php">
 
-                <label>
-                    New Password
-                </label>
+                <div class="field">
 
-                <input
-                    type="password"
-                    placeholder="Enter new password"
-                >
+                    <label>
+                        Current Password
+                    </label>
 
-            </div>
+                    <input
+                        type="password"
+                        name="currentPassword"
+                        placeholder="Enter current password">
 
-
-            <div class="field">
-
-                <label>
-                    Confirm Password
-                </label>
-
-                <input
-                    type="password"
-                    placeholder="Confirm new password"
-                >
-
-            </div>
+                </div>
 
 
-            <button type="button"
-                    class="btn"
-                    onclick="alert('Password change will be connected to the database later.')">
+                <div class="field">
 
-                Change Password
+                    <label>
+                        New Password
+                    </label>
 
-            </button>
+                    <input
+                        type="password"
+                        name="newPassword"
+                        placeholder="Enter new password">
 
-        </form>
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        placeholder="Confirm new password">
+
+                </div>
+
+
+                <button type="submit" class="btn">
+                    Change Password
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
-
-</div>
 
 
 </body>
