@@ -227,7 +227,7 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                     <tr>
                         <td colspan="2">
                             <div class="link">
-                                <a href="buyerdashboard.php">Back to Dashboard</a>
+                                <a href="dashboard.php">Back to Dashboard</a>
                                 <br>
                                 <a href="buyer_profile_view_update.php">Update Profile</a>
                             </div>
