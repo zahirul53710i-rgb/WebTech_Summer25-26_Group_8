@@ -6,7 +6,6 @@ $name = "";
 $password = "";
 $valid = true;
 
-
 $default_username = "buyer";
 $default_password = "buyer123";
 
