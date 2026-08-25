@@ -357,7 +357,7 @@ include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
                         My Profile
                     </a>
 
-                    <a href="buyer_cart.php">
+                    <a href="cart.php">
                         My Cart
                     </a>
 

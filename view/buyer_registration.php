@@ -229,29 +229,44 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
  
                     <tr> 
                         <td><label for="username">User Name:</label></td> 
-                        <td><input type="text" id="username" name="username" placeholder="Enter your User Name"></td> 
+                        <td>
+                            <input type="text" id="username" name="username" value="<?php echo $username; ?>" placeholder="Enter your User Name">
+                            <?php echo $username; ?>
+                        </td> 
                     </tr> 
- 
+
                     <tr> 
                         <td><label for="email">Email:</label></td> 
-                        <td><input type="email" id="email" name="email" placeholder="Enter your Email"></td> 
+                        <td>
+                            <input type="email" id="email" name="email" value="<?php echo $email; ?>" placeholder="Enter your Email">
+                            <?php echo $email; ?>
+                        </td> 
                     </tr> 
- 
+
                     <tr> 
                         <td><label for="phone">Phone No:</label></td> 
-                        <td><input type="tel" id="phone" name="phone" placeholder="Enter your Phone Number"></td> 
+                        <td>
+                            <input type="tel" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="Enter your Phone Number">
+                            <?php echo $phone; ?>
+                        </td> 
                     </tr> 
- 
+
                     <tr> 
                         <td><label for="address">Address:</label></td> 
-                        <td><textarea id="address" name="address" rows="5" placeholder="Enter your Address"></textarea></td> 
+                        <td>
+                            <textarea id="address" name="address" rows="5" placeholder="Enter your Address"><?php echo $address; ?></textarea>
+                            <?php echo $address; ?>
+                        </td> 
                     </tr> 
- 
+
                     <tr> 
                         <td><label for="dob">Date of Birth:</label></td> 
-                        <td><input type="date" id="dob" name="dob"></td> 
-                    </tr> 
- 
+                        <td>
+                            <input type="date" id="dob" name="dob" value="<?php echo $dob; ?>">
+                            <?php echo $dob; ?>
+                        </td> 
+                    </tr>
+                    
                     <tr> 
                         <td><label for="file">Profile Photo:</label></td> 
                         <td><input type="file" name="file" id="file"></td> 
