@@ -1,3 +1,9 @@
+<?php
+
+include "../controller/seller/seller_registration_validation.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -24,11 +30,13 @@
             let valid = true;
             let message = "";
 
+
             if(name.length < 5)
             {
                 message += "Name Should be at least 5 Characters\n";
                 valid = false;
             }
+
 
             if(email.length < 5)
             {
@@ -36,11 +44,13 @@
                 valid = false;
             }
 
+
             if(phone.length < 11)
             {
                 message += "Phone Number Should be at least 11 Characters\n";
                 valid = false;
             }
+
 
             if(address.length < 5)
             {
@@ -48,11 +58,13 @@
                 valid = false;
             }
 
+
             if(dob == "")
             {
                 message += "Date of Birth is Required\n";
                 valid = false;
             }
+
 
             if(file == "")
             {
@@ -60,11 +72,13 @@
                 valid = false;
             }
 
+
             if(username.length < 5)
             {
                 message += "User Name Should be at least 5 Characters\n";
                 valid = false;
             }
+
 
             if(password.length < 5)
             {
@@ -72,11 +86,13 @@
                 valid = false;
             }
 
+
             if(confirm_password.length < 5)
             {
                 message += "Confirm Password Must be at least 5 Characters\n";
                 valid = false;
             }
+
 
             if(password != confirm_password)
             {
@@ -84,15 +100,18 @@
                 valid = false;
             }
 
+
             if(!valid)
             {
                 alert(message);
             }
 
+
             return valid;
         }
 
     </script>
+
 
     <style>
 
@@ -102,6 +121,7 @@
             box-sizing: border-box;
         }
 
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #f4f0ea;
@@ -109,6 +129,7 @@
             padding: 20px;
             line-height: 1.5;
         }
+
 
         .container {
             max-width: 700px;
@@ -120,6 +141,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
+
         h1 {
             color: #2c4238;
             text-align: center;
@@ -128,9 +150,11 @@
             font-family: Georgia, serif;
         }
 
+
         form {
             display: flex;
         }
+
 
         fieldset {
             width: 100%;
@@ -140,6 +164,7 @@
             background-color: #ffffff;
         }
 
+
         legend {
             padding: 0 10px;
             color: #2c4238;
@@ -147,13 +172,16 @@
             font-size: 20px;
         }
 
+
         table {
             width: 100%;
         }
 
+
         td {
             padding: 8px;
         }
+
 
         label {
             display: inline-block;
@@ -162,6 +190,7 @@
             font-weight: bold;
             margin-bottom: 5px;
         }
+
 
         input[type="text"],
         input[type="email"],
@@ -183,6 +212,7 @@
             transition: border-color 0.2s ease;
         }
 
+
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="tel"]:focus,
@@ -192,9 +222,11 @@
             border-color: #4d6b5e;
         }
 
+
         textarea {
             resize: none;
         }
+
 
         input[type="submit"] {
             background-color: #4d6b5e;
@@ -211,9 +243,11 @@
             transition: background-color 0.2s ease;
         }
 
+
         input[type="submit"]:hover {
             background-color: #3c5449;
         }
+
 
         input[type="reset"] {
             background-color: #e2ddd3;
@@ -230,9 +264,11 @@
             transition: background-color 0.2s ease;
         }
 
+
         input[type="reset"]:hover {
             background-color: #d1cbbd;
         }
+
 
         .link {
             text-align: center;
@@ -241,11 +277,13 @@
             color: #2c4238;
         }
 
+
         .link a {
             color: #4d6b5e;
             text-decoration: none;
             font-weight: bold;
         }
+
 
         .link a:hover {
             color: #2c4238;
@@ -256,18 +294,20 @@
 
 </head>
 
+
 <body>
 
     <div class="container">
 
         <h1>Seller Registration</h1>
 
+
         <form
-    enctype="multipart/form-data"
-    method="post"
-    action="../controller/seller/seller_registration_validation.php"
-    onsubmit="return collect_data()"
->
+            enctype="multipart/form-data"
+            method="post"
+            action="../controller/seller/seller_registration_validation.php"
+            onsubmit="return collect_data()"
+        >
 
             <fieldset>
 
@@ -275,7 +315,6 @@
 
                 <table>
 
-                    <!-- Name -->
 
                     <tr>
 
@@ -295,8 +334,6 @@
                     </tr>
 
 
-                    <!-- Email -->
-
                     <tr>
 
                         <td>
@@ -314,8 +351,6 @@
 
                     </tr>
 
-
-                    <!-- Phone -->
 
                     <tr>
 
@@ -335,8 +370,6 @@
                     </tr>
 
 
-                    <!-- Address -->
-
                     <tr>
 
                         <td>
@@ -355,8 +388,6 @@
                     </tr>
 
 
-                    <!-- Date of Birth -->
-
                     <tr>
 
                         <td>
@@ -374,8 +405,6 @@
                     </tr>
 
 
-                    <!-- Profile Photo -->
-
                     <tr>
 
                         <td>
@@ -392,8 +421,6 @@
 
                     </tr>
 
-
-                    <!-- Username -->
 
                     <tr>
 
@@ -413,8 +440,6 @@
                     </tr>
 
 
-                    <!-- Password -->
-
                     <tr>
 
                         <td>
@@ -432,8 +457,6 @@
 
                     </tr>
 
-
-                    <!-- Confirm Password -->
 
                     <tr>
 
@@ -455,8 +478,6 @@
                     </tr>
 
 
-                    
-
                     <tr>
 
                         <td colspan="2">
@@ -473,8 +494,6 @@
                     </tr>
 
 
-                    
-
                     <tr>
 
                         <td colspan="2">
@@ -490,8 +509,6 @@
 
                     </tr>
 
-
-                    <!-- Login -->
 
                     <tr>
 

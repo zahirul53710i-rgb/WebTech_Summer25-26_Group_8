@@ -1,102 +1,214 @@
 <?php
 
-$name="";
-$email="";
-$phone="";
-$address="";
-$dob="";
-$username="";
-$password="";
-$confirm_password="";
-$file="";
+include "../../model/seller/seller_registration_db.php";
 
-$valid=true;
+$name = "";
+$email = "";
+$phone = "";
+$address = "";
+$dob = "";
+$username = "";
+$password = "";
+$confirm_password = "";
+$message = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST")
+$valid = true;
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $name=trim($_POST["name"] ?? "");
-    $email=trim($_POST["email"] ?? "");
-    $phone=trim($_POST["phone"] ?? "");
-    $address=trim($_POST["address"] ?? "");
-    $dob=trim($_POST["dob"] ?? "");
-    $username=trim($_POST["username"] ?? "");
-    $password=trim($_POST["password"] ?? "");
-    $confirm_password=trim($_POST["confirm_password"] ?? "");
+    $name = trim($_POST["name"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $phone = trim($_POST["phone"] ?? "");
+    $address = trim($_POST["address"] ?? "");
+    $dob = trim($_POST["dob"] ?? "");
+    $username = trim($_POST["username"] ?? "");
+    $password = trim($_POST["password"] ?? "");
+    $confirm_password = trim($_POST["confirm_password"] ?? "");
 
-    if(isset($_FILES["file"]))
+    $file = $_FILES["file"] ?? [];
+
+
+    // Name validation
+    if (empty($name) || strlen($name) < 5)
     {
-        $file=$_FILES["file"]["name"];
+        $message = "Name must be at least 5 characters";
+        $valid = false;
     }
 
 
-    if(empty($name) || strlen($name)<5)
+    // Email validation
+    if (empty($email) || strlen($email) < 5)
     {
-        $valid=false;
+        $message = "Email must be at least 5 characters";
+        $valid = false;
     }
 
 
-    if(empty($email) || strlen($email)<5)
+    // Phone validation
+    if (empty($phone) || strlen($phone) < 11)
     {
-        $valid=false;
+        $message = "Phone number must be at least 11 characters";
+        $valid = false;
     }
 
 
-    if(empty($phone) || strlen($phone)<11)
+    // Address validation
+    if (empty($address) || strlen($address) < 5)
     {
-        $valid=false;
+        $message = "Address must be at least 5 characters";
+        $valid = false;
     }
 
 
-    if(empty($address) || strlen($address)<5)
+    // DOB validation
+    if (empty($dob))
     {
-        $valid=false;
+        $message = "Date of birth is required";
+        $valid = false;
     }
 
 
-    if(empty($dob))
+    // Username validation
+    if (empty($username) || strlen($username) < 5)
     {
-        $valid=false;
+        $message = "Username must be at least 5 characters";
+        $valid = false;
     }
 
 
-    if(empty($file))
+    // Password validation
+    if (empty($password) || strlen($password) < 5)
     {
-        $valid=false;
+        $message = "Password must be at least 5 characters";
+        $valid = false;
     }
 
 
-    if(empty($username) || strlen($username)<5)
+    // Confirm password validation
+    if (empty($confirm_password) || strlen($confirm_password) < 5)
     {
-        $valid=false;
+        $message = "Confirm password must be at least 5 characters";
+        $valid = false;
     }
 
 
-    if(empty($password) || strlen($password)<5)
+    // Password matching
+    if ($password != $confirm_password)
     {
-        $valid=false;
+        $message = "Passwords do not match";
+        $valid = false;
     }
 
 
-    if(empty($confirm_password) || strlen($confirm_password)<5)
+    // Picture validation
+    if (empty($file["name"]))
     {
-        $valid=false;
+        $message = "Please select a picture";
+        $valid = false;
     }
 
 
-    if($password != $confirm_password)
+    if ($valid)
     {
-        $valid=false;
-    }
+        /*
+         * Picture Upload
+         */
+
+        // controller/seller/
+        $controller_folder = __DIR__;
+
+        // Go to project root
+        $project_folder = dirname(dirname($controller_folder));
+
+        // Final upload folder
+        $uploaddirectory = $project_folder . "/view/assets/upload/";
 
 
-    if($valid)
-    {
-        header("Location: ../../view/selller_login.php");
-        exit();
+        // Check upload folder
+        if (!is_dir($uploaddirectory))
+        {
+            mkdir($uploaddirectory, 0777, true);
+        }
+
+
+        // Check whether folder is writable
+        if (!is_writable($uploaddirectory))
+        {
+            die("Upload folder is not writable: " . $uploaddirectory);
+        }
+
+
+        $path = "";
+
+
+        if (isset($file["error"]) && $file["error"] == 0)
+        {
+            $filename = basename($file["name"]);
+
+            $filepath = $uploaddirectory . $filename;
+
+
+            if (move_uploaded_file($file["tmp_name"], $filepath))
+            {
+                // Path stored in database
+                $path = "assets/upload/" . $filename;
+            }
+            else
+            {
+                die("Picture upload failed.");
+            }
+        }
+        else
+        {
+            die("File upload error. Error code: " . ($file["error"] ?? "unknown"));
+        }
+
+
+        /*
+         * Database Connection
+         */
+
+        $database = new db();
+
+        $connection = $database->connection();
+
+
+        /*
+         * Insert seller information
+         */
+
+        $result = $database->sellerSignup(
+            $connection,
+            "registration",
+            $name,
+            $email,
+            $phone,
+            $address,
+            $dob,
+            $path,
+            $username,
+            $password
+        );
+
+
+        /*
+         * Check database result
+         */
+
+        if ($result)
+        {
+            header("Location: ../../view/selller_login.php");
+            exit();
+        }
+        else
+        {
+            echo "Database Error: " . $connection->error;
+        }
     }
     else
     {
-        echo "Registration validation failed.";
+        echo $message;
     }
 }
 

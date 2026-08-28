@@ -1,10 +1,3 @@
-<?php
-// include __DIR__ . "/../Controller/productController.php";
-
-// Later:
-// $products = getSellerProducts();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,10 +64,8 @@
         .section {
             background-color: #fffdf8;
             padding: 25px;
-
             border: 1px solid #ddd5c5;
             border-radius: 12px;
-
             box-shadow: 0 4px 10px rgba(50, 45, 35, 0.07);
         }
 
@@ -101,10 +92,8 @@
         .field input {
             width: 100%;
             padding: 10px;
-
             border: 1px solid #ddd5c5;
             border-radius: 6px;
-
             background-color: #f5f1e8;
             color: #26332d;
         }
@@ -117,13 +106,10 @@
         .btn {
             display: inline-block;
             width: 100%;
-
             background-color: #527464;
             color: white;
-
             border: none;
             padding: 10px 18px;
-
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
@@ -136,12 +122,9 @@
         .search {
             width: 100%;
             padding: 10px;
-
             border: 1px solid #ddd5c5;
             border-radius: 6px;
-
             background-color: #f5f1e8;
-
             margin-bottom: 15px;
         }
 
@@ -152,25 +135,18 @@
 
         .product-list {
             min-height: 350px;
-
             background-color: #f5f1e8;
-
             border: 1px solid #ddd5c5;
             border-radius: 8px;
-
             padding: 15px;
         }
 
         .product {
             background-color: #fffdf8;
-
             border: 1px solid #ddd5c5;
             border-radius: 7px;
-
             padding: 12px;
-
             margin-bottom: 10px;
-
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -188,16 +164,12 @@
 
         .remove-button {
             margin-top: 15px;
-
             display: inline-block;
             width: 100%;
-
             background-color: #a85c4a;
             color: white;
-
             border: none;
             padding: 10px;
-
             border-radius: 6px;
             cursor: pointer;
         }
@@ -238,7 +210,12 @@
 
 <body>
 
-<form method="post" action="" enctype="multipart/form-data">
+<form
+    method="post"
+    action=""
+    enctype="multipart/form-data"
+    onsubmit="return validateForm()"
+>
 
 <div class="page">
 
@@ -287,6 +264,8 @@
                     type="number"
                     id="price"
                     name="price"
+                    min="1"
+                    step="0.01"
                 >
 
             </div>
@@ -302,6 +281,7 @@
                     type="number"
                     id="quantity"
                     name="quantity"
+                    min="1"
                 >
 
             </div>
@@ -317,6 +297,7 @@
                     type="file"
                     id="picture"
                     name="picture"
+                    accept=".jpg,.jpeg,.png,.gif"
                 >
 
             </div>
@@ -327,6 +308,7 @@
                 name="action"
                 value="Add Product"
                 class="btn"
+                onclick="setAction('add')"
             >
 
         </div>
@@ -352,6 +334,23 @@
 
                 /*
                  * Backend will generate products here later.
+                 *
+                 * Example:
+                 *
+                 * <div class="product">
+                 *
+                 *     <span class="product-name">
+                 *         Product Name
+                 *     </span>
+                 *
+                 *     <input
+                 *         type="checkbox"
+                 *         name="selected_product"
+                 *         value="1"
+                 *         class="product-checkbox"
+                 *     >
+                 *
+                 * </div>
                  */
 
                 ?>
@@ -364,6 +363,7 @@
                 name="action"
                 value="Remove Selected"
                 class="remove-button"
+                onclick="setAction('remove')"
             >
 
         </div>
@@ -386,6 +386,187 @@
 
 </form>
 
+
+<script>
+
+    // Store which button was clicked
+    let currentAction = "";
+
+
+    function setAction(action)
+    {
+        currentAction = action;
+    }
+
+
+    function validateForm()
+    {
+
+        /* =========================
+           ADD PRODUCT VALIDATION
+           ========================= */
+
+        if (currentAction === "add")
+        {
+
+            let name = document.getElementById("name").value.trim();
+
+            let price = document.getElementById("price").value;
+
+            let quantity = document.getElementById("quantity").value;
+
+            let picture = document.getElementById("picture").files[0];
+
+
+            // Product name
+            if (name === "")
+            {
+                alert("Please enter the product name.");
+                document.getElementById("name").focus();
+
+                return false;
+            }
+
+
+            if (name.length < 2)
+            {
+                alert("Product name must contain at least 2 characters.");
+                document.getElementById("name").focus();
+
+                return false;
+            }
+
+
+            // Price
+            if (price === "")
+            {
+                alert("Please enter the product price.");
+                document.getElementById("price").focus();
+
+                return false;
+            }
+
+
+            if (parseFloat(price) <= 0)
+            {
+                alert("Price must be greater than 0.");
+                document.getElementById("price").focus();
+
+                return false;
+            }
+
+
+            // Quantity
+            if (quantity === "")
+            {
+                alert("Please enter the product quantity.");
+                document.getElementById("quantity").focus();
+
+                return false;
+            }
+
+
+            if (!Number.isInteger(Number(quantity)) || Number(quantity) <= 0)
+            {
+                alert("Quantity must be a positive whole number.");
+                document.getElementById("quantity").focus();
+
+                return false;
+            }
+
+
+            // Picture
+            if (!picture)
+            {
+                alert("Please select a product picture.");
+                document.getElementById("picture").focus();
+
+                return false;
+            }
+
+
+            // Check image type
+            let allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/gif"
+            ];
+
+
+            if (!allowedTypes.includes(picture.type))
+            {
+                alert("Only JPG, JPEG, PNG and GIF images are allowed.");
+
+                document.getElementById("picture").value = "";
+
+                return false;
+            }
+
+
+            // Maximum size = 2 MB
+            let maxSize = 2 * 1024 * 1024;
+
+
+            if (picture.size > maxSize)
+            {
+                alert("Picture size must be less than 2 MB.");
+
+                document.getElementById("picture").value = "";
+
+                return false;
+            }
+
+
+            // Everything is valid
+            alert("Product information is valid.");
+
+            return true;
+        }
+
+
+        /* =========================
+           REMOVE PRODUCT VALIDATION
+           ========================= */
+
+        if (currentAction === "remove")
+        {
+
+            let selectedProduct =
+                document.querySelector(
+                    'input[name="selected_product"]:checked'
+                );
+
+
+            if (!selectedProduct)
+            {
+                alert("Please select a product to remove.");
+
+                return false;
+            }
+
+
+            let confirmation =
+                confirm(
+                    "Are you sure you want to remove the selected product?"
+                );
+
+
+            if (!confirmation)
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+
+        return true;
+    }
+
+</script>
+
 </body>
 
 </html>
+```

@@ -252,13 +252,6 @@
             </a>
 
 
-            <!-- My Products -->
-
-            <a href="myproduct.php"
-               class="menu-button">
-                My Products
-            </a>
-
 
             <!-- Add / Remove Products -->
 
