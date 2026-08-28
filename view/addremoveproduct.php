@@ -1,13 +1,99 @@
+<?php
+
+session_start();
+
+include "../model/seller/product_db.php";
+
+
+/*
+ * =====================================================
+ * CHECK SELLER LOGIN
+ * =====================================================
+ */
+
+if (
+    !isset($_SESSION["seller_logged_in"]) ||
+    $_SESSION["seller_logged_in"] !== true
+)
+{
+    header("Location: selller_login.php");
+    exit();
+}
+
+
+/*
+ * =====================================================
+ * GET SELLER USERNAME
+ * =====================================================
+ */
+
+$username =
+    $_SESSION["seller_username"] ?? "";
+
+
+/*
+ * =====================================================
+ * DATABASE
+ * =====================================================
+ */
+
+$database = new db();
+
+$connection =
+    $database->connection();
+
+
+/*
+ * =====================================================
+ * GET SELLER PRODUCTS
+ * =====================================================
+ */
+
+$products =
+    $database->getProduct(
+        $connection,
+        $username
+    );
+
+
+/*
+ * =====================================================
+ * SUCCESS / ERROR MESSAGE
+ * =====================================================
+ */
+
+$message = "";
+
+if (
+    isset($_SESSION["product_message"])
+)
+{
+    $message =
+        $_SESSION["product_message"];
+
+    unset(
+        $_SESSION["product_message"]
+    );
+}
+
+?>
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Add / Remove Product</title>
+
 
     <style>
 
@@ -17,6 +103,7 @@
             box-sizing: border-box;
         }
 
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #f5f1e8;
@@ -24,10 +111,12 @@
             line-height: 1.6;
         }
 
+
         a {
             text-decoration: none;
             color: inherit;
         }
+
 
         .page {
             width: 90%;
@@ -35,6 +124,7 @@
             margin: auto;
             padding: 30px 0;
         }
+
 
         .page-header {
             background-color: #263f35;
@@ -44,16 +134,30 @@
             margin-bottom: 25px;
         }
 
+
         .page-header h1 {
             font-family: Georgia, serif;
             font-size: 32px;
             font-weight: normal;
         }
 
+
         .page-header p {
             color: #d8dfd8;
             font-size: 14px;
         }
+
+
+        .message {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            background-color: #d9ead3;
+            color: #285943;
+            border: 1px solid #a8c79e;
+        }
+
 
         .main-area {
             display: grid;
@@ -61,13 +165,17 @@
             gap: 20px;
         }
 
+
         .section {
             background-color: #fffdf8;
             padding: 25px;
             border: 1px solid #ddd5c5;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(50, 45, 35, 0.07);
+            box-shadow:
+                0 4px 10px
+                rgba(50, 45, 35, 0.07);
         }
+
 
         .section h2 {
             font-family: Georgia, serif;
@@ -77,9 +185,11 @@
             margin-bottom: 20px;
         }
 
+
         .field {
             margin-bottom: 15px;
         }
+
 
         .field label {
             display: block;
@@ -88,6 +198,7 @@
             font-weight: bold;
             margin-bottom: 6px;
         }
+
 
         .field input {
             width: 100%;
@@ -98,10 +209,12 @@
             color: #26332d;
         }
 
+
         .field input:focus {
             outline: none;
             border-color: #527464;
         }
+
 
         .btn {
             display: inline-block;
@@ -115,9 +228,11 @@
             font-size: 14px;
         }
 
+
         .btn:hover {
             background-color: #3d5b4d;
         }
+
 
         .search {
             width: 100%;
@@ -128,18 +243,23 @@
             margin-bottom: 15px;
         }
 
+
         .search:focus {
             outline: none;
             border-color: #527464;
         }
 
+
         .product-list {
             min-height: 350px;
+            max-height: 450px;
+            overflow-y: auto;
             background-color: #f5f1e8;
             border: 1px solid #ddd5c5;
             border-radius: 8px;
             padding: 15px;
         }
+
 
         .product {
             background-color: #fffdf8;
@@ -147,20 +267,62 @@
             border-radius: 7px;
             padding: 12px;
             margin-bottom: 10px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            gap: 10px;
         }
+
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd5c5;
+        }
+
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
 
         .product-name {
             color: #263f35;
             font-weight: bold;
         }
 
+
+        .product-price {
+            color: #527464;
+            font-size: 13px;
+        }
+
+
+        .product-quantity {
+            color: #6c757d;
+            font-size: 13px;
+        }
+
+
         .product-checkbox {
             width: 18px;
             height: 18px;
+            cursor: pointer;
         }
+
 
         .remove-button {
             margin-top: 15px;
@@ -174,14 +336,24 @@
             cursor: pointer;
         }
 
+
         .remove-button:hover {
             background-color: #8d493a;
         }
+
+
+        .no-products {
+            text-align: center;
+            color: #6c757d;
+            padding: 30px 10px;
+        }
+
 
         .back {
             margin-top: 25px;
             text-align: right;
         }
+
 
         .admin-button {
             display: inline-block;
@@ -192,36 +364,47 @@
             font-size: 14px;
         }
 
+
         .admin-button:hover {
             background-color: #3d5b4d;
         }
 
-        @media screen and (max-width: 700px) {
 
+        @media screen and (max-width: 700px)
+        {
             .main-area {
                 grid-template-columns: 1fr;
             }
-
         }
 
     </style>
 
 </head>
 
+
 <body>
+
 
 <form
     method="post"
-    action=""
+    action="../controller/seller/addremoveproduct_validation.php"
     enctype="multipart/form-data"
     onsubmit="return validateForm()"
 >
 
+
 <div class="page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+         ========================================= -->
 
     <div class="page-header">
 
-        <h1>Add / Remove Products</h1>
+        <h1>
+            Add / Remove Products
+        </h1>
 
         <p>
             Add new products or remove products from your store.
@@ -230,14 +413,45 @@
     </div>
 
 
+    <!-- =========================================
+         MESSAGE
+         ========================================= -->
+
+    <?php
+
+    if (!empty($message))
+    {
+    ?>
+
+        <div class="message">
+
+            <?php
+            echo htmlspecialchars($message);
+            ?>
+
+        </div>
+
+    <?php
+    }
+
+    ?>
+
+
     <div class="main-area">
 
 
-        <!-- ADD PRODUCT -->
+        <!-- =====================================
+             ADD PRODUCT
+             ===================================== -->
 
         <div class="section">
 
-            <h2>Add Product</h2>
+            <h2>
+                Add Product
+            </h2>
+
+
+            <!-- PRODUCT NAME -->
 
             <div class="field">
 
@@ -249,10 +463,13 @@
                     type="text"
                     id="name"
                     name="name"
+                    placeholder="Enter product name"
                 >
 
             </div>
 
+
+            <!-- PRICE -->
 
             <div class="field">
 
@@ -266,10 +483,13 @@
                     name="price"
                     min="1"
                     step="0.01"
+                    placeholder="Enter product price"
                 >
 
             </div>
 
+
+            <!-- QUANTITY -->
 
             <div class="field">
 
@@ -282,15 +502,18 @@
                     id="quantity"
                     name="quantity"
                     min="1"
+                    placeholder="Enter quantity"
                 >
 
             </div>
 
 
+            <!-- PICTURE -->
+
             <div class="field">
 
                 <label for="picture">
-                    Picture
+                    Product Picture
                 </label>
 
                 <input
@@ -303,67 +526,192 @@
             </div>
 
 
+            <!-- ADD BUTTON -->
+
             <input
                 type="submit"
                 name="action"
                 value="Add Product"
                 class="btn"
-                onclick="setAction('add')"
             >
 
         </div>
 
 
-        <!-- REMOVE PRODUCT -->
+
+        <!-- =====================================
+             REMOVE PRODUCT
+             ===================================== -->
 
         <div class="section">
 
-            <h2>Remove Product</h2>
+            <h2>
+                Remove Product
+            </h2>
+
+
+            <!-- SEARCH -->
 
             <input
                 type="text"
-                name="search"
+                id="search"
                 placeholder="Search for product"
                 class="search"
+                onkeyup="searchProducts()"
             >
 
+
+            <!-- PRODUCT LIST -->
 
             <div class="product-list">
 
                 <?php
 
-                /*
-                 * Backend will generate products here later.
-                 *
-                 * Example:
-                 *
-                 * <div class="product">
-                 *
-                 *     <span class="product-name">
-                 *         Product Name
-                 *     </span>
-                 *
-                 *     <input
-                 *         type="checkbox"
-                 *         name="selected_product"
-                 *         value="1"
-                 *         class="product-checkbox"
-                 *     >
-                 *
-                 * </div>
-                 */
+                if (
+                    $products &&
+                    $products->num_rows > 0
+                )
+                {
+
+                    while (
+                        $product =
+                        $products->fetch_assoc()
+                    )
+                    {
+
+                ?>
+
+                    <div
+                        class="product"
+                        data-name="<?php
+                            echo htmlspecialchars(
+                                strtolower(
+                                    $product["name"]
+                                )
+                            );
+                        ?>"
+                    >
+
+
+                        <div class="product-info">
+
+
+                            <!-- PRODUCT IMAGE -->
+
+                            <img
+                                src="<?php
+
+                                    echo htmlspecialchars(
+                                        $product["picture"]
+                                    );
+
+                                ?>"
+                                alt="Product"
+                                class="product-image"
+                            >
+
+
+                            <!-- PRODUCT DETAILS -->
+
+                            <div class="product-details">
+
+                                <span class="product-name">
+
+                                    <?php
+
+                                    echo htmlspecialchars(
+                                        $product["name"]
+                                    );
+
+                                    ?>
+
+                                </span>
+
+
+                                <span class="product-price">
+
+                                    Price:
+
+                                    <?php
+
+                                    echo htmlspecialchars(
+                                        $product["price"]
+                                    );
+
+                                    ?>
+
+                                    TK
+
+                                </span>
+
+
+                                <span class="product-quantity">
+
+                                    Quantity:
+
+                                    <?php
+
+                                    echo htmlspecialchars(
+                                        $product["quantity"]
+                                    );
+
+                                    ?>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RADIO BUTTON -->
+
+                        <input
+                            type="radio"
+                            name="selected_product"
+                            value="<?php
+                                echo htmlspecialchars(
+                                    $product["id"]
+                                );
+                            ?>"
+                            class="product-checkbox"
+                        >
+
+                    </div>
+
+
+                <?php
+
+                    }
+
+                }
+                else
+                {
+
+                ?>
+
+                    <div class="no-products">
+
+                        No products found.
+
+                    </div>
+
+                <?php
+
+                }
 
                 ?>
 
             </div>
 
 
+            <!-- REMOVE BUTTON -->
+
             <input
                 type="submit"
                 name="action"
                 value="Remove Selected"
                 class="remove-button"
-                onclick="setAction('remove')"
             >
 
         </div>
@@ -371,16 +719,23 @@
     </div>
 
 
-    <!-- BACK TO SELLER DASHBOARD -->
+    <!-- =========================================
+         BACK TO SELLER DASHBOARD
+         ========================================= -->
 
     <div class="back">
 
-        <a href="sellerpage.php"
-           class="admin-button">
+        <a
+            href="sellerpage.php"
+            class="admin-button"
+        >
+
             &larr; Back to Seller Dashboard
+
         </a>
 
     </div>
+
 
 </div>
 
@@ -389,182 +744,345 @@
 
 <script>
 
-    // Store which button was clicked
-    let currentAction = "";
+
+/*
+ * =====================================================
+ * FORM VALIDATION
+ * =====================================================
+ */
+
+function validateForm()
+{
+
+    /*
+     * Find which submit button was clicked
+     */
+
+    let button =
+        document.activeElement;
 
 
-    function setAction(action)
+    /*
+     * =================================================
+     * ADD PRODUCT
+     * =================================================
+     */
+
+    if (
+        button &&
+        button.value === "Add Product"
+    )
     {
-        currentAction = action;
-    }
+
+        let name =
+            document
+            .getElementById("name")
+            .value
+            .trim();
 
 
-    function validateForm()
-    {
+        let price =
+            document
+            .getElementById("price")
+            .value;
 
-        /* =========================
-           ADD PRODUCT VALIDATION
-           ========================= */
 
-        if (currentAction === "add")
+        let quantity =
+            document
+            .getElementById("quantity")
+            .value;
+
+
+        let picture =
+            document
+            .getElementById("picture")
+            .files[0];
+
+
+        /*
+         * PRODUCT NAME
+         */
+
+        if (name === "")
         {
+            alert(
+                "Please enter the product name."
+            );
 
-            let name = document.getElementById("name").value.trim();
+            document
+                .getElementById("name")
+                .focus();
 
-            let price = document.getElementById("price").value;
-
-            let quantity = document.getElementById("quantity").value;
-
-            let picture = document.getElementById("picture").files[0];
-
-
-            // Product name
-            if (name === "")
-            {
-                alert("Please enter the product name.");
-                document.getElementById("name").focus();
-
-                return false;
-            }
-
-
-            if (name.length < 2)
-            {
-                alert("Product name must contain at least 2 characters.");
-                document.getElementById("name").focus();
-
-                return false;
-            }
-
-
-            // Price
-            if (price === "")
-            {
-                alert("Please enter the product price.");
-                document.getElementById("price").focus();
-
-                return false;
-            }
-
-
-            if (parseFloat(price) <= 0)
-            {
-                alert("Price must be greater than 0.");
-                document.getElementById("price").focus();
-
-                return false;
-            }
-
-
-            // Quantity
-            if (quantity === "")
-            {
-                alert("Please enter the product quantity.");
-                document.getElementById("quantity").focus();
-
-                return false;
-            }
-
-
-            if (!Number.isInteger(Number(quantity)) || Number(quantity) <= 0)
-            {
-                alert("Quantity must be a positive whole number.");
-                document.getElementById("quantity").focus();
-
-                return false;
-            }
-
-
-            // Picture
-            if (!picture)
-            {
-                alert("Please select a product picture.");
-                document.getElementById("picture").focus();
-
-                return false;
-            }
-
-
-            // Check image type
-            let allowedTypes = [
-                "image/jpeg",
-                "image/png",
-                "image/gif"
-            ];
-
-
-            if (!allowedTypes.includes(picture.type))
-            {
-                alert("Only JPG, JPEG, PNG and GIF images are allowed.");
-
-                document.getElementById("picture").value = "";
-
-                return false;
-            }
-
-
-            // Maximum size = 2 MB
-            let maxSize = 2 * 1024 * 1024;
-
-
-            if (picture.size > maxSize)
-            {
-                alert("Picture size must be less than 2 MB.");
-
-                document.getElementById("picture").value = "";
-
-                return false;
-            }
-
-
-            // Everything is valid
-            alert("Product information is valid.");
-
-            return true;
+            return false;
         }
 
 
-        /* =========================
-           REMOVE PRODUCT VALIDATION
-           ========================= */
-
-        if (currentAction === "remove")
+        if (name.length < 2)
         {
+            alert(
+                "Product name must contain at least 2 characters."
+            );
 
-            let selectedProduct =
-                document.querySelector(
-                    'input[name="selected_product"]:checked'
-                );
+            document
+                .getElementById("name")
+                .focus();
 
-
-            if (!selectedProduct)
-            {
-                alert("Please select a product to remove.");
-
-                return false;
-            }
+            return false;
+        }
 
 
-            let confirmation =
-                confirm(
-                    "Are you sure you want to remove the selected product?"
-                );
+        /*
+         * PRICE
+         */
+
+        if (price === "")
+        {
+            alert(
+                "Please enter the product price."
+            );
+
+            document
+                .getElementById("price")
+                .focus();
+
+            return false;
+        }
 
 
-            if (!confirmation)
-            {
-                return false;
-            }
+        if (parseFloat(price) <= 0)
+        {
+            alert(
+                "Price must be greater than 0."
+            );
+
+            document
+                .getElementById("price")
+                .focus();
+
+            return false;
+        }
 
 
-            return true;
+        /*
+         * QUANTITY
+         */
+
+        if (quantity === "")
+        {
+            alert(
+                "Please enter the product quantity."
+            );
+
+            document
+                .getElementById("quantity")
+                .focus();
+
+            return false;
+        }
+
+
+        if (
+            !Number.isInteger(
+                Number(quantity)
+            ) ||
+            Number(quantity) <= 0
+        )
+        {
+            alert(
+                "Quantity must be a positive whole number."
+            );
+
+            document
+                .getElementById("quantity")
+                .focus();
+
+            return false;
+        }
+
+
+        /*
+         * PICTURE
+         */
+
+        if (!picture)
+        {
+            alert(
+                "Please select a product picture."
+            );
+
+            document
+                .getElementById("picture")
+                .focus();
+
+            return false;
+        }
+
+
+        /*
+         * PICTURE TYPE
+         */
+
+        let allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/gif"
+        ];
+
+
+        if (
+            !allowedTypes.includes(
+                picture.type
+            )
+        )
+        {
+            alert(
+                "Only JPG, JPEG, PNG and GIF images are allowed."
+            );
+
+            document
+                .getElementById("picture")
+                .value = "";
+
+            return false;
+        }
+
+
+        /*
+         * MAXIMUM SIZE
+         *
+         * 2 MB
+         */
+
+        let maxSize =
+            2 * 1024 * 1024;
+
+
+        if (picture.size > maxSize)
+        {
+            alert(
+                "Picture size must be less than 2 MB."
+            );
+
+            document
+                .getElementById("picture")
+                .value = "";
+
+            return false;
         }
 
 
         return true;
     }
 
+
+    /*
+     * =================================================
+     * REMOVE PRODUCT
+     * =================================================
+     */
+
+    if (
+        button &&
+        button.value === "Remove Selected"
+    )
+    {
+
+        let selectedProduct =
+            document.querySelector(
+                'input[name="selected_product"]:checked'
+            );
+
+
+        /*
+         * NO PRODUCT SELECTED
+         */
+
+        if (!selectedProduct)
+        {
+            alert(
+                "Please select a product to remove."
+            );
+
+            return false;
+        }
+
+
+        /*
+         * CONFIRMATION
+         */
+
+        let confirmation =
+            confirm(
+                "Are you sure you want to remove the selected product?"
+            );
+
+
+        if (!confirmation)
+        {
+            return false;
+        }
+
+
+        return true;
+    }
+
+
+    return true;
+}
+
+
+/*
+ * =====================================================
+ * SEARCH PRODUCTS
+ * =====================================================
+ */
+
+function searchProducts()
+{
+
+    let search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let products =
+        document.querySelectorAll(
+            ".product"
+        );
+
+
+    products.forEach(
+        function(product)
+        {
+
+            let productName =
+                product.getAttribute(
+                    "data-name"
+                );
+
+
+            if (
+                productName.includes(search)
+            )
+            {
+                product.style.display =
+                    "flex";
+            }
+            else
+            {
+                product.style.display =
+                    "none";
+            }
+
+        }
+    );
+}
+
 </script>
+
 
 </body>
 

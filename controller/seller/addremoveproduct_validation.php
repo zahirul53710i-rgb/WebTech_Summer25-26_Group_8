@@ -1,319 +1,594 @@
-```php
 <?php
 
 session_start();
 
-// Model will be included here later
-// require_once __DIR__ . "/../Model/productModel.php";
+include "../../model/seller/product_db.php";
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
+/*
+ * =====================================================
+ * CHECK SELLER LOGIN
+ * =====================================================
+ */
+
+if (
+    !isset($_SESSION["seller_logged_in"]) ||
+    $_SESSION["seller_logged_in"] !== true
+)
+{
+    header("Location: ../../view/selller_login.php");
+    exit();
+}
+
+
+/*
+ * =====================================================
+ * GET SELLER USERNAME
+ * =====================================================
+ */
+
+$username = $_SESSION["seller_username"] ?? "";
+
+
+/*
+ * =====================================================
+ * CHECK REQUEST METHOD
+ * =====================================================
+ */
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST")
+{
+    header("Location: ../../view/addremoveproduct.php");
+    exit();
+}
+
+
+/*
+ * =====================================================
+ * GET ACTION
+ * =====================================================
+ */
+
+$action = $_POST["action"] ?? "";
+
+
+/*
+ * =====================================================
+ * DATABASE CONNECTION
+ * =====================================================
+ */
+
+$database = new db();
+
+$connection = $database->connection();
+
+
+/*
+ * =====================================================
+ * ADD PRODUCT
+ * =====================================================
+ */
+
+if ($action === "Add Product")
 {
 
-    $action = $_POST["action"] ?? "";
+    /*
+     * GET FORM DATA
+     */
+
+    $name = trim($_POST["name"] ?? "");
+    $price = trim($_POST["price"] ?? "");
+    $quantity = trim($_POST["quantity"] ?? "");
 
 
-    /* =====================================
-       ADD PRODUCT
-       ===================================== */
+    /*
+     * =================================================
+     * PRODUCT NAME VALIDATION
+     * =================================================
+     */
 
-    if ($action == "Add Product")
+    if ($name === "")
     {
+        $_SESSION["product_message"] =
+            "Please enter the product name.";
 
-        $name = trim($_POST["name"] ?? "");
-        $price = trim($_POST["price"] ?? "");
-        $quantity = trim($_POST["quantity"] ?? "");
-
-
-        $valid = true;
-        $message = "";
-
-
-        /* PRODUCT NAME */
-
-        if (empty($name))
-        {
-            $valid = false;
-            $message = "Product name is required.";
-        }
-
-        elseif (strlen($name) < 2)
-        {
-            $valid = false;
-            $message = "Product name must contain at least 2 characters.";
-        }
-
-
-        /* PRICE */
-
-        elseif (empty($price))
-        {
-            $valid = false;
-            $message = "Price is required.";
-        }
-
-        elseif (!is_numeric($price))
-        {
-            $valid = false;
-            $message = "Price must be a valid number.";
-        }
-
-        elseif ($price <= 0)
-        {
-            $valid = false;
-            $message = "Price must be greater than 0.";
-        }
-
-
-        /* QUANTITY */
-
-        elseif (empty($quantity))
-        {
-            $valid = false;
-            $message = "Quantity is required.";
-        }
-
-        elseif (!ctype_digit($quantity))
-        {
-            $valid = false;
-            $message = "Quantity must be a positive whole number.";
-        }
-
-        elseif ((int)$quantity <= 0)
-        {
-            $valid = false;
-            $message = "Quantity must be greater than 0.";
-        }
-
-
-        /* PICTURE */
-
-        elseif (
-            !isset($_FILES["picture"]) ||
-            $_FILES["picture"]["error"] == UPLOAD_ERR_NO_FILE
-        )
-        {
-            $valid = false;
-            $message = "Please select a product picture.";
-        }
-
-        elseif ($_FILES["picture"]["error"] != UPLOAD_ERR_OK)
-        {
-            $valid = false;
-            $message = "There was a problem uploading the picture.";
-        }
-
-
-        /* PICTURE CHECK */
-
-        if ($valid)
-        {
-
-            $picture = $_FILES["picture"];
-
-
-            // Maximum size = 2 MB
-
-            if ($picture["size"] > 2 * 1024 * 1024)
-            {
-                $valid = false;
-                $message = "Picture size must be less than 2 MB.";
-            }
-
-
-            // Check actual image
-
-            elseif (getimagesize($picture["tmp_name"]) === false)
-            {
-                $valid = false;
-                $message = "The selected file is not a valid image.";
-            }
-
-
-            // Check extension
-
-            else
-            {
-
-                $allowedExtensions = [
-                    "jpg",
-                    "jpeg",
-                    "png",
-                    "gif"
-                ];
-
-
-                $extension = strtolower(
-                    pathinfo(
-                        $picture["name"],
-                        PATHINFO_EXTENSION
-                    )
-                );
-
-
-                if (!in_array($extension, $allowedExtensions))
-                {
-                    $valid = false;
-                    $message =
-                        "Only JPG, JPEG, PNG and GIF images are allowed.";
-                }
-
-            }
-
-        }
-
-
-        /* =====================================
-           IF VALID
-           ===================================== */
-
-        if ($valid)
-        {
-
-            /*
-             * Later, call your Model here.
-             *
-             * Example:
-             *
-             * $productId = addProduct(
-             *     $name,
-             *     $price,
-             *     $quantity,
-             *     $picture
-             * );
-             */
-
-
-            /*
-             * TEMPORARY SESSION STORAGE
-             *
-             * This is only for testing until
-             * your database Model is connected.
-             */
-
-            $product = [
-                "name" => $name,
-                "price" => $price,
-                "quantity" => $quantity
-            ];
-
-
-            if (!isset($_SESSION["products"]))
-            {
-                $_SESSION["products"] = [];
-            }
-
-
-            $_SESSION["products"][] = $product;
-
-
-            /*
-             * Store success notification
-             */
-
-            $_SESSION["product_message"] =
-                "Product added successfully!";
-
-
-            /*
-             * Go to My Products page
-             */
-
-            header("Location: ../View/myproduct.php");
-            exit();
-
-        }
-
-
-        /* =====================================
-           IF INVALID
-           ===================================== */
-
-        else
-        {
-
-            echo "<script>
-                    alert(" . json_encode($message) . ");
-                    window.history.back();
-                  </script>";
-
-            exit();
-
-        }
-
-    }
-
-
-    /* =====================================
-       REMOVE PRODUCT
-       ===================================== */
-
-    elseif ($action == "Remove Selected")
-    {
-
-        $selectedProduct =
-            $_POST["selected_product"] ?? "";
-
-
-        if (empty($selectedProduct))
-        {
-
-            echo "<script>
-                    alert('Please select a product to remove.');
-                    window.history.back();
-                  </script>";
-
-            exit();
-
-        }
-
-
-        /*
-         * Later:
-         *
-         * deleteProduct($selectedProduct);
-         */
-
-
-        echo "<script>
-                alert('Product removed successfully.');
-                window.location.href = '../View/myproduct.php';
-              </script>";
-
+        header("Location: ../../view/addremoveproduct.php");
         exit();
-
     }
 
 
-    /* =====================================
-       INVALID ACTION
-       ===================================== */
+    if (strlen($name) < 2)
+    {
+        $_SESSION["product_message"] =
+            "Product name must contain at least 2 characters.";
 
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * PRICE VALIDATION
+     * =================================================
+     */
+
+    if (
+        $price === "" ||
+        !is_numeric($price) ||
+        $price <= 0
+    )
+    {
+        $_SESSION["product_message"] =
+            "Please enter a valid product price.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * QUANTITY VALIDATION
+     * =================================================
+     */
+
+    if (
+        $quantity === "" ||
+        !is_numeric($quantity) ||
+        intval($quantity) <= 0 ||
+        intval($quantity) != $quantity
+    )
+    {
+        $_SESSION["product_message"] =
+            "Please enter a valid quantity.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * GET PICTURE
+     * =================================================
+     */
+
+    $file = $_FILES["picture"] ?? [];
+
+
+    /*
+     * CHECK PICTURE EXISTS
+     */
+
+    if (
+        !isset($file["name"]) ||
+        empty($file["name"])
+    )
+    {
+        $_SESSION["product_message"] =
+            "Please select a product picture.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * CHECK UPLOAD ERROR
+     * =================================================
+     */
+
+    if (
+        !isset($file["error"]) ||
+        $file["error"] !== UPLOAD_ERR_OK
+    )
+    {
+        $_SESSION["product_message"] =
+            "File upload error. Error code: "
+            . ($file["error"] ?? "unknown");
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * MAXIMUM FILE SIZE
+     *
+     * 2 MB
+     * =================================================
+     */
+
+    $maxSize = 2 * 1024 * 1024;
+
+    if ($file["size"] > $maxSize)
+    {
+        $_SESSION["product_message"] =
+            "Picture size must be less than 2 MB.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * CHECK IMAGE TYPE
+     * =================================================
+     */
+
+    $allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif"
+    ];
+
+
+    $imageType = mime_content_type(
+        $file["tmp_name"]
+    );
+
+
+    if (!in_array($imageType, $allowedTypes))
+    {
+        $_SESSION["product_message"] =
+            "Only JPG, JPEG, and GIF images are allowed.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * UPLOAD DIRECTORY
+     *
+     * Current file:
+     *
+     * controller/seller/
+     *
+     * Go to project root:
+     *
+     * WebTech_Summer25-26_Group_8/
+     *
+     * Then:
+     *
+     * view/assets/upload/
+     * =================================================
+     */
+
+    $controller_folder = __DIR__;
+
+    $project_folder =
+        dirname(dirname($controller_folder));
+
+    $uploaddirectory =
+        $project_folder . "/view/assets/upload/";
+
+
+    /*
+     * =================================================
+     * CREATE FOLDER IF IT DOES NOT EXIST
+     * =================================================
+     */
+
+    if (!is_dir($uploaddirectory))
+    {
+        if (!mkdir(
+            $uploaddirectory,
+            0777,
+            true
+        ))
+        {
+            $_SESSION["product_message"] =
+                "Could not create upload folder.";
+
+            header("Location: ../../view/addremoveproduct.php");
+            exit();
+        }
+    }
+
+
+    /*
+     * =================================================
+     * CHECK FOLDER WRITABLE
+     * =================================================
+     */
+
+    if (!is_writable($uploaddirectory))
+    {
+        $_SESSION["product_message"] =
+            "Upload folder is not writable.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * GET ORIGINAL EXTENSION
+     * =================================================
+     */
+
+    $extension =
+        strtolower(
+            pathinfo(
+                $file["name"],
+                PATHINFO_EXTENSION
+            )
+        );
+
+
+    /*
+     * =================================================
+     * CREATE UNIQUE FILE NAME
+     * =================================================
+     *
+     * This prevents two products having
+     * the same image name.
+     */
+
+    $filename =
+        "product_" .
+        uniqid() .
+        "." .
+        $extension;
+
+
+    /*
+     * =================================================
+     * COMPLETE FILE PATH
+     * =================================================
+     */
+
+    $filepath =
+        $uploaddirectory . $filename;
+
+
+    /*
+     * =================================================
+     * MOVE IMAGE TO:
+     *
+     * view/assets/upload/
+     * =================================================
+     */
+
+    if (
+        !move_uploaded_file(
+            $file["tmp_name"],
+            $filepath
+        )
+    )
+    {
+        $_SESSION["product_message"] =
+            "Failed to upload product picture.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * =================================================
+     * PATH TO STORE IN DATABASE
+     * =================================================
+     *
+     * NOT the complete Linux path.
+     *
+     * Example:
+     *
+     * assets/upload/product_123456.jpg
+     * =================================================
+     */
+
+    $path =
+        "assets/upload/" . $filename;
+
+
+    /*
+     * =================================================
+     * INSERT PRODUCT INTO DATABASE
+     * =================================================
+     */
+
+    $result = $database->addProduct(
+        $connection,
+        $name,
+        $price,
+        $quantity,
+        $path,
+        $username
+    );
+
+
+    /*
+     * =================================================
+     * CHECK DATABASE RESULT
+     * =================================================
+     */
+
+    if ($result)
+    {
+        $_SESSION["product_message"] =
+            "Product added successfully.";
+    }
     else
     {
+        /*
+         * Database insertion failed.
+         *
+         * Delete uploaded image because
+         * product was not saved.
+         */
 
-        echo "<script>
-                alert('Invalid request.');
-                window.history.back();
-              </script>";
+        if (file_exists($filepath))
+        {
+            unlink($filepath);
+        }
 
-        exit();
-
+        $_SESSION["product_message"] =
+            "Failed to add product to database.";
     }
 
+
+    /*
+     * =================================================
+     * GO BACK TO ADD/REMOVE PRODUCT PAGE
+     *
+     * NO REDIRECTION TO ANOTHER PAGE
+     * =================================================
+     */
+
+    header("Location: ../../view/addremoveproduct.php");
+    exit();
 }
 
-else
+
+/*
+ * =====================================================
+ * REMOVE PRODUCT
+ * =====================================================
+ */
+
+if ($action === "Remove Selected")
 {
 
-    echo "<script>
-            alert('Invalid request method.');
-            window.history.back();
-          </script>";
+    /*
+     * GET SELECTED PRODUCT
+     */
 
+    $productId =
+        $_POST["selected_product"] ?? "";
+
+
+    /*
+     * CHECK PRODUCT SELECTION
+     */
+
+    if ($productId === "")
+    {
+        $_SESSION["product_message"] =
+            "Please select a product to remove.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * GET PRODUCT INFORMATION
+     */
+
+    $product =
+        $database->getSingleProduct(
+            $connection,
+            $productId,
+            $username
+        );
+
+
+    /*
+     * PRODUCT NOT FOUND
+     */
+
+    if (!$product)
+    {
+        $_SESSION["product_message"] =
+            "Product not found.";
+
+        header("Location: ../../view/addremoveproduct.php");
+        exit();
+    }
+
+
+    /*
+     * REMOVE PRODUCT FROM DATABASE
+     */
+
+    $result =
+        $database->removeProduct(
+            $connection,
+            $productId,
+            $username
+        );
+
+
+    /*
+     * CHECK DELETE RESULT
+     */
+
+    if ($result)
+    {
+
+        /*
+         * =================================================
+         * DELETE PRODUCT IMAGE
+         * =================================================
+         */
+
+        if (
+            isset($product["picture"]) &&
+            !empty($product["picture"])
+        )
+        {
+
+            /*
+             * Database contains:
+             *
+             * assets/upload/product_xxx.jpg
+             *
+             * We need:
+             *
+             * project/view/assets/upload/product_xxx.jpg
+             */
+
+            $imagePath =
+                $project_folder .
+                "/view/" .
+                $product["picture"];
+
+
+            if (file_exists($imagePath))
+            {
+                unlink($imagePath);
+            }
+        }
+
+
+        $_SESSION["product_message"] =
+            "Product removed successfully.";
+    }
+    else
+    {
+        $_SESSION["product_message"] =
+            "Failed to remove product.";
+    }
+
+
+    /*
+     * RETURN TO SAME PAGE
+     */
+
+    header("Location: ../../view/addremoveproduct.php");
     exit();
-
 }
+
+
+/*
+ * =====================================================
+ * INVALID ACTION
+ * =====================================================
+ */
+
+$_SESSION["product_message"] =
+    "Invalid product action.";
+
+header("Location: ../../view/addremoveproduct.php");
+exit();
 
 ?>
 ```
