@@ -1,236 +1,213 @@
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-
-  if ($username != "admin" || $password != "admin") {
-
-    echo "<script>
-                alert('Invalid username or password');
-                window.location.href='login_admin.php';
-              </script>";
-
-    exit();
-  }
-}
-
-$pageTitle = "Dashboard";
-
+// PHP Header Setup
+$pageTitle = "HaatBodol - Select Role";
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en-US">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $pageTitle; ?></title>
 
-  <meta charset="UTF-8">
+    <!-- Embedded CSS from your design -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f0ea; 
+            color: #2c4238;
+            line-height: 1.6;
+            padding: 20px;
+        }
 
-  <title><?php echo $pageTitle; ?></title>
+        .container {
+            width: 90%;
+            max-width: 440px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2ddd3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
 
-  <link rel="stylesheet" href="assets/css/style.css">
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            font-weight: normal;
+            color: #2c4238; 
+            text-align: center;
+            margin-bottom: 25px;
+        }
 
-  <script src="assets/js/main.js"></script>
+        form {
+            display: block;
+        }
 
+        fieldset {
+            width: 100%;
+            border: 1px solid #e2ddd3;
+            border-radius: 8px;
+            padding: 18px;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            padding: 0 10px;
+            color: #2c4238;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 6px 0;
+        }
+
+        label {
+            display: inline-block;
+            color: #2c4238;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #4d6b5e; 
+            color: white;
+            padding: 12px 18px;
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        input[type="button"]:hover,
+        input[type="submit"]:hover {
+            background-color: #3c5449;
+        }
+
+        input[type="reset"] {
+            background-color: #8c8275; 
+        }
+
+        input[type="reset"]:hover {
+            background-color: #736a5e;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .link a {
+            color: #4d6b5e;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .link a:hover {
+            color: #2c4238;
+            text-decoration: underline;
+        }
+    </style>
+
+    <!-- Embedded JS -->
+    <script>
+        function navigateTo(url) {
+            if(url !== '') {
+                window.location.href = url;
+            } else {
+                alert('Page location not set.');
+            }
+        }
+    </script>
 </head>
-
 <body>
 
+    <div class="container">
+        <h1>HaatBodol</h1>
 
+        <!-- Counter 01: Admin -->
+        <fieldset>
+            <legend>COUNTER No. 01</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label>Admin Panel</label>
+                        <p>Manage users, approve seller listings and handle buying requests.</p>
+                        <input type="button" value="Enter as Admin" onclick="navigateTo('login_admin.php')">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
 
-  <div class="wrap">
+        <!-- Counter 02: Buyer -->
+        <fieldset>
+            <legend>COUNTER No. 02</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label>Buyer Portal</label>
+                        <p>Browse approved products, place orders and track your purchases.</p>
+                        <input type="button" value="Enter as Buyer" onclick="navigateTo('userlogin.php')">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
 
-    <!-- Hero Section -->
+        <!-- Counter 03: Seller -->
+        <fieldset>
+            <legend>COUNTER No. 03</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label>Seller Station</label>
+                        <p>Add your collectible items and submit them for admin approval.</p>
+                        <input type="button" value="Enter as Seller" onclick="navigateTo('selller_login.php')">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
 
-    <div class="hero">
+        <!-- Counter 04: Delivery -->
+        <fieldset>
+            <legend>COUNTER No. 04</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label>Delivery Hub</label>
+                        <p>Handle approved parcels and deliver them safely to the buyer.</p>
+                        <input type="button" value="Enter as Delivery" onclick="navigateTo('registration.php')">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
 
-      <p class="eyebrow">
-        Welcome to HaatBodol
-      </p>
-
-      <h1>
-        Buy and Sell Rare Collectibles
-      </h1>
-
-      <p>
-        HaatBodol is an online marketplace for buying and selling
-        rare antiques, ancient coins and old showpieces.
-        Choose your role to continue.
-      </p>
-
+        
     </div>
-
-
-    <!-- Role Selection -->
-
-    <div class="counter-grid">
-
-      <!-- Admin -->
-
-      <div class="ticket">
-
-        <span class="lot-no">
-          COUNTER No. 01
-        </span>
-
-        <svg class="role-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6">
-
-          <path d="M14 4l6 6M9.5 8.5l-6 6a1.5 1.5 0 0 0 0 2.1l1.9 1.9a1.5 1.5 0 0 0 2.1 0l6-6M6 20l3-3M12.5 5.5l6 6"
-            stroke-linecap="round"
-            stroke-linejoin="round" />
-
-        </svg>
-
-        <h2>Admin</h2>
-
-        <p>
-          Manage users, approve seller listings and
-          handle buying requests.
-        </p>
-
-        <a href="login_admin.php" class="enter-link">
-          Enter as Admin
-          <span class="arrow">&rarr;</span>
-        </a>
-
-      </div>
-
-
-      <!-- Buyer -->
-
-      <div class="ticket">
-
-        <span class="lot-no">
-          COUNTER No. 02
-        </span>
-
-        <svg class="role-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6">
-
-          <circle cx="9" cy="9" r="5.5" />
-
-          <path d="M13 13l7 7"
-            stroke-linecap="round" />
-
-        </svg>
-
-        <h2>Buyer</h2>
-
-        <p>
-          Browse approved products, place orders
-          and track your purchases.
-        </p>
-
-        <a href="userlogin.php" class="enter-link">
-          Enter as Buyer
-        </a>
-
-      </div>
-
-
-      <!-- Seller -->
-
-      <div class="ticket">
-
-        <span class="lot-no">
-          COUNTER No. 03
-        </span>
-
-        <svg class="role-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6">
-
-          <path d="M4 8l1.5-4h13L20 8"
-            stroke-linecap="round"
-            stroke-linejoin="round" />
-
-          <path d="M4 8h16v3a2 2 0 0 1-2 2
-                         2 2 0 0 1-2-2
-                         2 2 0 0 1-2 2
-                         2 2 0 0 1-2-2
-                         2 2 0 0 1-2 2
-                         2 2 0 0 1-2-2
-                         2 2 0 0 1-2 2
-                         2 2 0 0 1-2-2V8z"
-            stroke-linejoin="round" />
-
-          <path d="M5.5 13v7h13v-7"
-            stroke-linejoin="round" />
-
-        </svg>
-
-        <h2>Seller</h2>
-
-        <p>
-          Add your collectible items and submit
-          them for admin approval.
-        </p>
-
-        <a href="selller_login.php" class="enter-link">
-    Enter as Seller
-    <span class="arrow">&rarr;</span>
-</a>
-
-      </div>
-
-
-      <!-- Delivery -->
-
-      <div class="ticket">
-
-        <span class="lot-no">
-          COUNTER No. 04
-        </span>
-
-        <svg class="role-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6">
-
-          <path d="M3 7h11v9H3z"
-            stroke-linejoin="round" />
-
-          <path d="M14 10h4l3 3v3h-7v-6z"
-            stroke-linejoin="round" />
-
-          <circle cx="7" cy="18.5" r="1.7" />
-
-          <circle cx="17.5" cy="18.5" r="1.7" />
-
-        </svg>
-
-        <h2>Delivery</h2>
-
-        <p>
-          Handle approved parcels and deliver them
-          safely to the buyer.
-        </p>
-
-        <a href="registration.php" class="enter-link">
-          Enter as Delivery
-          <span class="arrow">&rarr;</span>
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
 
 </body>
-
 </html>
