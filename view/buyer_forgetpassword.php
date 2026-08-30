@@ -7,7 +7,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
-     
+      
     <script>
         function collect_data()
         {
@@ -15,7 +15,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             let new_password = document.getElementById("new_password").value.trim();
 
             let valid = true;
-            let message="";
+            let message = "";
 
             if(username.length < 5)
             {
@@ -175,6 +175,13 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             text-decoration: underline;
         }
 
+        .msg {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
         /* RESPONSIVE */
         @media screen and (max-width: 500px) {
             body {
@@ -204,6 +211,8 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
 
         <h1>Reset Password</h1>
 
+        <div class="msg"><?php echo $message; ?></div>
+
         <form method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
@@ -217,8 +226,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
                             <label for="username">User Name:</label>
                         </td>
                         <td>
-                            <input type="text" id="username" name="username" placeholder="Enter your User Name" value="<?php echo $username; ?>">
-                            <?php echo $username; ?>
+                            <input type="text" id="username" name="username" placeholder="Enter your User Name" value="<?php echo htmlspecialchars($username); ?>">
                         </td>
                     </tr>
 
@@ -228,14 +236,6 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
                         </td>
                         <td>
                             <input type="password" id="new_password" name="new_password" placeholder="Enter New Password">
-                            <?php echo $new_password; ?>
-                        </td>
-                    </tr>
-
-                 
-                    <tr>
-                        <td colspan="2">
-                            <?php echo $message; ?>
                         </td>
                     </tr>
 
@@ -262,7 +262,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
                     <tr>
                         <td colspan="2">
                             <div class="link">
-                                <a href="dashboard.php">Back to Dashboard</a>
+                                <a href="buyerdashboard.php">Back to Dashboard</a>
                             </div>
                         </td>
                     </tr>

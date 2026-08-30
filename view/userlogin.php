@@ -1,4 +1,4 @@
- <?php
+<?php
 include "../Controller/buyervalidation/Loginvalidation.php"; 
 ?>
 <!DOCTYPE html>
@@ -6,29 +6,28 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login Page</title>
 
     <script>
-       function collect_data() {
-            let username = document.getElementById("username").value.trim();
+        function collect_data() {
+            let name = document.getElementById("name").value.trim();
             let password = document.getElementById("password").value.trim();
-            
             let valid = true;
             let message = "";
 
-            if (username.length === 0) {
-                message += "User Name is required\n";
+            if (name.length < 5) {
+                message += "User Name Should be 5 Char\n";
                 valid = false;
             }
-            if (password.length === 0) {
-                message += "Password is required\n";
+            if (password.length < 5) {
+                message += "Password Must be 5 Char\n";
                 valid = false;
             }
             if (!valid) {
                 alert(message);
             }
             return valid;
-       } 
+        } 
     </script>
 
     <style>
@@ -188,10 +187,10 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
                   <!-- Username Row -->
                   <tr>
-                      <td><label for="username"> User Name: </label></td>
+                      <td><label for="name"> User Name: </label></td>
                       <td>
-                          <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($name); ?>">
-                          <span class="error"><?php echo $nameErr; ?></span>
+                          <input type="text" id="name" name="name" value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
+                          <span class="error"><?php echo isset($nameErr) ? $nameErr : ''; ?></span>
                       </td>
                   </tr>
 
@@ -200,39 +199,51 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       <td><label for="password"> Password: </label></td>
                       <td>
                           <input type="password" id="password" name="password">
-                          <span class="error"><?php echo $passwordErr; ?></span>
+                          <span class="error"><?php echo isset($passwordErr) ? $passwordErr : ''; ?></span>
                       </td>
-                 </tr>
+                  </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" id="submit" name="submit" value="Login">
-                        </td>
-                    </tr>
+                  <!-- Remember Me Row -->
+                  <tr>
+                      <td colspan="2">
+                          <input type="checkbox" id="remember" name="remember" value="1" <?php echo !empty($remember) ? 'checked' : ''; ?>>
+                          <label for="remember"> Remember Me</label>
+                      </td>
+                  </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <input type="reset" id="reset" name="reset" value="Reset">
-                        </td>
-                    </tr>
+                  <!-- Buttons -->
+                  <tr>
+                      <td colspan="2">
+                          <input type="submit" id="submit" name="submit" value="LogIn">
+                      </td>
+                  </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <div class="link">
-                                Don't have an account? <a href="buyer_registration.php">Sign Up</a>
-                            </div>
-                        </td>
-                    </tr>
+                  <tr>
+                      <td colspan="2">
+                          <input type="reset" id="reset" name="reset" value="Reset">
+                      </td>
+                  </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <div class="link">
-                                <a href="dashboard.php">Back to Dashboard</a>
-                                <br>
-                                <a href="buyer_profile_view_update.php">Update Profile</a>
-                            </div>
-                        </td>
-                    </tr>
+                  <!-- Navigation Links -->
+                  <tr>
+                      <td colspan="2">
+                          <div class="link">
+                              Don't have an account? <a href="buyer_registration.php">Sign Up</a>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td colspan="2">
+                          <div class="link">
+                              <a href="dashboard.php">Back to Dashboard</a>
+                              <br>
+                               <a href="buyer_forgetpassword.php">Forget password</a>
+                               <br>
+                              <a href="buyer_profile_view_update.php">Update Profile</a>
+                          </div>
+                      </td>
+                  </tr>
 
                 </table>
 

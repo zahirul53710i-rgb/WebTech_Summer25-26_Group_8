@@ -1,37 +1,45 @@
 <?php
+session_start();
 
-$nameErr = "";
-$passwordErr = "";
 $name = "";
 $password = "";
+$message = "";
+$remember = false;
+
+if (isset($_COOKIE["remember_buyer"])) {
+    $name = $_COOKIE["remember_buyer"];
+    $remember = true;
+}
+
 $valid = true;
-
-$default_username = "buyer";
-$default_password = "buyer123";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = trim($_POST["username"] ?? "");
+    $name = trim($_POST["name"] ?? "");
     $password = trim($_POST["password"] ?? "");
+    $remember = isset($_POST["remember"]) && $_POST["remember"] === "1";
 
-   
-    if (empty($name)) {
-        $nameErr = "User Name is required";
+    if (empty($name) || strlen($name) < 5) {
+        $message = "User Name Must be at least 5 Char";
         $valid = false;
     }
 
-    if (empty($password)) {
-        $passwordErr = "Password is required";
+    if (empty($password) || strlen($password) < 5) {
+        $message = "Password Must be at least 5 Char";
         $valid = false;
     }
 
-   
     if ($valid) {
-        if ($name === $default_username && $password === $default_password) {
-            header("Location: buyerdashboard.php");
-            exit();
+        $_SESSION["logged_in"] = true;
+        $_SESSION["username"] = $name;
+        $message = "Session Created";
+
+        if ($remember) {
+            setcookie("remember_buyer", $name, time() + 86400 * 30, "/");
         } else {
-            $nameErr = "Invalid Username or Password!";
+            setcookie("remember_buyer", "", time() - 3600, "/");
         }
+
+        header("Location: buyerdashboard.php");
+        exit();
     }
 }
 ?>

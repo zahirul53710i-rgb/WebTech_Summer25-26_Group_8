@@ -1,5 +1,5 @@
 <?php
-// PHP Header Setup
+// PHP Page Header Configuration
 $pageTitle = "HaatBodol - Select Role";
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ $pageTitle = "HaatBodol - Select Role";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle; ?></title>
 
-    <!-- Embedded CSS from your design -->
+    <!-- Page CSS Styling -->
     <style>
         * {
             margin: 0;
@@ -134,10 +134,10 @@ $pageTitle = "HaatBodol - Select Role";
         }
     </style>
 
-    <!-- Embedded JS -->
+    <!-- JavaScript Navigation -->
     <script>
         function navigateTo(url) {
-            if(url !== '') {
+            if (url !== '') {
                 window.location.href = url;
             } else {
                 alert('Page location not set.');
@@ -206,7 +206,6 @@ $pageTitle = "HaatBodol - Select Role";
             </table>
         </fieldset>
 
-        
     </div>
 
 </body>

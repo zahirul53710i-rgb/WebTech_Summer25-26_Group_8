@@ -1,14 +1,14 @@
 <?php 
 include "../Controller/buyervalidation/RegistrationValidation.php";   
 ?> 
- 
+
 <!DOCTYPE html> 
 <html lang="en-US"> 
- 
+
 <head> 
     <meta charset="UTF-8"> 
     <title>Buyer Registration</title> 
- 
+
     <script> 
         function collect_data() { 
             let username = document.getElementById("username").value.trim(); 
@@ -16,11 +16,10 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             let phone = document.getElementById("phone").value.trim(); 
             let address = document.getElementById("address").value.trim(); 
             let dob = document.getElementById("dob").value.trim(); 
-            let file = document.getElementById("file").value.trim(); 
- 
+
             let valid = true; 
             let message = ""; 
- 
+
             if (username.length < 5) { 
                 message += "User Name Must be 5 Char\n"; 
                 valid = false; 
@@ -49,18 +48,18 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             if (!valid) { 
                 alert(message); 
             } 
- 
+
             return valid; 
         } 
     </script> 
- 
+
     <style> 
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
         } 
- 
+
         body { 
             font-family: Arial, Helvetica, sans-serif; 
             background-color: #f4f0ea; 
@@ -68,7 +67,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             padding: 20px; 
             line-height: 1.5; 
         } 
- 
+
         .container { 
             max-width: 700px; 
             margin: 40px auto; 
@@ -78,7 +77,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             border: 1px solid #e2ddd3; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
         } 
- 
+
         h1 { 
             color: #2c4238; 
             text-align: center; 
@@ -86,11 +85,11 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             font-size: 26px; 
             font-family: Georgia, serif; 
         } 
- 
+
         form { 
             display: flex; 
         } 
- 
+
         fieldset { 
             width: 100%; 
             border: 1px solid #e2ddd3; 
@@ -98,22 +97,22 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             padding: 20px; 
             background-color: #ffffff; 
         } 
- 
+
         legend { 
             padding: 0 10px; 
             color: #2c4238; 
             font-weight: bold; 
             font-size: 20px; 
         } 
- 
+
         table { 
             width: 100%; 
         } 
- 
+
         td { 
             padding: 8px; 
         } 
- 
+
         label { 
             display: inline-block; 
             color: #2c4238; 
@@ -121,7 +120,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             font-weight: bold; 
             margin-bottom: 5px; 
         } 
- 
+
         input[type="text"], 
         input[type="email"], 
         input[type="tel"], 
@@ -140,7 +139,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             outline: none; 
             transition: border-color 0.2s ease; 
         } 
- 
+
         input[type="text"]:focus, 
         input[type="email"]:focus, 
         input[type="tel"]:focus, 
@@ -148,11 +147,11 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
         textarea:focus { 
             border-color: #4d6b5e; 
         } 
- 
+
         textarea { 
             resize: none; 
         } 
- 
+
         input[type="submit"] { 
             background-color: #4d6b5e; 
             color: white; 
@@ -167,11 +166,11 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             margin-top: 5px; 
             transition: background-color 0.2s ease; 
         } 
- 
+
         input[type="submit"]:hover { 
             background-color: #3c5449; 
         } 
- 
+
         input[type="reset"] { 
             background-color: #e2ddd3; 
             color: #2c4238; 
@@ -186,84 +185,86 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             margin-top: 5px; 
             transition: background-color 0.2s ease; 
         } 
- 
+
         input[type="reset"]:hover { 
             background-color: #d1cbbd; 
         } 
- 
+
         .link { 
             text-align: center; 
             margin-top: 15px; 
             font-size: 15px; 
             color: #2c4238; 
         } 
- 
+
         .link a { 
             color: #4d6b5e; 
             text-decoration: none; 
             font-weight: bold; 
         } 
- 
+
         .link a:hover { 
             color: #2c4238; 
             text-decoration: underline; 
         } 
+
+        .msg {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
     </style> 
 </head> 
- 
+
 <body> 
- 
+
     <div class="container"> 
- 
+
         <h1>Buyer Registration</h1> 
 
-        <?php echo $message; ?>
- 
-        <form method="post" action="" onsubmit="return collect_data()"> 
- 
+        <div class="msg"><?php echo $message; ?></div>
+
+        <form method="post" action="" enctype="multipart/form-data" onsubmit="return collect_data()"> 
+
             <fieldset> 
- 
+
                 <legend>Buyer Information</legend> 
- 
+
                 <table> 
- 
+
                     <tr> 
                         <td><label for="username">User Name:</label></td> 
                         <td>
-                            <input type="text" id="username" name="username" value="<?php echo $username; ?>" placeholder="Enter your User Name">
-                            <?php echo $username; ?>
+                            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" placeholder="Enter your User Name">
                         </td> 
                     </tr> 
 
                     <tr> 
                         <td><label for="email">Email:</label></td> 
                         <td>
-                            <input type="email" id="email" name="email" value="<?php echo $email; ?>" placeholder="Enter your Email">
-                            <?php echo $email; ?>
+                            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="Enter your Email">
                         </td> 
                     </tr> 
 
                     <tr> 
                         <td><label for="phone">Phone No:</label></td> 
                         <td>
-                            <input type="tel" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="Enter your Phone Number">
-                            <?php echo $phone; ?>
+                            <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" placeholder="Enter your Phone Number">
                         </td> 
                     </tr> 
 
                     <tr> 
                         <td><label for="address">Address:</label></td> 
                         <td>
-                            <textarea id="address" name="address" rows="5" placeholder="Enter your Address"><?php echo $address; ?></textarea>
-                            <?php echo $address; ?>
+                            <textarea id="address" name="address" rows="5" placeholder="Enter your Address"><?php echo htmlspecialchars($address); ?></textarea>
                         </td> 
                     </tr> 
 
                     <tr> 
                         <td><label for="dob">Date of Birth:</label></td> 
                         <td>
-                            <input type="date" id="dob" name="dob" value="<?php echo $dob; ?>">
-                            <?php echo $dob; ?>
+                            <input type="date" id="dob" name="dob" value="<?php echo htmlspecialchars($dob); ?>">
                         </td> 
                     </tr>
                     
@@ -271,19 +272,15 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
                         <td><label for="file">Profile Photo:</label></td> 
                         <td><input type="file" name="file" id="file"></td> 
                     </tr> 
- 
-                    <tr> 
-                        <td colspan="2"><?php echo $message; ?></td> 
-                    </tr> 
- 
+
                     <tr> 
                         <td colspan="2"><input type="submit" id="submit" name="submit" value="Create"></td> 
                     </tr> 
- 
+
                     <tr> 
                         <td colspan="2"><input type="reset" id="reset" name="reset" value="Reset"></td> 
                     </tr> 
- 
+
                     <tr> 
                         <td colspan="2"> 
                             <div class="link"> 
@@ -291,15 +288,15 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
                             </div> 
                         </td> 
                     </tr> 
- 
+
                 </table> 
- 
+
             </fieldset> 
- 
+
         </form> 
- 
+
     </div> 
- 
+
 </body> 
- 
+
 </html>
