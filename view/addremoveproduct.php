@@ -5,11 +5,6 @@ session_start();
 include "../model/seller/product_db.php";
 
 
-/*
- * =====================================================
- * CHECK SELLER LOGIN
- * =====================================================
- */
 
 if (
     !isset($_SESSION["seller_logged_in"]) ||
@@ -21,21 +16,12 @@ if (
 }
 
 
-/*
- * =====================================================
- * GET SELLER USERNAME
- * =====================================================
- */
+
 
 $username =
     $_SESSION["seller_username"] ?? "";
 
 
-/*
- * =====================================================
- * DATABASE
- * =====================================================
- */
 
 $database = new db();
 
@@ -43,24 +29,13 @@ $connection =
     $database->connection();
 
 
-/*
- * =====================================================
- * GET SELLER PRODUCTS
- * =====================================================
- */
+
 
 $products =
     $database->getProduct(
         $connection,
         $username
     );
-
-
-/*
- * =====================================================
- * SUCCESS / ERROR MESSAGE
- * =====================================================
- */
 
 $message = "";
 
@@ -396,10 +371,7 @@ if (
 <div class="page">
 
 
-    <!-- =========================================
-         PAGE HEADER
-         ========================================= -->
-
+    
     <div class="page-header">
 
         <h1>
@@ -413,9 +385,7 @@ if (
     </div>
 
 
-    <!-- =========================================
-         MESSAGE
-         ========================================= -->
+->
 
     <?php
 
@@ -440,9 +410,7 @@ if (
     <div class="main-area">
 
 
-        <!-- =====================================
-             ADD PRODUCT
-             ===================================== -->
+    
 
         <div class="section">
 
@@ -489,7 +457,6 @@ if (
             </div>
 
 
-            <!-- QUANTITY -->
 
             <div class="field">
 
@@ -539,9 +506,7 @@ if (
 
 
 
-        <!-- =====================================
-             REMOVE PRODUCT
-             ===================================== -->
+
 
         <div class="section">
 
@@ -561,7 +526,6 @@ if (
             >
 
 
-            <!-- PRODUCT LIST -->
 
             <div class="product-list">
 
@@ -596,7 +560,7 @@ if (
                         <div class="product-info">
 
 
-                            <!-- PRODUCT IMAGE -->
+                     
 
                             <img
                                 src="<?php
@@ -705,7 +669,6 @@ if (
             </div>
 
 
-            <!-- REMOVE BUTTON -->
 
             <input
                 type="submit"
@@ -719,9 +682,7 @@ if (
     </div>
 
 
-    <!-- =========================================
-         BACK TO SELLER DASHBOARD
-         ========================================= -->
+
 
     <div class="back">
 
@@ -745,29 +706,18 @@ if (
 <script>
 
 
-/*
- * =====================================================
- * FORM VALIDATION
- * =====================================================
- */
+
 
 function validateForm()
 {
 
-    /*
-     * Find which submit button was clicked
-     */
+    
 
     let button =
         document.activeElement;
 
 
-    /*
-     * =================================================
-     * ADD PRODUCT
-     * =================================================
-     */
-
+   
     if (
         button &&
         button.value === "Add Product"
@@ -799,10 +749,7 @@ function validateForm()
             .files[0];
 
 
-        /*
-         * PRODUCT NAME
-         */
-
+        
         if (name === "")
         {
             alert(
@@ -831,9 +778,6 @@ function validateForm()
         }
 
 
-        /*
-         * PRICE
-         */
 
         if (price === "")
         {
@@ -863,9 +807,7 @@ function validateForm()
         }
 
 
-        /*
-         * QUANTITY
-         */
+        
 
         if (quantity === "")
         {
@@ -947,11 +889,7 @@ function validateForm()
         }
 
 
-        /*
-         * MAXIMUM SIZE
-         *
-         * 2 MB
-         */
+       
 
         let maxSize =
             2 * 1024 * 1024;
@@ -975,11 +913,7 @@ function validateForm()
     }
 
 
-    /*
-     * =================================================
-     * REMOVE PRODUCT
-     * =================================================
-     */
+   
 
     if (
         button &&
@@ -993,10 +927,7 @@ function validateForm()
             );
 
 
-        /*
-         * NO PRODUCT SELECTED
-         */
-
+        
         if (!selectedProduct)
         {
             alert(
@@ -1007,9 +938,7 @@ function validateForm()
         }
 
 
-        /*
-         * CONFIRMATION
-         */
+        
 
         let confirmation =
             confirm(
@@ -1031,11 +960,6 @@ function validateForm()
 }
 
 
-/*
- * =====================================================
- * SEARCH PRODUCTS
- * =====================================================
- */
 
 function searchProducts()
 {
