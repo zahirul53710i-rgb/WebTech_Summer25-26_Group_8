@@ -185,7 +185,6 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
                 <table>
 
-                  <!-- Username Row -->
                   <tr>
                       <td><label for="name"> User Name: </label></td>
                       <td>
@@ -194,7 +193,7 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Password Row -->
+         
                   <tr>
                       <td><label for="password"> Password: </label></td>
                       <td>
@@ -203,7 +202,7 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Remember Me Row -->
+      
                   <tr>
                       <td colspan="2">
                           <input type="checkbox" id="remember" name="remember" value="1" <?php echo !empty($remember) ? 'checked' : ''; ?>>
@@ -211,7 +210,7 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Buttons -->
+          
                   <tr>
                       <td colspan="2">
                           <input type="submit" id="submit" name="submit" value="LogIn">
@@ -224,7 +223,7 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Navigation Links -->
+                
                   <tr>
                       <td colspan="2">
                           <div class="link">
