@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../Model/db.php";
  
 $name = "";
 $password = "";
@@ -8,7 +9,6 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = trim($_POST["name"] ?? "");
     $password = trim($_POST["password"] ?? "");
-    $file = $_FILES["file"] ?? null;
  
     $errors = [];
  
@@ -21,47 +21,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
  
     if (empty($errors)) {
-        $jsonfile = "../Model/user.json";
-        $users = [];
+        // OOP ক্লাসের মাধ্যমে কানেকশন তৈরি
+        $database = new db();
+        $conn = $database->connection();
  
-        if (file_exists($jsonfile)) {
-            $jsonData = file_get_contents($jsonfile);
-            $users = json_decode($jsonData, true) ?? [];
-        }
+        // স্যারের দেওয়া CheckUser মেথড ব্যবহার করে ডুপ্লিকেট ইউজার চেক
+        $checkUser = $database->CheckUser($conn, "users", $name);
  
-        $userExists = false;
-        foreach ($users as $existingUser) {
-            if (isset($existingUser['username']) && strtolower($existingUser['username']) === strtolower($name)) {
-                $userExists = true;
-                break;
-            }
-        }
- 
-        if ($userExists) {
+        if ($checkUser && $checkUser->num_rows > 0) {
             $message = "Username is already taken. Choose another one.";
         } else {
-            $filePath = "";
-            if ($file && isset($file["error"]) && $file["error"] === UPLOAD_ERR_OK) {
-                $uploadDir = "../Uploads/";
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
-                }
-                $fileName = time() . "_" . basename($file["name"]);
-                $filePath = $uploadDir . $fileName;
-                move_uploaded_file($file["tmp_name"], $filePath);
+            // ডাটাবেজে নতুন ইউজার ইনসার্ট
+            $insertQuery = $database->signup($conn, "users", $name, "", $password);
+ 
+            if ($insertQuery === TRUE) {
+                $conn->close();
+                header("Location: ../View/login.php");
+                exit();
+            } else {
+                $message = "Error inserting user.";
             }
- 
-            $users[] = [
-                'username'  => $name,
-                'password'  => password_hash($password, PASSWORD_DEFAULT),
-                'file'      => $filePath,
-                'timestamp' => time()
-            ];
- 
-            file_put_contents($jsonfile, json_encode($users, JSON_PRETTY_PRINT));
-            header("Location: ../View/login.php");
-            exit();
         }
+        $conn->close();
     } else {
         $message = implode("<br>", $errors);
     }
