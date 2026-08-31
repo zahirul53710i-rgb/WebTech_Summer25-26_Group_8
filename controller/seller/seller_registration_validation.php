@@ -111,28 +111,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if ($valid)
     {
-        /*
-         * Picture Upload
-         */
+     
 
-        // controller/seller/
+        
         $controller_folder = __DIR__;
 
-        // Go to project root
+       
         $project_folder = dirname(dirname($controller_folder));
 
-        // Final upload folder
         $uploaddirectory = $project_folder . "/view/assets/upload/";
 
 
-        // Check upload folder
+      
         if (!is_dir($uploaddirectory))
         {
             mkdir($uploaddirectory, 0777, true);
         }
 
 
-        // Check whether folder is writable
+        
         if (!is_writable($uploaddirectory))
         {
             die("Upload folder is not writable: " . $uploaddirectory);
@@ -151,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
             if (move_uploaded_file($file["tmp_name"], $filepath))
             {
-                // Path stored in database
+                
                 $path = "assets/upload/" . $filename;
             }
             else
@@ -165,18 +162,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
 
 
-        /*
-         * Database Connection
-         */
-
+        
         $database = new db();
 
         $connection = $database->connection();
 
 
-        /*
-         * Insert seller information
-         */
+        
 
         $result = $database->sellerSignup(
             $connection,
@@ -192,9 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         );
 
 
-        /*
-         * Check database result
-         */
+        
 
         if ($result)
         {
