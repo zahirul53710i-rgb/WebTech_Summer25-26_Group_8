@@ -3,27 +3,27 @@
 $pageTitle = "Delivery Management";
 
 ?>
-
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $pageTitle; ?></title>
 
-    <title><?php echo $pageTitle; ?></title>
-
-    <link rel="stylesheet" href="assets/css/style.css">
-
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<div class="wrap">
+<table>
 
-    <div class="admin-header">
+```
+<tr>
+    <td colspan="6">
 
         <h1>Delivery Management</h1>
 
@@ -31,64 +31,61 @@ $pageTitle = "Delivery Management";
             Manage approved orders and delivery information.
         </p>
 
-    </div>
+    </td>
+</tr>
 
+<tr>
+    <td colspan="6">
+        <a href="#">
+            + Add Delivery
+        </a>
+    </td>
+</tr>
 
-    <br>
+<tr>
+    <th>Delivery ID</th>
+    <th>Buyer</th>
+    <th>Product</th>
+    <th>Address</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
 
-    <a href="#" class="admin-button">
-        + Add Delivery
-    </a>
+<tr>
+    <td>D-001</td>
+    <td>Rahim</td>
+    <td>Antique Vase</td>
+    <td>Dhaka</td>
+    <td>Processing</td>
+    <td>
+        <a href="#">
+            Update
+        </a>
+    </td>
+</tr>
 
+<tr>
+    <td>D-002</td>
+    <td>Nabila</td>
+    <td>Old Coin</td>
+    <td>Chittagong</td>
+    <td>Delivered</td>
+    <td>
+        <a href="#">
+            Delete
+        </a>
+    </td>
+</tr>
 
-    <table class="admin-table">
+<tr>
+    <td colspan="6">
+        <a href="admin_dashboard.php">
+            &larr; Back to Dashboard
+        </a>
+    </td>
+</tr>
 
-        <tr>
-            <th>Delivery ID</th>
-            <th>Buyer</th>
-            <th>Product</th>
-            <th>Address</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-
-        <tr>
-            <td>D-001</td>
-            <td>Rahim</td>
-            <td>Antique Vase</td>
-            <td>Dhaka</td>
-            <td>Processing</td>
-            <td>
-                <a href="#" class="admin-button">
-                    Update
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>D-002</td>
-            <td>Nabila</td>
-            <td>Old Coin</td>
-            <td>Chittagong</td>
-            <td>Delivered</td>
-            <td>
-                <a href="#" class="admin-button">
-                    Delete
-                </a>
-            </td>
-        </tr>
-
-    </table>
-
-
-    <br>
-
-    <a href="admin_dashboard.php" class="back-link">
-        &larr; Back to Dashboard
-    </a>
-
-</div>
-
+</table>
 
 </body>
 
