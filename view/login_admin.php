@@ -5,90 +5,103 @@ $pageTitle = "Admin Login";
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $pageTitle; ?></title>
 
-    <title><?php echo $pageTitle; ?></title>
-
-    <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
+```
 
 </head>
 
 <body>
 
+<form method="post" action="../controller/Admin/AdminLoginValidation.php">
 
-<div class="wrap">
+<table>
 
-    <div class="panel">
+    <tr>
+        <td colspan="2">
+            <a href="dashboard.php">
+                &larr; Back to HaatBodol
+            </a>
+        </td>
+    </tr>
 
-        <a href="dashboard.php" class="back-link">
-            &larr; Back to HaatBodol
-        </a>
+    <tr>
+        <td colspan="2">
+            <h1>Admin Login</h1>
+        </td>
+    </tr>
 
-        <h1>Admin Login</h1>
+    <tr>
+        <td colspan="2">
+            <p>
+                Login to manage the HaatBodol marketplace.
+            </p>
+        </td>
+    </tr>
 
-        <p class="sub">
-            Login to manage the HaatBodol marketplace.
-        </p>
+    <tr>
+        <td>
+            <label for="username">
+                Username
+            </label>
+        </td>
 
+        <td>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+        </td>
+    </tr>
 
-        <form method="post" action="../controller/Admin/AdminLoginValidation.php">
+    <tr>
+        <td>
+            <label for="password">
+                Password
+            </label>
+        </td>
 
-            <div class="field">
+        <td>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+        </td>
+    </tr>
 
-                <label for="username">
-                    Username
-                </label>
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="Login">
+        </td>
+    </tr>
 
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Enter username"
-                    required
-                >
+    <tr>
+        <td colspan="2">
+            <p>
+                Default username: <b>admin</b><br>
+                Default password: <b>admin</b>
+            </p>
+        </td>
+    </tr>
 
-            </div>
+</table>
 
-
-            <div class="field">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Enter password"
-                    required
-                >
-
-            </div>
-
-
-            <button type="submit" class="btn">
-                Login
-            </button>
-
-        </form>
-
-
-        <p class="form-foot">
-            Default username: <b>admin</b><br>
-            Default password: <b>admin</b>
-        </p>
-
-    </div>
-
-</div>
-
+</form>
 
 </body>
 
