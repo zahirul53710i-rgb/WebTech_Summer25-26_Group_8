@@ -5,92 +5,110 @@ $pageTitle = "Change Admin Password";
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $pageTitle; ?></title>
 
-    <title><?php echo $pageTitle; ?></title>
-
-    <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
 
+<form method="post" action="../controller/Admin/AdminChangePasswordValidation.php">
 
-    <div class="wrap">
+<table>
+<tr>
+    <td colspan="2">
+        <a href="admin_dashboard.php">
+            &larr; Back to Dashboard
+        </a>
+    </td>
+</tr>
 
-        <div class="panel">
+<tr>
+    <td colspan="2">
+        <h1>Change Password</h1>
+    </td>
+</tr>
 
-            <a href="admin_dashboard.php" class="back-link">
-                &larr; Back to Dashboard
-            </a>
+<tr>
+    <td colspan="2">
+        <p>
+            Change the password used for admin login.
+        </p>
+    </td>
+</tr>
 
-            <h1>Change Password</h1>
+<tr>
+    <td>
+        <label for="currentPassword">
+            Current Password
+        </label>
+    </td>
 
-            <p class="sub">
-                Change the password used for admin login.
-            </p>
+    <td>
+        <input
+            type="password"
+            id="currentPassword"
+            name="currentPassword"
+            placeholder="Enter current password"
+            required
+        >
+    </td>
+</tr>
 
+<tr>
+    <td>
+        <label for="newPassword">
+            New Password
+        </label>
+    </td>
 
-            <form method="post" action="../controller/Admin/AdminChangePasswordValidation.php">
+    <td>
+        <input
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            placeholder="Enter new password"
+            required
+        >
+    </td>
+</tr>
 
-                <div class="field">
+<tr>
+    <td>
+        <label for="confirmPassword">
+            Confirm Password
+        </label>
+    </td>
 
-                    <label>
-                        Current Password
-                    </label>
+    <td>
+        <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm new password"
+            required
+        >
+    </td>
+</tr>
 
-                    <input
-                        type="password"
-                        name="currentPassword"
-                        placeholder="Enter current password">
+<tr>
+    <td colspan="2">
+        <input type="submit" value="Change Password">
+    </td>
+</tr>
 
-                </div>
+</table>
 
-
-                <div class="field">
-
-                    <label>
-                        New Password
-                    </label>
-
-                    <input
-                        type="password"
-                        name="newPassword"
-                        placeholder="Enter new password">
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Confirm Password
-                    </label>
-
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm new password">
-
-                </div>
-
-
-                <button type="submit" class="btn">
-                    Change Password
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
+</form>
 
 </body>
 

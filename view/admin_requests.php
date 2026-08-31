@@ -5,26 +5,24 @@ $pageTitle = "Buying Requests";
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $pageTitle; ?></title>
 
-    <title><?php echo $pageTitle; ?></title>
-
-    <link rel="stylesheet" href="assets/css/style.css">
-
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-
-<div class="wrap">
-
-    <div class="admin-header">
+<table>
+<tr>
+    <td colspan="5">
 
         <h1>Buying Requests</h1>
 
@@ -32,60 +30,57 @@ $pageTitle = "Buying Requests";
             Review requests submitted by buyers.
         </p>
 
-    </div>
+    </td>
+</tr>
 
+<tr>
+    <td colspan="5">
+        <a href="#">
+            + Add Request
+        </a>
+    </td>
+</tr>
 
-    <br>
+<tr>
+    <th>Request ID</th>
+    <th>Buyer</th>
+    <th>Product</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
 
-    <a href="#" class="admin-button">
-        + Add Request
-    </a>
+<tr>
+    <td>BR-001</td>
+    <td>Rahim</td>
+    <td>Antique Vase</td>
+    <td>Pending</td>
+    <td>
+        <a href="#">
+            Approve
+        </a>
+    </td>
+</tr>
 
+<tr>
+    <td>BR-002</td>
+    <td>Nabila</td>
+    <td>Old Coin Collection</td>
+    <td>Approved</td>
+    <td>
+        <a href="#">
+            Delete
+        </a>
+    </td>
+</tr>
 
-    <table class="admin-table">
-
-        <tr>
-            <th>Request ID</th>
-            <th>Buyer</th>
-            <th>Product</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-
-        <tr>
-            <td>BR-001</td>
-            <td>Rahim</td>
-            <td>Antique Vase</td>
-            <td>Pending</td>
-            <td>
-                <a href="#" class="admin-button">
-                    Approve
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>BR-002</td>
-            <td>Nabila</td>
-            <td>Old Coin Collection</td>
-            <td>Approved</td>
-            <td>
-                <a href="#" class="admin-button">
-                    Delete
-                </a>
-            </td>
-        </tr>
-
-    </table>
-
-
-    <br>
-
-    <a href="admin_dashboard.php" class="back-link">
-        &larr; Back to Dashboard
-    </a>
-
-</div>
+<tr>
+    <td colspan="5">
+        <a href="admin_dashboard.php">
+            &larr; Back to Dashboard
+        </a>
+    </td>
+</tr>
+</table>
 
 </body>
 

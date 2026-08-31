@@ -5,116 +5,117 @@ $pageTitle = "Admin Dashboard";
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $pageTitle; ?></title>
 
-    <title><?php echo $pageTitle; ?></title>
-
-    <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
 
+<table>
 
-    <div class="wrap">
+<tr>
+    <td colspan="2">
+        <h1>Admin Dashboard</h1>
 
-        <div class="admin-header">
+        <p>
+            Manage users, products and buying requests
+            from one place.
+        </p>
+    </td>
+</tr>
 
-            <h1>Admin Dashboard</h1>
+<tr>
+    <th>Function</th>
+    <th>Action</th>
+</tr>
 
-            <p>
-                Manage users, products and buying requests
-                from one place.
-            </p>
-
-        </div>
-
-
-        <!-- Admin Functions -->
-
-        <div class="admin-grid">
-
-            <div class="admin-card">
-
-                <h2>Manage Users</h2>
-
-                <p>
-                    View registered buyers and sellers
-                    and manage their accounts.
-                </p>
-
-                <a href="admin_users.php" class="admin-button">
-                    Manage Users
-                </a>
-
-            </div>
-
-
-            <div class="admin-card">
-
-                <h2>Approve Listings</h2>
-
-                <p>
-                    Check products submitted by sellers
-                    before they become visible to buyers.
-                </p>
-
-                <a href="admin_listings.php" class="admin-button gold">
-                    Review Listings
-                </a>
-
-            </div>
-
-
-            <div class="admin-card">
-
-                <h2>Buying Requests</h2>
-
-                <p>
-                    Review and manage purchase requests
-                    submitted by buyers.
-                </p>
-
-                <a href="admin_requests.php" class="admin-button">
-                    View Requests
-                </a>
-
-            </div>
-
-
-            <div class="admin-card">
-
-                <h2>Delivery Management</h2>
-
-                <p>
-                    Monitor approved orders and
-                    delivery information.
-                </p>
-
-                <a href="admin_delivery.php" class="admin-button gold">
-                    Manage Delivery
-                </a>
-
-            </div>
-
-        </div>
-
-
+<tr>
+    <td>
+        <b>Manage Users</b>
         <br>
+        View registered buyers and sellers
+        and manage their accounts.
+    </td>
 
-        <a href="dashboard.php" class="admin-button">
+    <td>
+        <a href="admin_users.php">
+            Manage Users
+        </a>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <b>Approve Listings</b>
+        <br>
+        Check products submitted by sellers
+        before they become visible to buyers.
+    </td>
+
+    <td>
+        <a href="admin_listings.php">
+            Review Listings
+        </a>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <b>Buying Requests</b>
+        <br>
+        Review and manage purchase requests
+        submitted by buyers.
+    </td>
+
+    <td>
+        <a href="admin_requests.php">
+            View Requests
+        </a>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <b>Delivery Management</b>
+        <br>
+        Monitor approved orders and
+        delivery information.
+    </td>
+
+    <td>
+        <a href="admin_delivery.php">
+            Manage Delivery
+        </a>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+
+        <a href="dashboard.php">
             &larr; Logout
         </a>
-        <a href="admin_change_password.php" class="admin-button gold">
+
+        &nbsp;&nbsp;
+
+        <a href="admin_change_password.php">
             Change Password
         </a>
 
-    </div>
+    </td>
+</tr>
+</table>
+
 </body>
+
 </html>
