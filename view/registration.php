@@ -42,7 +42,7 @@ include "../Controller/Registrationvalidation.php";
         }
     </script>
     
-    <!-- ১. AJAX / JS ফাইলটি এখানে যুক্ত করা হয়েছে -->
+    
     <script src="../JS/checkuser.js"></script>
 </head>
 <body>
@@ -59,7 +59,7 @@ include "../Controller/Registrationvalidation.php";
 
             <form method="post" action="" onsubmit="return validateRegistration()">
 
-                <!-- ২. নতুন User Name ফিল্ডটি (onkeyup এবং response span সহ) এখানে বসানো হয়েছে -->
+                
                 <div class="field">
                     <label for="name">User Name:</label>
                     <input type="text" id="name" name="name" onkeyup="CheckUser()" value="<?php echo !empty($name) ? htmlspecialchars($name, ENT_QUOTES, 'UTF-8') : ''; ?>" placeholder="Enter User Name">
