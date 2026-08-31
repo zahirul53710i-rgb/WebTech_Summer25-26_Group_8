@@ -7,7 +7,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
-      
+     
     <script>
         function collect_data()
         {
@@ -49,7 +49,6 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             line-height: 1.6;
             padding: 20px;
         }
-
         
         .container {
             width: 90%;
@@ -61,7 +60,6 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             border: 1px solid #e2ddd3;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-
         
         h1 {
             font-family: Georgia, serif;
@@ -106,7 +104,6 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             font-weight: bold;
             margin-bottom: 5px;
         }
-
         
         input[type="text"],
         input[type="password"] {
@@ -127,7 +124,6 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             border-color: #4d6b5e;
         }
 
-       
         input[type="button"],
         input[type="submit"],
         input[type="reset"] {
@@ -157,20 +153,15 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             background-color: #736a5e;
         }
 
-        
-        .link {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .link a {
+        /* Direct styling for links inside td */
+        td a {
             color: #4d6b5e;
             text-decoration: none;
             font-size: 14px;
             font-weight: bold;
         }
 
-        .link a:hover {
+        td a:hover {
             color: #2c4238;
             text-decoration: underline;
         }
@@ -181,7 +172,6 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             text-align: center;
             margin-bottom: 10px;
         }
-
       
         @media screen and (max-width: 500px) {
             body {
@@ -252,18 +242,14 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
                     </tr>
 
                     <tr>
-                        <td colspan="2">
-                            <div class="link">
-                                Remembered your password? <a href="userlogin.php">Back to Login</a>
-                            </div>
+                        <td colspan="2" align="center">
+                            Remembered your password? <a href="userlogin.php">Back to Login</a>
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2">
-                            <div class="link">
-                                <a href="buyerdashboard.php">Back to Dashboard</a>
-                            </div>
+                        <td colspan="2" align="center">
+                            <a href="buyerdashboard.php">Back to Dashboard</a>
                         </td>
                     </tr>
 

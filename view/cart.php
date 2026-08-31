@@ -48,6 +48,7 @@ include "../Controller/buyervalidation/cartvalidation.php";
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            line-height: 1.6;
         }
 
         /* --- Header & Topnav Styling --- */
@@ -60,12 +61,13 @@ include "../Controller/buyervalidation/cartvalidation.php";
 
         .header h1 {
             font-family: Georgia, serif;
-            font-size: 24px;
+            font-size: 26px;
+            font-weight: normal;
         }
 
         .topnav {
-            background-color: #3f5e4d;
-            padding: 10px;
+            background-color: #4d6b5e;
+            padding: 12px;
             text-align: center;
         }
 
@@ -73,8 +75,9 @@ include "../Controller/buyervalidation/cartvalidation.php";
             color: #e2ddd3;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
+            transition: color 0.2s ease;
         }
 
         .topnav a:hover {
@@ -89,17 +92,17 @@ include "../Controller/buyervalidation/cartvalidation.php";
 
         .container {
             max-width: 650px;
-            margin: 20px auto;
+            margin: 30px auto;
             background-color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 16px;
             border: 1px solid #e2ddd3;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         fieldset {
             border: 1px solid #e2ddd3;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
             background-color: #ffffff;
         }
@@ -109,6 +112,7 @@ include "../Controller/buyervalidation/cartvalidation.php";
             color: #2c4238;
             font-weight: bold;
             font-size: 18px;
+            font-family: Georgia, serif;
         }
 
         table {
@@ -124,32 +128,44 @@ include "../Controller/buyervalidation/cartvalidation.php";
         td label {
             font-weight: bold;
             color: #2c4238;
+            font-size: 14px;
         }
 
         .product-info {
-            background-color: #fbf9f5;
-            padding: 8px 12px;
-            border-radius: 6px;
+            background-color: #eeebe3;
+            padding: 10px 12px;
+            border-radius: 8px;
             border: 1px solid #e2ddd3;
             font-weight: bold;
-            color: #3f5e4d;
+            color: #2c4238;
             display: inline-block;
             width: 100%;
+            font-size: 14px;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px 12px;
             border: 1px solid #ccc;
-            border-radius: 6px;
+            border-radius: 8px;
+            background-color: #eeebe3;
             font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2c4238;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4d6b5e;
+            background-color: #ffffff;
         }
 
         .total-box {
             text-align: right;
             font-size: 16px;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 20px;
             color: #2c4238;
             border-top: 1px dashed #e2ddd3;
             padding-top: 15px;
@@ -158,47 +174,63 @@ include "../Controller/buyervalidation/cartvalidation.php";
         .btn-group {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         input[type="button"],
         input[type="submit"] {
             flex: 1;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 12px 15px;
+            border-radius: 8px;
             border: none;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: background-color 0.2s ease;
         }
 
         input[type="button"] {
-            background-color: #e2ddd3;
-            color: #2c4238;
-        }
-
-        input[type="submit"] {
-            background-color: #3f5e4d;
+            background-color: #8c8275;
             color: white;
         }
 
+        input[type="button"]:hover {
+            background-color: #736a5e;
+        }
+
+        input[type="submit"] {
+            background-color: #4d6b5e;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3c5449;
+        }
+
         .error-msg {
-            color: #c0392b;
+            color: red;
             font-weight: bold;
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 5px;
             display: block;
         }
 
         .link {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .link a {
-            color: #3f5e4d;
+            color: #4d6b5e;
             text-decoration: none;
             font-weight: bold;
+            font-size: 14px;
+        }
+
+        .link a:hover {
+            color: #2c4238;
+            text-decoration: underline;
         }
 
         /* --- Footer Styling --- */
@@ -208,9 +240,6 @@ include "../Controller/buyervalidation/cartvalidation.php";
             text-align: center;
             padding: 15px;
             margin-top: auto;
-        }
-
-        .footer label {
             font-size: 14px;
         }
     </style>
@@ -243,25 +272,25 @@ include "../Controller/buyervalidation/cartvalidation.php";
                     <table>
                         <tr>
                             <td><label>Product Name:</label></td>
-                            <td><div class="product-info"><?php echo $product_name; ?></div></td>
+                            <td><div class="product-info"><?php echo htmlspecialchars($product_name); ?></div></td>
                         </tr>
 
                         <tr>
                             <td><label>Price Per Unit:</label></td>
-                            <td><div class="product-info">BDT <?php echo $price; ?></div></td>
+                            <td><div class="product-info">BDT <?php echo htmlspecialchars($price); ?></div></td>
                         </tr>
 
                         <tr>
                             <td><label for="quantity">Quantity:</label></td>
                             <td>
-                                <input type="text" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $quantity; ?>">
+                                <input type="text" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo htmlspecialchars($quantity); ?>">
                                 <span class="error-msg"><?php echo $message; ?></span>
                             </td>
                         </tr>
                     </table>
 
                     <div class="total-box">
-                        Grand Total: BDT <span id="grand-total"><?php echo $total; ?></span>
+                        Grand Total: BDT <span id="grand-total"><?php echo htmlspecialchars($total); ?></span>
                     </div>
 
                     <div class="btn-group">
@@ -282,7 +311,7 @@ include "../Controller/buyervalidation/cartvalidation.php";
 
     <!-- Footer Section -->
     <div class="footer">
-        <label for="footer">Created <?php echo date("Y"); ?> - Green Harvest Portal</label>
+        Created <?php echo date("Y"); ?> - Green Harvest Portal
     </div>
 
 </body>

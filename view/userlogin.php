@@ -1,5 +1,5 @@
 <?php
-// ভিউ ফোল্ডার থেকে মডেল ও কন্ট্রোলার কল করা হলো (কোনো __DIR__ ছাড়া)
+
 include "../model/buyer/logindb.php"; 
 include "../controller/buyervalidation/Loginvalidation.php"; 
 ?>
@@ -148,29 +148,24 @@ include "../controller/buyervalidation/Loginvalidation.php";
             background-color: #736a5e;
         }
 
-        .link {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .link a {
-            color: #4d6b5e;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .link a:hover {
-            color: #2c4238;
-            text-decoration: underline;
-        }
-
         .main-error {
             color: red;
             font-size: 14px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 10px;
+        }
+
+        td a {
+            color: #4d6b5e;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        td a:hover {
+            color: #2c4238;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -193,7 +188,6 @@ include "../controller/buyervalidation/Loginvalidation.php";
 
                 <table>
 
-                  <!-- Username Row -->
                   <tr>
                       <td><label for="name"> User Name: </label></td>
                       <td>
@@ -201,7 +195,6 @@ include "../controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Password Row -->
                   <tr>
                       <td><label for="password"> Password: </label></td>
                       <td>
@@ -209,7 +202,6 @@ include "../controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Remember Me Row -->
                   <tr>
                       <td colspan="2">
                           <input type="checkbox" id="remember" name="remember" value="1" <?php echo !empty($remember) ? 'checked' : ''; ?>>
@@ -217,7 +209,6 @@ include "../controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Buttons -->
                   <tr>
                       <td colspan="2">
                           <input type="submit" id="submit" name="submit" value="LogIn">
@@ -230,24 +221,19 @@ include "../controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
-                  <!-- Navigation Links -->
                   <tr>
                       <td colspan="2">
-                          <div class="link">
-                              Don't have an account? <a href="buyer_registration.php">Sign Up</a>
-                          </div>
+                          Don't have an account? <a href="buyer_registration.php">Sign Up</a>
                       </td>
                   </tr>
 
                   <tr>
                       <td colspan="2">
-                          <div class="link">
-                              <a href="dashboard.php">Back to Dashboard</a>
-                              <br>
-                               <a href="buyer_forgetpassword.php">Forget password</a>
-                               <br>
-                              <a href="buyer_profile_view_update.php">Update Profile</a>
-                          </div>
+                          <a href="dashboard.php">Back to Dashboard</a>
+                          <br>
+                          <a href="buyer_forgetpassword.php">Forget password</a>
+                          <br>
+                          <a href="buyer_profile_view_update.php">Update Profile</a>
                       </td>
                   </tr>
 

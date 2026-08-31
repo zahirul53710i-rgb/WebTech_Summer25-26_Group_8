@@ -21,17 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
  
     if (empty($errors)) {
-        // OOP ক্লাসের মাধ্যমে কানেকশন তৈরি
+        
         $database = new db();
-        $conn = $database->connection();
+        
  
-        // স্যারের দেওয়া CheckUser মেথড ব্যবহার করে ডুপ্লিকেট ইউজার চেক
+        
         $checkUser = $database->CheckUser($conn, "users", $name);
  
         if ($checkUser && $checkUser->num_rows > 0) {
             $message = "Username is already taken. Choose another one.";
         } else {
-            // ডাটাবেজে নতুন ইউজার ইনসার্ট
+          
             $insertQuery = $database->signup($conn, "users", $name, "", $password);
  
             if ($insertQuery === TRUE) {

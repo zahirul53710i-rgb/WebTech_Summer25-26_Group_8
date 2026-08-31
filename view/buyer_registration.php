@@ -1,5 +1,5 @@
 <?php 
-include "../Controller/buyervalidation/RegistrationValidation.php";   
+include "../controller/buyervalidation/RegistrationValidation.php";  
 ?> 
 
 <!DOCTYPE html> 
@@ -87,7 +87,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
         } 
 
         form { 
-            display: flex; 
+            display: block; 
         } 
 
         fieldset { 
@@ -116,7 +116,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
         label { 
             display: inline-block; 
             color: #2c4238; 
-            font-size: 16px; 
+            font-size: 14px; 
             font-weight: bold; 
             margin-bottom: 5px; 
         } 
@@ -132,7 +132,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
             margin: 5px 0; 
             border: 1px solid #ccc; 
             border-radius: 8px; 
-            background-color: #ffffff; 
+            background-color: #eeebe3; 
             font-size: 14px; 
             font-family: Arial, Helvetica, sans-serif; 
             color: #2c4238; 
@@ -146,13 +146,15 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
         input[type="date"]:focus, 
         textarea:focus { 
             border-color: #4d6b5e; 
+            background-color: #ffffff;
         } 
 
         textarea { 
             resize: none; 
         } 
 
-        input[type="submit"] { 
+        input[type="submit"], 
+        input[type="reset"] { 
             background-color: #4d6b5e; 
             color: white; 
             padding: 12px 15px; 
@@ -172,38 +174,21 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
         } 
 
         input[type="reset"] { 
-            background-color: #e2ddd3; 
-            color: #2c4238; 
-            padding: 12px 15px; 
-            width: 100%; 
-            border-radius: 8px; 
-            border: none; 
-            font-family: Arial, Helvetica, sans-serif; 
-            font-weight: bold; 
-            font-size: 15px; 
-            cursor: pointer; 
-            margin-top: 5px; 
-            transition: background-color 0.2s ease; 
+            background-color: #8c8275; 
         } 
 
         input[type="reset"]:hover { 
-            background-color: #d1cbbd; 
+            background-color: #736a5e; 
         } 
 
-        .link { 
-            text-align: center; 
-            margin-top: 15px; 
-            font-size: 15px; 
-            color: #2c4238; 
-        } 
-
-        .link a { 
+        /* Direct styling for links inside td */
+        td a { 
             color: #4d6b5e; 
             text-decoration: none; 
             font-weight: bold; 
         } 
 
-        .link a:hover { 
+        td a:hover { 
             color: #2c4238; 
             text-decoration: underline; 
         } 
@@ -257,7 +242,7 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
                     <tr> 
                         <td><label for="address">Address:</label></td> 
                         <td>
-                            <textarea id="address" name="address" rows="5" placeholder="Enter your Address"><?php echo htmlspecialchars($address); ?></textarea>
+                            <textarea id="address" name="address" rows="4" placeholder="Enter your Address"><?php echo htmlspecialchars($address); ?></textarea>
                         </td> 
                     </tr> 
 
@@ -282,10 +267,8 @@ include "../Controller/buyervalidation/RegistrationValidation.php";
                     </tr> 
 
                     <tr> 
-                        <td colspan="2"> 
-                            <div class="link"> 
-                                Already have an account? <a href="userlogin.php">Sign In</a> 
-                            </div> 
+                        <td colspan="2" align="center"> 
+                            Already have an account? <a href="userlogin.php">Sign In</a> 
                         </td> 
                     </tr> 
 
