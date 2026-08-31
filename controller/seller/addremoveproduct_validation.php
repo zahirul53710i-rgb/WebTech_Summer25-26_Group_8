@@ -276,17 +276,11 @@ if ($action === "Add Product")
 if ($action === "Remove Selected")
 {
 
-    /*
-     * GET SELECTED PRODUCT
-     */
-
     $productId =
         $_POST["selected_product"] ?? "";
 
 
-    /*
-     * CHECK PRODUCT SELECTION
-     */
+    
 
     if ($productId === "")
     {
@@ -298,9 +292,6 @@ if ($action === "Remove Selected")
     }
 
 
-    /*
-     * GET PRODUCT INFORMATION
-     */
 
     $product =
         $database->getSingleProduct(
@@ -310,9 +301,7 @@ if ($action === "Remove Selected")
         );
 
 
-    /*
-     * PRODUCT NOT FOUND
-     */
+    
 
     if (!$product)
     {
@@ -324,10 +313,7 @@ if ($action === "Remove Selected")
     }
 
 
-    /*
-     * REMOVE PRODUCT FROM DATABASE
-     */
-
+    
     $result =
         $database->removeProduct(
             $connection,
@@ -336,18 +322,11 @@ if ($action === "Remove Selected")
         );
 
 
-    /*
-     * CHECK DELETE RESULT
-     */
 
     if ($result)
     {
 
-        /*
-         * =================================================
-         * DELETE PRODUCT IMAGE
-         * =================================================
-         */
+        
 
         if (
             isset($product["picture"]) &&
@@ -355,16 +334,7 @@ if ($action === "Remove Selected")
         )
         {
 
-            /*
-             * Database contains:
-             *
-             * assets/upload/product_xxx.jpg
-             *
-             * We need:
-             *
-             * project/view/assets/upload/product_xxx.jpg
-             */
-
+           
             $imagePath =
                 $project_folder .
                 "/view/" .
@@ -388,20 +358,12 @@ if ($action === "Remove Selected")
     }
 
 
-    /*
-     * RETURN TO SAME PAGE
-     */
-
     header("Location: ../../view/addremoveproduct.php");
     exit();
 }
 
 
-/*
- * =====================================================
- * INVALID ACTION
- * =====================================================
- */
+
 
 $_SESSION["product_message"] =
     "Invalid product action.";
