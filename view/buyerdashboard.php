@@ -388,7 +388,7 @@ include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
                     </a>
 
                   
-                    <a href="logout.php">
+                    <a href="userlogin.php">
                         Logout
                     </a>
 
