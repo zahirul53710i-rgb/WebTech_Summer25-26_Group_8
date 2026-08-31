@@ -40,20 +40,12 @@ $connection = $database->connection();
 if ($action === "Add Product")
 {
 
-    /*
-     * GET FORM DATA
-     */
 
     $name = trim($_POST["name"] ?? "");
     $price = trim($_POST["price"] ?? "");
     $quantity = trim($_POST["quantity"] ?? "");
 
 
-    /*
-     * =================================================
-     * PRODUCT NAME VALIDATION
-     * =================================================
-     */
 
     if ($name === "")
     {
@@ -75,12 +67,6 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * PRICE VALIDATION
-     * =================================================
-     */
-
     if (
         $price === "" ||
         !is_numeric($price) ||
@@ -95,11 +81,6 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * QUANTITY VALIDATION
-     * =================================================
-     */
 
     if (
         $quantity === "" ||
@@ -116,18 +97,9 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * GET PICTURE
-     * =================================================
-     */
 
     $file = $_FILES["picture"] ?? [];
 
-
-    /*
-     * CHECK PICTURE EXISTS
-     */
 
     if (
         !isset($file["name"]) ||
@@ -140,13 +112,6 @@ if ($action === "Add Product")
         header("Location: ../../view/addremoveproduct.php");
         exit();
     }
-
-
-    /*
-     * =================================================
-     * CHECK UPLOAD ERROR
-     * =================================================
-     */
 
     if (
         !isset($file["error"]) ||
@@ -162,13 +127,6 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * MAXIMUM FILE SIZE
-     *
-     * 2 MB
-     * =================================================
-     */
 
     $maxSize = 2 * 1024 * 1024;
 
@@ -181,12 +139,6 @@ if ($action === "Add Product")
         exit();
     }
 
-
-    /*
-     * =================================================
-     * CHECK IMAGE TYPE
-     * =================================================
-     */
 
     $allowedTypes = [
         "image/jpeg",
@@ -210,24 +162,6 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * UPLOAD DIRECTORY
-     *
-     * Current file:
-     *
-     * controller/seller/
-     *
-     * Go to project root:
-     *
-     * WebTech_Summer25-26_Group_8/
-     *
-     * Then:
-     *
-     * view/assets/upload/
-     * =================================================
-     */
-
     $controller_folder = __DIR__;
 
     $project_folder =
@@ -236,12 +170,6 @@ if ($action === "Add Product")
     $uploaddirectory =
         $project_folder . "/view/assets/upload/";
 
-
-    /*
-     * =================================================
-     * CREATE FOLDER IF IT DOES NOT EXIST
-     * =================================================
-     */
 
     if (!is_dir($uploaddirectory))
     {
@@ -260,12 +188,6 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * CHECK FOLDER WRITABLE
-     * =================================================
-     */
-
     if (!is_writable($uploaddirectory))
     {
         $_SESSION["product_message"] =
@@ -276,11 +198,6 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * GET ORIGINAL EXTENSION
-     * =================================================
-     */
 
     $extension =
         strtolower(
@@ -291,15 +208,6 @@ if ($action === "Add Product")
         );
 
 
-    /*
-     * =================================================
-     * CREATE UNIQUE FILE NAME
-     * =================================================
-     *
-     * This prevents two products having
-     * the same image name.
-     */
-
     $filename =
         "product_" .
         uniqid() .
@@ -307,23 +215,10 @@ if ($action === "Add Product")
         $extension;
 
 
-    /*
-     * =================================================
-     * COMPLETE FILE PATH
-     * =================================================
-     */
 
     $filepath =
         $uploaddirectory . $filename;
 
-
-    /*
-     * =================================================
-     * MOVE IMAGE TO:
-     *
-     * view/assets/upload/
-     * =================================================
-     */
 
     if (
         !move_uploaded_file(
@@ -340,28 +235,10 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * PATH TO STORE IN DATABASE
-     * =================================================
-     *
-     * NOT the complete Linux path.
-     *
-     * Example:
-     *
-     * assets/upload/product_123456.jpg
-     * =================================================
-     */
 
     $path =
         "assets/upload/" . $filename;
 
-
-    /*
-     * =================================================
-     * INSERT PRODUCT INTO DATABASE
-     * =================================================
-     */
 
     $result = $database->addProduct(
         $connection,
@@ -372,13 +249,6 @@ if ($action === "Add Product")
         $username
     );
 
-
-    /*
-     * =================================================
-     * CHECK DATABASE RESULT
-     * =================================================
-     */
-
     if ($result)
     {
         $_SESSION["product_message"] =
@@ -386,13 +256,7 @@ if ($action === "Add Product")
     }
     else
     {
-        /*
-         * Database insertion failed.
-         *
-         * Delete uploaded image because
-         * product was not saved.
-         */
-
+    
         if (file_exists($filepath))
         {
             unlink($filepath);
@@ -403,24 +267,11 @@ if ($action === "Add Product")
     }
 
 
-    /*
-     * =================================================
-     * GO BACK TO ADD/REMOVE PRODUCT PAGE
-     *
-     * NO REDIRECTION TO ANOTHER PAGE
-     * =================================================
-     */
 
     header("Location: ../../view/addremoveproduct.php");
     exit();
 }
 
-
-/*
- * =====================================================
- * REMOVE PRODUCT
- * =====================================================
- */
 
 if ($action === "Remove Selected")
 {
