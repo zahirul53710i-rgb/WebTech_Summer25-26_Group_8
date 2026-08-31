@@ -11,9 +11,6 @@ $password = "";
 $valid = true;
 
 
-/*
- * Check POST request
- */
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -21,9 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $password = trim($_POST["password"] ?? "");
 
 
-    /*
-     * Username validation
-     */
+    
 
     if (empty($username) || strlen($username) < 5)
     {
@@ -31,39 +26,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
 
-    /*
-     * Password validation
-     */
-
+   
     if (empty($password) || strlen($password) < 5)
     {
         $valid = false;
     }
 
 
-    /*
-     * Validation successful
-     */
-
+    
     if ($valid)
     {
-        /*
-         * Create database object
-         */
+        
 
         $database = new db();
 
 
-        /*
-         * Connect to database
-         */
+        
 
         $connection = $database->connection();
 
 
-        /*
-         * Check username and password
-         */
+        
 
         $result = $database->sellerLogin(
             $connection,
@@ -73,22 +56,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         );
 
 
-        /*
-         * Check login result
-         */
+        
 
         if ($result && $result->num_rows > 0)
         {
-            /*
-             * Get seller information
-             */
+            
 
             $seller = $result->fetch_assoc();
 
 
-            /*
-             * Create session
-             */
+            
 
             $_SESSION["seller_logged_in"] = true;
 
@@ -103,9 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["seller_picture"] = $seller["picture"];
 
 
-            /*
-             * Remember Me
-             */
+           
 
             if (isset($_POST["remember"]))
             {
@@ -141,18 +116,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             }
 
 
-            /*
-             * Login successful
-             */
+           
 
             header("Location: ../../view/sellerpage.php");
             exit();
         }
         else
         {
-            /*
-             * Login failed
-             */
+            
 
             echo "<script>
                     alert('Invalid Username or Password.');
@@ -164,9 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-        /*
-         * Validation failed
-         */
+       
 
         echo "<script>
                 alert('Username and Password must be at least 5 characters.');
