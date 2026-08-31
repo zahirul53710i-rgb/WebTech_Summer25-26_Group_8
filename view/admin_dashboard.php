@@ -26,7 +26,6 @@ body {
   line-height: 1.6;
 }
 
-/* Links */
 a {
   color: #527464;
   text-decoration: none;
@@ -37,9 +36,7 @@ a:hover {
   color: #9a742e;
 }
 
-/* =========================
-TABLE PAGES
-========================= */
+
 
 body > table {
   width: 90%;
@@ -50,7 +47,7 @@ body > table {
   border: 1px solid #ddd5c5;
 }
 
-/* Page Heading */
+
 body > table tr:first-child td {
   padding: 30px;
   border-bottom: 1px solid #ddd5c5;
@@ -68,13 +65,13 @@ p {
   color: #62665e;
 }
 
-/* Add / Navigation Links */
+
 body > table tr:nth-child(2) td {
   padding: 18px 30px;
   border-bottom: 1px solid #ddd5c5;
 }
 
-/* Table Heading */
+
 body > table th {
   background-color: #263f35;
   color: white;
@@ -83,26 +80,24 @@ body > table th {
   font-weight: bold;
 }
 
-/* Table Data */
+
 body > table td {
   padding: 13px 15px;
   border-bottom: 1px solid #ddd5c5;
   vertical-align: middle;
 }
 
-/* Table Row */
+
 body > table tr:hover {
   background-color: #f5f1e8;
 }
 
-/* Action Column */
+
 body > table td:last-child {
   text-align: center;
 }
 
-/* =========================
-LOGIN / PASSWORD FORM
-========================= */
+
 
 form {
   width: 90%;
@@ -113,7 +108,7 @@ form {
   border: 1px solid #ddd5c5;
 }
 
-/* Form Table */
+
 form table {
   width: 100%;
   border-collapse: collapse;
@@ -122,34 +117,34 @@ form table {
   border: none;
 }
 
-/* Form Cells */
+
 form table td {
   padding: 10px;
   border: none;
 }
 
-/* Remove hover from form */
+
 form table tr:hover {
   background-color: transparent;
 }
 
-/* Form Heading */
+
 form h1 {
   margin-bottom: 5px;
 }
 
-/* Form Paragraph */
+
 form p {
   margin-bottom: 5px;
 }
 
-/* Labels */
+
 label {
   font-weight: bold;
   color: #263f35;
 }
 
-/* Text Input */
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -160,14 +155,14 @@ input[type="password"] {
   font-size: 14px;
 }
 
-/* Input Focus */
+
 input[type="text"]:focus,
 input[type="password"]:focus {
   outline: none;
   border-color: #527464;
 }
 
-/* Submit Button */
+
 input[type="submit"] {
   width: 100%;
   padding: 10px;
