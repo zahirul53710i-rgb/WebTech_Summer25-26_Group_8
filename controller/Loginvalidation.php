@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (empty($errors)) {
 
-        // OOP ক্লাসের মাধ্যমে কানেকশন তৈরি
+        
 
         $database = new db();
 
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
  
 
-        // স্যারের মেথড বা কুয়েরি দিয়ে লগইন যাচাই
+        
 
         $result = $database->loginCheck($conn, "users", $name, $password);
 
