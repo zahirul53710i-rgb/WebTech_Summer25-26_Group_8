@@ -1,13 +1,13 @@
 <?php
 class db {
     
-    // ডাটাবেজ কানেকশন তৈরি
+    
     function connection()
     {
         $db_host = "localhost";
         $db_user = "root";
         $db_password = "";
-        $db_name = "haatbodol"; // আপনার প্রজেক্টের ডাটাবেজ নেম
+        $db_name = "haatbodoldb"; 
  
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
         
@@ -18,7 +18,7 @@ class db {
         return $connection;
     }
  
-    // ১. ইউজার সাইনআপ / রেজিস্ট্রেশন (users টেবিলের জন্য)
+    
     function signup($connection, $tablename, $username, $email, $password)
     {
         $sql = "INSERT INTO " . $tablename . " (username, email, password) VALUES ('" . $username . "', '" . $email . "', '" . $password . "')";
@@ -26,7 +26,7 @@ class db {
         return $result;
     }
  
-    // ২. লগইন চেক (ইউজারনেম ও পাসওয়ার্ড দিয়ে যাচাই)
+  
     function loginCheck($connection, $tablename, $username, $password)
     {
         $sql = "SELECT * FROM " . $tablename . " WHERE username='" . $username . "' AND password='" . $password . "'";
@@ -34,7 +34,7 @@ class db {
         return $result;
     }
  
-    // ৩. ইউজার ইউজারনেম চেক (AJAX দিয়ে ইউজারনেম অ্যাভেইলিবিলিটি বা ডুপ্লিকেট চেক করার জন্য)
+    
     function CheckUser($connection, $tablename, $username)
     {
         $sql = "SELECT * FROM " . $tablename . " WHERE username='" . $username . "'";
@@ -42,7 +42,7 @@ class db {
         return $result;
     }
  
-    // ৪. ডেলিভারি লগ বা অর্ডার ডেটা ফেচ করা (deliveries টেবিলের জন্য)
+   
     function getDeliveries($connection, $tablename)
     {
         $sql = "SELECT * FROM " . $tablename;
