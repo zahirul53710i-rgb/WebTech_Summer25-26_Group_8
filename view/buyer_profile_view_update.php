@@ -180,19 +180,15 @@ include "../Controller/buyervalidation/ProfileValidation.php";
             background-color: #3c5449;
         }
 
-        .link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .link a {
+        /* Direct styling for links inside td */
+        td a {
             color: #4d6b5e;
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
         }
 
-        .link a:hover {
+        td a:hover {
             color: #2c4238;
             text-decoration: underline;
         }
@@ -234,7 +230,6 @@ include "../Controller/buyervalidation/ProfileValidation.php";
                         </td>
                         <td>
                             <input type="text" id="name" name="name" value="<?php echo $name; ?>">
-                            <?php echo $name; ?>
                         </td>
                     </tr>
 
@@ -244,7 +239,6 @@ include "../Controller/buyervalidation/ProfileValidation.php";
                         </td>
                         <td>
                             <input type="email" id="email" name="email" value="<?php echo $email; ?>">
-                            <?php echo $email; ?>
                         </td>
                     </tr>
 
@@ -254,7 +248,6 @@ include "../Controller/buyervalidation/ProfileValidation.php";
                         </td>
                         <td>
                             <input type="tel" id="phone" name="phone" value="<?php echo $phone; ?>">
-                            <?php echo $phone; ?>
                         </td>
                     </tr>
 
@@ -264,7 +257,6 @@ include "../Controller/buyervalidation/ProfileValidation.php";
                         </td>
                         <td>
                             <textarea id="address" name="address" rows="3"><?php echo $address; ?></textarea>
-                            <?php echo $address; ?>
                         </td>
                     </tr>
 
@@ -274,12 +266,11 @@ include "../Controller/buyervalidation/ProfileValidation.php";
                         </td>
                         <td>
                             <input type="date" id="dob" name="dob" value="<?php echo $dob; ?>">
-                            <?php echo $dob; ?>
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" align="center" style="color: red; font-weight: bold;">
                             <?php echo $message; ?>
                         </td>
                     </tr>
@@ -296,11 +287,13 @@ include "../Controller/buyervalidation/ProfileValidation.php";
                         </td>
                     </tr>
 
-                </table>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <a href="userlogin.php">Logout</a>
+                        </td>
+                    </tr>
 
-                <div class="link">
-                    <a href="userlogin.php">Logout</a>
-                </div>
+                </table>
 
             </fieldset>
 
