@@ -1,4 +1,7 @@
 <?php
+
+include "../model/buyer/registrationdb.php";
+
 session_start();
 
 $username = "";
@@ -6,15 +9,19 @@ $email = "";
 $phone = "";
 $address = "";
 $dob = "";
+$password = "";
 $message = "";
 $valid = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $username = trim($_POST["username"] ?? "");
     $email = trim($_POST["email"] ?? "");
     $phone = trim($_POST["phone"] ?? "");
     $address = trim($_POST["address"] ?? "");
     $dob = trim($_POST["dob"] ?? "");
+    $password = trim($_POST["password"] ?? "123456");
+
     $file = $_FILES["file"] ?? [];
 
     if (empty($username) || strlen($username) < 5) {
@@ -43,40 +50,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($valid) {
-        // File Upload Logic
+
         $path = "";
+
         if (!empty($file["name"])) {
-            $uploaddirectory = "../Uploads/";
-            
+
+            $uploaddirectory = "../../Uploads/";
+
             if (!file_exists($uploaddirectory)) {
                 mkdir($uploaddirectory, 0777, true);
             }
 
             $path = $uploaddirectory . basename($file["name"]);
+
             move_uploaded_file($file["tmp_name"], $path);
         }
 
-        // Session Save
-        $_SESSION["logged_in"] = true;
-        $_SESSION["username"] = $username;
-        $_SESSION["email"] = $email;
-        $_SESSION["phone"] = $phone;
-        $_SESSION["address"] = $address;
-        $_SESSION["dob"] = $dob;
-        $_SESSION["profile_pic"] = $path;
+        $database = new db();
 
-        // All Data Save in Cookies (30 days validity)
-        setcookie("buyer_username", $username, time() + (86400 * 30), "/");
-        setcookie("buyer_email", $email, time() + (86400 * 30), "/");
-        setcookie("buyer_phone", $phone, time() + (86400 * 30), "/");
-        setcookie("buyer_address", $address, time() + (86400 * 30), "/");
-        setcookie("buyer_dob", $dob, time() + (86400 * 30), "/");
-        setcookie("buyer_profile_pic", $path, time() + (86400 * 30), "/");
+        $connection = $database->connection();
 
-        $message = "Registration Successful";
+        $result = $database->signup(
+            $connection,
+            "buyer_user",
+            $username,
+            $password,
+            $email,
+            $phone,
+            $address,
+            $dob,
+            $path
+        );
 
-        header("Location: buyerdashboard.php");
-        exit();
+        if ($result) {
+
+            $_SESSION["logged_in"] = true;
+            $_SESSION["username"] = $username;
+
+            header("Location: buyerdashboard.php");
+            exit();
+
+        } else {
+
+            $message = "Database Error! Please try again.";
+        }
+
+        $connection->close();
     }
 }
 ?>

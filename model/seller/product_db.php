@@ -1,11 +1,8 @@
-```php
 <?php
 
 class db
 {
-    /*
-     * DATABASE CONNECTION
-     */
+   
     function connection()
     {
         $db_host = "localhost";
@@ -32,9 +29,7 @@ class db
     }
 
 
-    /*
-     * ADD PRODUCT
-     */
+   
     function addProduct(
         $connection,
         $name,
@@ -73,9 +68,7 @@ class db
     }
 
 
-    /*
-     * GET ALL PRODUCTS OF A SELLER
-     */
+    
     function getProduct(
         $connection,
         $username
@@ -106,9 +99,7 @@ class db
     }
 
 
-    /*
-     * GET ONE PRODUCT
-     */
+    
     function getSingleProduct(
         $connection,
         $productId,
@@ -145,9 +136,7 @@ class db
     }
 
 
-    /*
-     * REMOVE PRODUCT
-     */
+    
     function removeProduct(
         $connection,
         $productId,

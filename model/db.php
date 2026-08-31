@@ -7,7 +7,7 @@ class db {
         $db_host = "localhost";
         $db_user = "root";
         $db_password = "";
-        $db_name = "haatbodoldb"; // আপনার প্রজেক্টের ডাটাবেজ নেম
+        $db_name = "haatbodol"; // আপনার প্রজেক্টের ডাটাবেজ নেম
  
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
         

@@ -1,10 +1,3 @@
-<?php
-// include __DIR__ . "/../Controller/orderController.php";
-
-// Later:
-// $orders = getSellerOrders();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -172,10 +165,6 @@
 
         <?php
 
-        /*
-         * Backend will provide orders later.
-         */
-
         $orders = [];
 
         ?>
@@ -232,7 +221,7 @@
     </div>
 
 
-    <!-- BACK TO SELLER DASHBOARD -->
+    
 
     <div class="back">
 

@@ -1,5 +1,7 @@
 <?php
-include "../Controller/buyervalidation/Loginvalidation.php"; 
+// ভিউ ফোল্ডার থেকে মডেল ও কন্ট্রোলার কল করা হলো (কোনো __DIR__ ছাড়া)
+include "../model/buyer/logindb.php"; 
+include "../controller/buyervalidation/Loginvalidation.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -16,11 +18,11 @@ include "../Controller/buyervalidation/Loginvalidation.php";
             let message = "";
 
             if (name.length < 5) {
-                message += "User Name Should be 5 Char\n";
+                message += "User Name Must be at least 5 Char\n";
                 valid = false;
             }
             if (password.length < 5) {
-                message += "Password Must be 5 Char\n";
+                message += "Password Must be at least 5 Char\n";
                 valid = false;
             }
             if (!valid) {
@@ -121,17 +123,17 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
         input[type="submit"],
         input[type="reset"] {
-             background-color: #4d6b5e; 
-             color: white;
-             padding: 12px 18px;
-             width: 100%;
-             border-radius: 8px;
-             border: none;
-             font-family: Arial, Helvetica, sans-serif;
-             font-weight: bold;
-             font-size: 14px;
-             cursor: pointer;
-             margin-top: 5px;
+            background-color: #4d6b5e; 
+            color: white;
+            padding: 12px 18px;
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 5px;
         }
 
         input[type="submit"]:hover {
@@ -163,10 +165,12 @@ include "../Controller/buyervalidation/Loginvalidation.php";
             text-decoration: underline;
         }
 
-        .error {
+        .main-error {
             color: red;
-            font-size: 12px;
-            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -183,6 +187,10 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
                 <legend>Buyer Login</legend>
 
+                <?php if (!empty($message)): ?>
+                    <p class="main-error"><?php echo htmlspecialchars($message); ?></p>
+                <?php endif; ?>
+
                 <table>
 
                   <!-- Username Row -->
@@ -190,7 +198,6 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       <td><label for="name"> User Name: </label></td>
                       <td>
                           <input type="text" id="name" name="name" value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
-                          <span class="error"><?php echo isset($nameErr) ? $nameErr : ''; ?></span>
                       </td>
                   </tr>
 
@@ -199,7 +206,6 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       <td><label for="password"> Password: </label></td>
                       <td>
                           <input type="password" id="password" name="password">
-                          <span class="error"><?php echo isset($passwordErr) ? $passwordErr : ''; ?></span>
                       </td>
                   </tr>
 

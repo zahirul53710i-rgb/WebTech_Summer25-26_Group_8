@@ -32,9 +32,7 @@
             color: inherit;
         }
 
-        /* =========================
-           SELLER DASHBOARD
-           ========================= */
+      
 
         .dashboard {
             display: flex;
@@ -42,9 +40,6 @@
         }
 
 
-        /* =========================
-           SIDEBAR
-           ========================= */
 
         .sidebar {
             width: 250px;
@@ -85,9 +80,7 @@
         }
 
 
-        /* =========================
-           MENU
-           ========================= */
+     
 
         .menu {
             padding-top: 15px;
@@ -124,9 +117,7 @@
         }
 
 
-        /* =========================
-           LOGOUT
-           ========================= */
+
 
         .logout {
 
@@ -162,9 +153,7 @@
         }
 
 
-        /* =========================
-           MAIN
-           ========================= */
+        
 
         .main {
 
@@ -205,10 +194,6 @@
             color: #d8dfd8;
         }
 
-
-        /* =========================
-           WELCOME
-           ========================= */
 
         .welcome {
 
@@ -252,10 +237,6 @@
         }
 
 
-        /* =========================
-           CONTENT
-           ========================= */
-
         .content {
 
             margin-top: 20px;
@@ -276,9 +257,6 @@
         }
 
 
-        /* =========================
-           RESPONSIVE
-           ========================= */
 
         @media screen and (max-width: 700px) {
 
@@ -334,10 +312,6 @@
 <div class="dashboard">
 
 
-    <!-- =========================
-         SIDEBAR
-         ========================= -->
-
     <div class="sidebar">
 
 
@@ -356,14 +330,10 @@
         </div>
 
 
-        <!-- =========================
-             MENU
-             ========================= -->
-
         <div class="menu">
 
 
-            <!-- Dashboard -->
+       
 
             <a
                 href="sellerpage.php"
@@ -373,7 +343,7 @@
             </a>
 
 
-            <!-- Add / Remove Products -->
+       
 
             <a
                 href="addremoveproduct.php"
@@ -383,8 +353,6 @@
             </a>
 
 
-            <!-- Orders -->
-
             <a
                 href="order.php"
                 class="menu-button"
@@ -393,7 +361,7 @@
             </a>
 
 
-            <!-- Payouts -->
+       
 
             <a
                 href="payouts.php"
@@ -403,8 +371,7 @@
             </a>
 
 
-            <!-- Change Password -->
-
+    
             <a
                 href="changepassword.php"
                 class="menu-button"
@@ -416,9 +383,6 @@
         </div>
 
 
-        <!-- =========================
-             LOGOUT
-             ========================= -->
 
         <div class="logout">
 
@@ -435,9 +399,6 @@
     </div>
 
 
-    <!-- =========================
-         MAIN CONTENT
-         ========================= -->
 
     <div class="main">
 
@@ -473,8 +434,6 @@
 
         </div>
 
-
-        <!-- Main Content -->
 
         <div class="content">
 

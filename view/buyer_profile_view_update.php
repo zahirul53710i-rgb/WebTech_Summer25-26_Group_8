@@ -136,6 +136,7 @@ include "../Controller/buyervalidation/ProfileValidation.php";
         input[type="email"],
         input[type="tel"],
         input[type="date"],
+        input[type="file"],
         textarea {
             width: 100%;
             padding: 8px 10px;
@@ -204,7 +205,7 @@ include "../Controller/buyervalidation/ProfileValidation.php";
 
         <h1>Buyer Profile</h1>
 
-        <form method="post" action="" onsubmit="return collect_data()">
+        <form enctype="multipart/form-data" method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -214,7 +215,16 @@ include "../Controller/buyervalidation/ProfileValidation.php";
 
                     <tr>
                         <td colspan="2" class="photo">
-                            <img src="../Images/profile.jpg" alt="Profile Photo">
+                            <img src="<?php echo $photo; ?>" alt="Profile Photo">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">
+                            <label for="file">Profile Picture:</label>
+                        </td>
+                        <td>
+                            <input type="file" name="file" id="file">
                         </td>
                     </tr>
 
