@@ -1,5 +1,5 @@
 <?php
-// include __DIR__ . "/../Controller/changePasswordController.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +9,76 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Change Password</title>
+
+
+    <script>
+
+        function validatePassword()
+        {
+
+            let username =
+                document.getElementById("username").value.trim();
+
+            let password =
+                document.getElementById("password").value.trim();
+
+            let valid = true;
+
+            let message = "";
+
+
+            if(username == "")
+            {
+                message += "Username is Required\n";
+
+                valid = false;
+            }
+
+
+            if(username.length < 5 && username != "")
+            {
+                message +=
+                    "Username Should be at least 5 Characters\n";
+
+                valid = false;
+            }
+
+
+            if(password == "")
+            {
+                message += "New Password is Required\n";
+
+                valid = false;
+            }
+
+
+            if(password.length < 5 && password != "")
+            {
+                message +=
+                    "New Password Must be at least 5 Characters\n";
+
+                valid = false;
+            }
+
+
+            if(!valid)
+            {
+                alert(message);
+            }
+
+
+            return valid;
+
+        }
+
+    </script>
+
 
     <style>
 
@@ -169,15 +236,25 @@
 
 </head>
 
+
 <body>
 
-<form method="post" action="">
+
+<form
+    method="post"
+    action="../controller/seller/change_password_validation.php"
+    onsubmit="return validatePassword()"
+>
+
 
 <div class="page">
 
+
     <div class="page-header">
 
-        <h1>Change Password</h1>
+        <h1>
+            Change Password
+        </h1>
 
         <p>
             Update your seller account password.
@@ -188,42 +265,58 @@
 
     <div class="panel">
 
-        <h2>Change Password</h2>
+
+        <h2>
+            Change Password
+        </h2>
+
 
         <p class="sub">
             Enter your username and your new password.
         </p>
 
 
+        <!-- Username -->
+
         <div class="field">
 
             <label for="username">
+
                 Username
+
             </label>
 
             <input
                 type="text"
                 id="username"
                 name="username"
+                placeholder="Enter your Username"
             >
 
         </div>
 
 
+        <!-- New Password -->
+
         <div class="field">
 
             <label for="password">
+
                 New Password
+
             </label>
 
             <input
                 type="password"
                 id="password"
                 name="password"
+                placeholder="Enter your New Password"
             >
 
         </div>
 
+
+        <!-- Submit -->
 
         <input
             type="submit"
@@ -232,6 +325,7 @@
             class="btn"
         >
 
+
     </div>
 
 
@@ -239,16 +333,23 @@
 
     <div class="back">
 
-        <a href="sellerpage.php"
-           class="back-link">
+        <a
+            href="sellerpage.php"
+            class="back-link"
+        >
+
             &larr; Back to Seller Dashboard
+
         </a>
 
     </div>
 
+
 </div>
 
+
 </form>
+
 
 </body>
 
