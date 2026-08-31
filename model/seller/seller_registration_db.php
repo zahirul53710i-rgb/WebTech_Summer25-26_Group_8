@@ -2,10 +2,7 @@
 
 class db
 {
-    /*
-     * Database Connection
-     */
-
+    
     function connection()
     {
         $db_host = "localhost";
@@ -29,9 +26,7 @@ class db
     }
 
 
-    /*
-     * Seller Registration
-     */
+   
 
     function sellerSignup(
         $connection,
@@ -65,9 +60,7 @@ class db
     }
 
 
-    /*
-     * Seller Login
-     */
+    
 
     function sellerLogin(
         $connection,

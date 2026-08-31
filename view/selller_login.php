@@ -349,7 +349,7 @@
             </div>
 
 
-            <!-- Password -->
+        
 
             <div class="field">
 
@@ -367,7 +367,7 @@
             </div>
 
 
-            <!-- Remember Me -->
+      
 
             <div class="remember">
 
@@ -385,7 +385,7 @@
             </div>
 
 
-            <!-- Buttons -->
+         
 
             <div class="buttons">
 
@@ -410,7 +410,6 @@
         </form>
 
 
-        <!-- Registration Link -->
 
         <div class="form-foot">
 
@@ -427,7 +426,7 @@
         </div>
 
 
-        <!-- Back -->
+
 
         <div class="back-home">
 

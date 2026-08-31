@@ -31,6 +31,7 @@ include "../controller/seller/seller_registration_validation.php";
             let message = "";
 
 
+
             if(name.length < 5)
             {
                 message += "Name Should be at least 5 Characters\n";

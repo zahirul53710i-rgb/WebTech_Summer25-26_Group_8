@@ -185,7 +185,10 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
                 <table>
 
+<<<<<<< HEAD
                   
+=======
+>>>>>>> d2f7668438274eb139245811efcde52578a2b13f
                   <tr>
                       <td><label for="name"> User Name: </label></td>
                       <td>
@@ -194,7 +197,11 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
+<<<<<<< HEAD
                   
+=======
+         
+>>>>>>> d2f7668438274eb139245811efcde52578a2b13f
                   <tr>
                       <td><label for="password"> Password: </label></td>
                       <td>
@@ -203,7 +210,11 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
+<<<<<<< HEAD
                   
+=======
+      
+>>>>>>> d2f7668438274eb139245811efcde52578a2b13f
                   <tr>
                       <td colspan="2">
                           <input type="checkbox" id="remember" name="remember" value="1" <?php echo !empty($remember) ? 'checked' : ''; ?>>
@@ -211,7 +222,11 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
+<<<<<<< HEAD
                   
+=======
+          
+>>>>>>> d2f7668438274eb139245811efcde52578a2b13f
                   <tr>
                       <td colspan="2">
                           <input type="submit" id="submit" name="submit" value="LogIn">
@@ -224,7 +239,11 @@ include "../Controller/buyervalidation/Loginvalidation.php";
                       </td>
                   </tr>
 
+<<<<<<< HEAD
                   
+=======
+                
+>>>>>>> d2f7668438274eb139245811efcde52578a2b13f
                   <tr>
                       <td colspan="2">
                           <div class="link">
@@ -247,7 +266,8 @@ include "../Controller/buyervalidation/Loginvalidation.php";
 
                 </table>
 
-            </fieldset>
+            </fieldset>  
+            
 
         </form>
 
