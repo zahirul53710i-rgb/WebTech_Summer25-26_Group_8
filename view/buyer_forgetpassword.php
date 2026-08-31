@@ -1,5 +1,5 @@
 <?php
-//include "../Controller/ForgotPasswordvalidation.php";
+include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -7,6 +7,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
+      
+    <script>
+        function collect_data()
+        {
+            let username = document.getElementById("username").value.trim();
+            let new_password = document.getElementById("new_password").value.trim();
+
+            let valid = true;
+            let message = "";
+
+            if(username.length < 5)
+            {
+                message += "User Name Must be 5 Char\n";
+                valid = false;
+            }
+            if(new_password.length < 5)
+            {
+                message += "New Password Must be 5 Char\n";
+                valid = false;
+            }
+            if(!valid)
+            {
+                alert(message);
+            }
+            return valid;
+        }
+    </script>
 
     <style>
         * {
@@ -23,7 +50,7 @@
             padding: 20px;
         }
 
-        /* CONTAINER */
+        
         .container {
             width: 90%;
             max-width: 440px;
@@ -35,7 +62,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* HEADING */
+        
         h1 {
             font-family: Georgia, serif;
             font-size: 30px;
@@ -80,7 +107,7 @@
             margin-bottom: 5px;
         }
 
-        /* INPUT FIELDS */
+        
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -100,7 +127,7 @@
             border-color: #4d6b5e;
         }
 
-        /* BUTTONS */
+       
         input[type="button"],
         input[type="submit"],
         input[type="reset"] {
@@ -130,7 +157,7 @@
             background-color: #736a5e;
         }
 
-        /* LINK */
+        
         .link {
             text-align: center;
             margin-top: 15px;
@@ -148,7 +175,14 @@
             text-decoration: underline;
         }
 
-        /* RESPONSIVE */
+        .msg {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+      
         @media screen and (max-width: 500px) {
             body {
                 padding: 10px;
@@ -177,7 +211,9 @@
 
         <h1>Reset Password</h1>
 
-        <form method="post" action="">
+        <div class="msg"><?php echo $message; ?></div>
+
+        <form method="post" action="" onsubmit="return collect_data()">
 
             <fieldset>
 
@@ -190,7 +226,7 @@
                             <label for="username">User Name:</label>
                         </td>
                         <td>
-                            <input type="text" id="username" name="username" placeholder="Enter your User Name">
+                            <input type="text" id="username" name="username" placeholder="Enter your User Name" value="<?php echo htmlspecialchars($username); ?>">
                         </td>
                     </tr>
 
@@ -205,7 +241,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <input type="button" id="submit" name="submit" value="Update Password" onclick="location.href='userlogin.php'">
+                            <input type="submit" id="submit" name="submit" value="Update Password">
                         </td>
                     </tr>
 
@@ -226,7 +262,7 @@
                     <tr>
                         <td colspan="2">
                             <div class="link">
-                                <a href="dashboard.php">Back to Dashboard</a>
+                                <a href="buyerdashboard.php">Back to Dashboard</a>
                             </div>
                         </td>
                     </tr>
