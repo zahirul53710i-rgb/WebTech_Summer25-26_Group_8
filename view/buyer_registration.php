@@ -1,5 +1,5 @@
 <?php 
-include "../Controller/buyervalidation/RegistrationValidation.php";   
+include "../controller/buyervalidation/RegistrationValidation.php";  
 ?> 
 
 <!DOCTYPE html> 

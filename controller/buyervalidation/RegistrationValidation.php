@@ -1,5 +1,7 @@
 <?php
-include "../../model/buyer/registrationdb.php";
+
+include "../model/buyer/registrationdb.php";
+
 session_start();
 
 $username = "";
@@ -12,12 +14,14 @@ $message = "";
 $valid = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $username = trim($_POST["username"] ?? "");
     $email = trim($_POST["email"] ?? "");
     $phone = trim($_POST["phone"] ?? "");
     $address = trim($_POST["address"] ?? "");
     $dob = trim($_POST["dob"] ?? "");
-    $password = trim($_POST["password"] ?? "123456"); // ফর্মে পাসওয়ার্ড থাকলে সেটা নিবে, না থাকলে ডিফল্ট
+    $password = trim($_POST["password"] ?? "123456");
+
     $file = $_FILES["file"] ?? [];
 
     if (empty($username) || strlen($username) < 5) {
@@ -46,28 +50,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($valid) {
+
         $path = "";
+
         if (!empty($file["name"])) {
+
             $uploaddirectory = "../../Uploads/";
+
             if (!file_exists($uploaddirectory)) {
                 mkdir($uploaddirectory, 0777, true);
             }
+
             $path = $uploaddirectory . basename($file["name"]);
+
             move_uploaded_file($file["tmp_name"], $path);
         }
 
         $database = new db();
+
         $connection = $database->connection();
-        $result = $database->signup($connection, "buyer_user", $username, $password, $email, $phone, $address, $dob, $path);
+
+        $result = $database->signup(
+            $connection,
+            "buyer_user",
+            $username,
+            $password,
+            $email,
+            $phone,
+            $address,
+            $dob,
+            $path
+        );
 
         if ($result) {
+
             $_SESSION["logged_in"] = true;
             $_SESSION["username"] = $username;
+
             header("Location: buyerdashboard.php");
             exit();
+
         } else {
-            echo "please try again";
+
+            $message = "Database Error! Please try again.";
         }
+
+        $connection->close();
     }
 }
 ?>
