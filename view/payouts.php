@@ -1,10 +1,3 @@
-<?php
-// include __DIR__ . "/../Controller/payoutController.php";
-
-// Later:
-// $totalSale = getDeliveredSales();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -172,12 +165,6 @@
 
     <?php
 
-    /*
-     * Later:
-     *
-     * $totalSale = getDeliveredSales();
-     */
-
     $totalSale = 0;
 
     ?>
@@ -203,7 +190,7 @@
     </div>
 
 
-    <!-- BACK TO SELLER DASHBOARD -->
+
 
     <div class="back">
 
