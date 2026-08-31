@@ -1,6 +1,7 @@
 <?php
 
 $pageTitle = "Manage Users";
+include("../controller/Admin/AdminUsersController.php");
 
 ?>
 
@@ -189,49 +190,29 @@ input[type="submit"]:hover {
     <th>Action</th>
 </tr>
 
+<?php
+
+while($row = $result->fetch_assoc())
+{
+?>
+
 <tr>
-    <td>01</td>
-    <td>Rahim</td>
-    <td>rahim@example.com</td>
-    <td>Buyer</td>
+    <td><?php echo $row["id"]; ?></td>
+    <td><?php echo $row["username"]; ?></td>
+    <td><?php echo $row["email"]; ?></td>
+    <td><?php echo $row["role"]; ?></td>
     <td>
-        <a href="#">
-            Delete
-        </a>
+        <a href="#">Delete</a>
     </td>
 </tr>
 
-<tr>
-    <td>02</td>
-    <td>Karim</td>
-    <td>karim@example.com</td>
-    <td>Seller</td>
-    <td>
-        <a href="#">
-            Delete
-        </a>
-    </td>
-</tr>
+<?php
+}
 
-<tr>
-    <td>03</td>
-    <td>Nabila</td>
-    <td>nabila@example.com</td>
-    <td>Buyer</td>
-    <td>
-        <a href="#">
-            Delete
-        </a>
-    </td>
-</tr>
+?>
 
-<tr>
-    <td colspan="5">
-        <a href="admin_dashboard.php">
-            &larr; Back to Dashboard
-        </a>
-    </td>
-</tr>
+
+
 </table>
 
 </body>
