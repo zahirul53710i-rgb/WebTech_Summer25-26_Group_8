@@ -1,25 +1,32 @@
 <?php
 
-$username="";
-$password="";
+include("../../model/database.php");
+
+$username = "";
+$password = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $username=trim($_POST["username"] ?? "");
-        $password=trim($_POST["password"] ?? "");
+{
+    $username = trim($_POST["username"] ?? "");
+    $password = trim($_POST["password"] ?? "");
 
-        if($username != "admin")
-            {
-                echo "<script>alert('Invalid Admin Username'); window.history.back();</script>";
-            }
-        else if($password != "admin")
-            {
-                echo "<script>alert('Invalid Admin Password'); window.history.back();</script>";
-            }
-        else
-            {
-                echo "<script>alert('Admin Login Successful'); window.location.href='../../view/admin_dashboard.php';</script>";
-            }
+    $db = new db();
+    $connection = $db->connection();
+
+    $sql = "SELECT * FROM admins WHERE username='$username' AND password='$password'";
+
+    $result = $connection->query($sql);
+
+    if($result->num_rows > 0)
+    {
+        echo "Admin Login Successful";
+        header("Location: ../../view/admin_dashboard.php");
+        exit();
     }
+    else
+    {
+        echo "Invalid Admin Username or Password";
+    }
+}
 
 ?>
