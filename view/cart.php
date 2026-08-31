@@ -1,306 +1,289 @@
 <?php
-
 include "../Controller/buyervalidation/cartvalidation.php";
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
-
     <meta charset="UTF-8">
-
     <title>Buyer Cart</title>
 
-
     <script>
+        function collect_data() {
+            let quantity = document.getElementById("quantity").value.trim();
+            let valid = true;
+            let message = "";
 
-    function collect_data()
-    {
-    let quantity = document.getElementById("quantity").value.trim();
+            if (quantity.length == 0) {
+                message += "Quantity is Required\n";
+                valid = false;
+            } else if (isNaN(quantity)) {
+                message += "Quantity Must be a Number\n";
+                valid = false;
+            } else if (Number(quantity) <= 0) {
+                message += "Quantity Must be Greater Than 0\n";
+                valid = false;
+            }
 
-    let valid = true;
-    let message="";
+            if (!valid) {
+                alert(message);
+            }
 
-
-    if(quantity.length == 0)
-    {
-        message+="Quantity is Required\n";
-        valid = false;
-    }
-
-    else if(isNaN(quantity))
-    {
-        message+="Quantity Must be a Number\n";
-        valid = false;
-    }
-
-    else if(Number(quantity) <= 0)
-    {
-        message+="Quantity Must be Greater Than 0\n";
-        valid = false;
-    }
-
-
-    if(!valid)
-    {
-        alert(message);
-    }
-
-
-    return valid;
-    }
-
+            return valid;
+        }
     </script>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #f4f0ea;
             color: #2c4238;
-            padding: 20px;
-            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* --- Header & Topnav Styling --- */
+        .header {
+            background-color: #2c4238;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+            font-size: 24px;
+        }
+
+        .topnav {
+            background-color: #3f5e4d;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .topnav a {
+            color: #e2ddd3;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .topnav a:hover {
+            color: #ffffff;
+        }
+
+        /* --- Main Content Container --- */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
 
         .container {
-            max-width: 850px;
-            margin: 50px auto;
+            max-width: 650px;
+            margin: 20px auto;
             background-color: #ffffff;
-            padding: 30px;
-            border-radius: 16px;
+            padding: 25px;
+            border-radius: 12px;
             border: 1px solid #e2ddd3;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-
-        h1 {
-            color: #2c4238;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 28px;
-            font-family: Georgia, serif;
-        }
-
-
         fieldset {
             border: 1px solid #e2ddd3;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 20px;
             background-color: #ffffff;
         }
-
 
         legend {
             padding: 0 10px;
             color: #2c4238;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 18px;
         }
-
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
         }
-
 
         td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #e2ddd3;
-            color: #2c4238;
-            font-size: 15px;
+            padding: 10px;
+            vertical-align: middle;
         }
 
-
-        tr:first-child td {
-            background-color: #3f5e4d;
-            color: white;
+        td label {
             font-weight: bold;
+            color: #2c4238;
         }
 
-
-        tr:nth-child(even) {
+        .product-info {
             background-color: #fbf9f5;
-        }
-
-
-        .total {
-            text-align: right;
-            font-size: 17px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e2ddd3;
             font-weight: bold;
-            padding: 20px 10px;
-            color: #2c4238;
-        }
-
-
-        input[type="text"],
-        input[type="button"],
-        input[type="submit"] {
-            background-color: #3f5e4d;
-            color: white;
-            padding: 12px 15px;
+            color: #3f5e4d;
+            display: inline-block;
             width: 100%;
-            border-radius: 8px;
-            border: none;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
         }
-
 
         input[type="text"] {
-            background-color: #eeebe3;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .total-box {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
             color: #2c4238;
-            border: 1px solid #e2ddd3;
-            cursor: text;
+            border-top: 1px dashed #e2ddd3;
+            padding-top: 15px;
         }
 
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #4d6b5e;
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
 
+        input[type="button"],
+        input[type="submit"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
         input[type="button"] {
             background-color: #e2ddd3;
             color: #2c4238;
         }
 
-
-        input[type="button"]:hover {
-            background-color: #d1cbbd;
+        input[type="submit"] {
+            background-color: #3f5e4d;
+            color: white;
         }
 
-
-        input[type="submit"]:hover {
-            background-color: #2c4238;
+        .error-msg {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 4px;
+            display: block;
         }
-
 
         .link {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
-
 
         .link a {
             color: #3f5e4d;
             text-decoration: none;
-            font-size: 15px;
             font-weight: bold;
         }
 
-
-        .link a:hover {
-            color: #2c4238;
-            text-decoration: underline;
+        /* --- Footer Styling --- */
+        .footer {
+            background-color: #2c4238;
+            color: #e2ddd3;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
         }
 
+        .footer label {
+            font-size: 14px;
+        }
     </style>
-
 </head>
-
 
 <body>
 
-
-    <div class="container">
-
-
-        <h1>My Cart</h1>
-
-
-        <form method="post" action="" onsubmit="return collect_data()">
-
-
-            <fieldset>
-
-
-                <legend>Selected Products</legend>
-
-
-                <table>
-
-
-                    <tr>
-                        <td>Product</td>
-                        <td>Quantity</td>
-                        <td>Price</td>
-                        <td>Total</td>
-                    </tr>
-
-
-                    <tr>
-
-                        <td>Selected Product</td>
-
-                        <td>
-                            <input type="text"id="quantity"name="quantity"placeholder="Enter Quantity"><?php echo $message; ?>
-                            
-                        </td>
-
-                        <td></td>
-
-                        <td></td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td colspan="3" class="total">
-                            Grand Total:
-                        </td>
-
-                        <td></td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td colspan="2">
-                            <input type="button" value="Continue Shopping" onclick="location.href='dashboard.php'">
-                        </td>
-
-                        <td colspan="2">
-                            <input type="submit" id="submit" name="submit" value="Place Order">
-                        </td>
-
-                    </tr>
-
-
-                </table>
-
-
-                <div class="link">
-                    <a href="order_history.php">View Order History</a>
-                </div>
-
-
-            </fieldset>
-
-
-        </form>
-
-
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Green Harvest Portal</h1>
     </div>
 
+    <!-- Top Navigation -->
+    <div class="topnav">
+        <a href="dashboard.php">Dashboard</a>
+        <a href="buyer_profile_view_update.php">Profile</a>
+        <a href="cart.php">Cart</a>
+        <a href="userlogin.php">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+
+            <form method="post" action="" onsubmit="return collect_data()">
+
+                <fieldset>
+                    <legend>My Cart - Selected Products</legend>
+
+                    <table>
+                        <tr>
+                            <td><label>Product Name:</label></td>
+                            <td><div class="product-info"><?php echo $product_name; ?></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><label>Price Per Unit:</label></td>
+                            <td><div class="product-info">BDT <?php echo $price; ?></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="quantity">Quantity:</label></td>
+                            <td>
+                                <input type="text" id="quantity" name="quantity" placeholder="Enter Quantity" value="<?php echo $quantity; ?>">
+                                <span class="error-msg"><?php echo $message; ?></span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="total-box">
+                        Grand Total: BDT <span id="grand-total"><?php echo $total; ?></span>
+                    </div>
+
+                    <div class="btn-group">
+                        <input type="button" value="Continue Shopping" onclick="location.href='dashboard.php'">
+                        <input type="submit" id="submit" name="submit" value="Place Order">
+                    </div>
+
+                    <div class="link">
+                        <a href="order_history.php">View Order History</a>
+                    </div>
+
+                </fieldset>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <label for="footer">Created <?php echo date("Y"); ?> - Green Harvest Portal</label>
+    </div>
 
 </body>
 

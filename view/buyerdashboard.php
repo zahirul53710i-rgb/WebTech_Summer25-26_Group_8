@@ -1,7 +1,19 @@
 <?php
 
-include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
+session_start();
 
+
+if (!isset($_SESSION["username"]) && isset($_COOKIE["user_login"])) {
+    $_SESSION["username"] = $_COOKIE["user_login"];
+}
+
+
+if (!isset($_SESSION["username"])) {
+    header("Location: userlogin.php");
+    exit();
+}
+
+include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
 ?>
 
 <!DOCTYPE html>
@@ -252,7 +264,8 @@ include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
 
 
         <div class="welcome">
-            Welcome back, Buyer!
+          
+            Welcome back, <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : "Buyer"; ?>!
         </div>
 
 
@@ -298,7 +311,7 @@ include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
 
                             <br>
 
-                            <?php echo $message; ?>
+                            <?php echo isset($message) ? $message : ""; ?>
 
                             <input type="submit"
                                    id="submit"
@@ -374,7 +387,8 @@ include "../Controller/Buyervalidation/buyerdashboardvalidation.php";
                         Give Review
                     </a>
 
-                    <a href="userlogin.php">
+                  
+                    <a href="logout.php">
                         Logout
                     </a>
 
