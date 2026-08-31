@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($valid) {
-        // File Upload Logic
+        
         $path = "";
         if (!empty($file["name"])) {
             $uploaddirectory = "../Uploads/";
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($file["tmp_name"], $path);
         }
 
-        // Session Save
+       
         $_SESSION["logged_in"] = true;
         $_SESSION["username"] = $username;
         $_SESSION["email"] = $email;
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["dob"] = $dob;
         $_SESSION["profile_pic"] = $path;
 
-        // All Data Save in Cookies (30 days validity)
+       \
         setcookie("buyer_username", $username, time() + (86400 * 30), "/");
         setcookie("buyer_email", $email, time() + (86400 * 30), "/");
         setcookie("buyer_phone", $phone, time() + (86400 * 30), "/");

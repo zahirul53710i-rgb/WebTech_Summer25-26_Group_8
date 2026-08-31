@@ -7,7 +7,7 @@ $phone = "";
 $address = "";
 $dob = "";
 $message = "";
-$photo = "../Images/profile.jpg";
+$photo = "";
 
 
 if (isset($_COOKIE["buyer_name"])) {

@@ -50,7 +50,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             padding: 20px;
         }
 
-        /* CONTAINER */
+        
         .container {
             width: 90%;
             max-width: 440px;
@@ -62,7 +62,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* HEADING */
+        
         h1 {
             font-family: Georgia, serif;
             font-size: 30px;
@@ -107,7 +107,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             margin-bottom: 5px;
         }
 
-        /* INPUT FIELDS */
+        
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -127,7 +127,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             border-color: #4d6b5e;
         }
 
-        /* BUTTONS */
+       
         input[type="button"],
         input[type="submit"],
         input[type="reset"] {
@@ -157,7 +157,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             background-color: #736a5e;
         }
 
-        /* LINK */
+        
         .link {
             text-align: center;
             margin-top: 15px;
@@ -182,7 +182,7 @@ include "../Controller/buyervalidation/ForgotPasswordvalidation.php";
             margin-bottom: 10px;
         }
 
-        /* RESPONSIVE */
+      
         @media screen and (max-width: 500px) {
             body {
                 padding: 10px;

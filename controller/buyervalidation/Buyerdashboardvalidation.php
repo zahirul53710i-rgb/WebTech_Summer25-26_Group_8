@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($valid) {
         $message = "Product Added to Cart";
         
-        // উদাহরণ: কার্ট ডাটা সেশনে সেভ করে রাখা
+      
         $_SESSION['cart'][] = [
             'product' => $product,
             'quantity' => $quantity
