@@ -1,7 +1,6 @@
 <?php
-
+include "../controller/Admin/admin_auth.php";
 $pageTitle = "Manage Listings";
-
 ?>
 
 <!DOCTYPE html>

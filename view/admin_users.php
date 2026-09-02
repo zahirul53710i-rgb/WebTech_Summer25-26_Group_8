@@ -1,7 +1,7 @@
 <?php
 
+include "../controller/Admin/admin_auth.php";
 $pageTitle = "Manage Users";
-include("../controller/Admin/AdminUsersController.php");
 
 ?>
 
@@ -182,40 +182,72 @@ input[type="submit"]:hover {
     </td>
 </tr>
 
-<tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Role</th>
-    <th>Action</th>
-</tr>
+<table border="1">
 
-<?php
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Phone</th>
+        <th>Status</th>
+    </tr>
 
-while($row = $result->fetch_assoc())
-{
-?>
-
-<tr>
-    <td><?php echo $row["id"]; ?></td>
-    <td><?php echo $row["username"]; ?></td>
-    <td><?php echo $row["email"]; ?></td>
-    <td><?php echo $row["role"]; ?></td>
-    <td>
-        <a href="#">Delete</a>
-    </td>
-</tr>
-
-<?php
-}
-
-
-?>
-
-
+    <tbody id="userTable">
+    </tbody>
 
 </table>
+</table>
+<script>
 
+function loadUsers()
+{
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            var data = JSON.parse(this.responseText);
+
+            var table = document.getElementById("userTable");
+
+            table.innerHTML = "";
+
+            if (data.status == "success")
+            {
+                for (var i = 0; i < data.users.length; i++)
+                {
+                    table.innerHTML +=
+                        "<tr>" +
+                        "<td>" + data.users[i].id + "</td>" +
+                        "<td>" + data.users[i].username + "</td>" +
+                        "<td>" + data.users[i].email + "</td>" +
+                        "<td>" + data.users[i].role + "</td>" +
+                        "<td>" + data.users[i].phone + "</td>" +
+                        "<td>" + data.users[i].status + "</td>" +
+                        "</tr>";
+                }
+            }
+            else
+            {
+                alert(data.message);
+            }
+        }
+    };
+
+    xhttp.open(
+        "GET",
+        "../controller/Admin/admin_ajax.php?action=get_users",
+        true
+    );
+
+    xhttp.send();
+}
+
+loadUsers();
+
+</script>
 </body>
 
 </html>
