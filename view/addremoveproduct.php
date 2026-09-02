@@ -6,6 +6,7 @@ include "../model/seller/product_db.php";
 
 
 
+
 if (
     !isset($_SESSION["seller_logged_in"]) ||
     $_SESSION["seller_logged_in"] !== true
@@ -16,10 +17,9 @@ if (
 }
 
 
-
-
 $username =
     $_SESSION["seller_username"] ?? "";
+
 
 
 
@@ -28,31 +28,13 @@ $database = new db();
 $connection =
     $database->connection();
 
-
-
-
 $products =
     $database->getProduct(
         $connection,
         $username
     );
 
-$message = "";
-
-if (
-    isset($_SESSION["product_message"])
-)
-{
-    $message =
-        $_SESSION["product_message"];
-
-    unset(
-        $_SESSION["product_message"]
-    );
-}
-
 ?>
-
 
 <!DOCTYPE html>
 
@@ -128,9 +110,20 @@ if (
             border-radius: 8px;
             margin-bottom: 20px;
             font-weight: bold;
+        }
+
+
+        .message.success {
             background-color: #d9ead3;
             color: #285943;
             border: 1px solid #a8c79e;
+        }
+
+
+        .message.error {
+            background-color: #f4cccc;
+            color: #8b2e2e;
+            border: 1px solid #d99a9a;
         }
 
 
@@ -146,6 +139,7 @@ if (
             padding: 25px;
             border: 1px solid #ddd5c5;
             border-radius: 12px;
+
             box-shadow:
                 0 4px 10px
                 rgba(50, 45, 35, 0.07);
@@ -206,6 +200,13 @@ if (
 
         .btn:hover {
             background-color: #3d5b4d;
+        }
+
+
+        .btn:disabled,
+        .remove-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
 
@@ -360,18 +361,10 @@ if (
 <body>
 
 
-<form
-    method="post"
-    action="../controller/seller/addremoveproduct_validation.php"
-    enctype="multipart/form-data"
-    onsubmit="return validateForm()"
->
-
-
 <div class="page">
 
 
-    
+   
     <div class="page-header">
 
         <h1>
@@ -385,33 +378,18 @@ if (
     </div>
 
 
-->
-
-    <?php
-
-    if (!empty($message))
-    {
-    ?>
-
-        <div class="message">
-
-            <?php
-            echo htmlspecialchars($message);
-            ?>
-
-        </div>
-
-    <?php
-    }
-
-    ?>
+    
+    <div
+        id="message"
+        class="message"
+        style="display:none;"
+    ></div>
 
 
     <div class="main-area">
 
 
-    
-
+        
         <div class="section">
 
             <h2>
@@ -419,95 +397,101 @@ if (
             </h2>
 
 
-            <!-- PRODUCT NAME -->
-
-            <div class="field">
-
-                <label for="name">
-                    Product Name
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter product name"
-                >
-
-            </div>
-
-
-            <!-- PRICE -->
-
-            <div class="field">
-
-                <label for="price">
-                    Price
-                </label>
-
-                <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    min="1"
-                    step="0.01"
-                    placeholder="Enter product price"
-                >
-
-            </div>
-
-
-
-            <div class="field">
-
-                <label for="quantity">
-                    Quantity
-                </label>
-
-                <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min="1"
-                    placeholder="Enter quantity"
-                >
-
-            </div>
-
-
-            <!-- PICTURE -->
-
-            <div class="field">
-
-                <label for="picture">
-                    Product Picture
-                </label>
-
-                <input
-                    type="file"
-                    id="picture"
-                    name="picture"
-                    accept=".jpg,.jpeg,.png,.gif"
-                >
-
-            </div>
-
-
-            <!-- ADD BUTTON -->
-
-            <input
-                type="submit"
-                name="action"
-                value="Add Product"
-                class="btn"
+            <form
+                id="addProductForm"
+                enctype="multipart/form-data"
             >
+
+
+              
+
+                <div class="field">
+
+                    <label for="name">
+                        Product Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter product name"
+                    >
+
+                </div>
+
+
+             
+
+                <div class="field">
+
+                    <label for="price">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        min="1"
+                        step="0.01"
+                        placeholder="Enter product price"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="quantity">
+                        Quantity
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        min="1"
+                        placeholder="Enter quantity"
+                    >
+
+                </div>
+
+
+             
+
+                <div class="field">
+
+                    <label for="picture">
+                        Product Picture
+                    </label>
+
+                    <input
+                        type="file"
+                        id="picture"
+                        name="picture"
+                        accept=".jpg,.jpeg,.png,.gif"
+                    >
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    id="addButton"
+                    class="btn"
+                >
+                    Add Product
+                </button>
+
+
+            </form>
 
         </div>
 
 
-
-
-
+      
         <div class="section">
 
             <h2>
@@ -515,19 +499,22 @@ if (
             </h2>
 
 
-            <!-- SEARCH -->
+    
 
             <input
                 type="text"
                 id="search"
                 placeholder="Search for product"
                 class="search"
-                onkeyup="searchProducts()"
             >
 
 
+       
 
-            <div class="product-list">
+            <div
+                class="product-list"
+                id="productList"
+            >
 
                 <?php
 
@@ -556,28 +543,22 @@ if (
                         ?>"
                     >
 
-
                         <div class="product-info">
 
 
-                     
-
                             <img
                                 src="<?php
-
                                     echo htmlspecialchars(
                                         $product["picture"]
                                     );
-
                                 ?>"
                                 alt="Product"
                                 class="product-image"
                             >
 
 
-                            <!-- PRODUCT DETAILS -->
-
                             <div class="product-details">
+
 
                                 <span class="product-name">
 
@@ -623,12 +604,13 @@ if (
 
                                 </span>
 
+
                             </div>
 
                         </div>
 
 
-                        <!-- RADIO BUTTON -->
+                    
 
                         <input
                             type="radio"
@@ -670,17 +652,19 @@ if (
 
 
 
-            <input
-                type="submit"
-                name="action"
-                value="Remove Selected"
+            <button
+                type="button"
+                id="removeButton"
                 class="remove-button"
             >
+                Remove Selected
+            </button>
+
 
         </div>
 
-    </div>
 
+    </div>
 
 
 
@@ -700,315 +684,10 @@ if (
 
 </div>
 
-</form>
 
-
-<script>
-
-
-
-
-function validateForm()
-{
-
-    
-
-    let button =
-        document.activeElement;
-
-
-   
-    if (
-        button &&
-        button.value === "Add Product"
-    )
-    {
-
-        let name =
-            document
-            .getElementById("name")
-            .value
-            .trim();
-
-
-        let price =
-            document
-            .getElementById("price")
-            .value;
-
-
-        let quantity =
-            document
-            .getElementById("quantity")
-            .value;
-
-
-        let picture =
-            document
-            .getElementById("picture")
-            .files[0];
-
-
-        
-        if (name === "")
-        {
-            alert(
-                "Please enter the product name."
-            );
-
-            document
-                .getElementById("name")
-                .focus();
-
-            return false;
-        }
-
-
-        if (name.length < 2)
-        {
-            alert(
-                "Product name must contain at least 2 characters."
-            );
-
-            document
-                .getElementById("name")
-                .focus();
-
-            return false;
-        }
-
-
-
-        if (price === "")
-        {
-            alert(
-                "Please enter the product price."
-            );
-
-            document
-                .getElementById("price")
-                .focus();
-
-            return false;
-        }
-
-
-        if (parseFloat(price) <= 0)
-        {
-            alert(
-                "Price must be greater than 0."
-            );
-
-            document
-                .getElementById("price")
-                .focus();
-
-            return false;
-        }
-
-
-        
-
-        if (quantity === "")
-        {
-            alert(
-                "Please enter the product quantity."
-            );
-
-            document
-                .getElementById("quantity")
-                .focus();
-
-            return false;
-        }
-
-
-        if (
-            !Number.isInteger(
-                Number(quantity)
-            ) ||
-            Number(quantity) <= 0
-        )
-        {
-            alert(
-                "Quantity must be a positive whole number."
-            );
-
-            document
-                .getElementById("quantity")
-                .focus();
-
-            return false;
-        }
-
-
-        /*
-         * PICTURE
-         */
-
-        if (!picture)
-        {
-            alert(
-                "Please select a product picture."
-            );
-
-            document
-                .getElementById("picture")
-                .focus();
-
-            return false;
-        }
-
-
-        /*
-         * PICTURE TYPE
-         */
-
-        let allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/gif"
-        ];
-
-
-        if (
-            !allowedTypes.includes(
-                picture.type
-            )
-        )
-        {
-            alert(
-                "Only JPG, JPEG, PNG and GIF images are allowed."
-            );
-
-            document
-                .getElementById("picture")
-                .value = "";
-
-            return false;
-        }
-
-
-       
-
-        let maxSize =
-            2 * 1024 * 1024;
-
-
-        if (picture.size > maxSize)
-        {
-            alert(
-                "Picture size must be less than 2 MB."
-            );
-
-            document
-                .getElementById("picture")
-                .value = "";
-
-            return false;
-        }
-
-
-        return true;
-    }
-
-
-   
-
-    if (
-        button &&
-        button.value === "Remove Selected"
-    )
-    {
-
-        let selectedProduct =
-            document.querySelector(
-                'input[name="selected_product"]:checked'
-            );
-
-
-        
-        if (!selectedProduct)
-        {
-            alert(
-                "Please select a product to remove."
-            );
-
-            return false;
-        }
-
-
-        
-
-        let confirmation =
-            confirm(
-                "Are you sure you want to remove the selected product?"
-            );
-
-
-        if (!confirmation)
-        {
-            return false;
-        }
-
-
-        return true;
-    }
-
-
-    return true;
-}
-
-
-
-function searchProducts()
-{
-
-    let search =
-        document
-        .getElementById("search")
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    let products =
-        document.querySelectorAll(
-            ".product"
-        );
-
-
-    products.forEach(
-        function(product)
-        {
-
-            let productName =
-                product.getAttribute(
-                    "data-name"
-                );
-
-
-            if (
-                productName.includes(search)
-            )
-            {
-                product.style.display =
-                    "flex";
-            }
-            else
-            {
-                product.style.display =
-                    "none";
-            }
-
-        }
-    );
-}
-
-</script>
+<script src="../JS/seller_product_ajax.js"></script>
 
 
 </body>
 
 </html>
-```
