@@ -1,65 +1,39 @@
 <?php
 
-include "admin_auth.php";
-include "../../model/Admin/admin_db.php";
-
-header("Content-Type: application/json");
-
-$action = $_GET["action"] ?? "";
+include("../../model/database.php");
 
 $db = new db();
 $connection = $db->connection();
 
-
-if ($action == "test")
+if(isset($_GET["action"]))
 {
-    echo json_encode([
-        "status" => "success",
-        "message" => "AJAX is working"
-    ]);
-}
-
-
-else if ($action == "get_users")
-{
-    $sql = "SELECT id, username, email, role, phone, address, status
-            FROM users";
-
-    $result = $connection->query($sql);
-
-    $users = array();
-
-    if ($result)
+    if($_GET["action"] == "get_users")
     {
-        while ($row = $result->fetch_assoc())
+        $sql = "SELECT * FROM user";
+        $result = $connection->query($sql);
+
+        $users = array();
+
+        if($result)
         {
-            $users[] = $row;
+            while($row = $result->fetch_assoc())
+            {
+                $users[] = $row;
+            }
+
+            echo json_encode([
+                "status" => "success",
+                "users" => $users
+            ]);
         }
-
-        echo json_encode([
-            "status" => "success",
-            "users" => $users
-        ]);
-    }
-    else
-    {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Failed to load users"
-        ]);
+        else
+        {
+            echo json_encode([
+                "status" => "error",
+                "message" => "Could not fetch users"
+            ]);
+        }
     }
 }
-
-
-else
-{
-    echo json_encode([
-        "status" => "error",
-        "message" => "Invalid action"
-    ]);
-}
-
-
-$connection->close();
 
 ?>
